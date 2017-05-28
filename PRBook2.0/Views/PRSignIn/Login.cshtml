@@ -72,17 +72,15 @@
         }
         var encodestr = hex_md5(password);
         encodestr = hex_sha1(encodestr);
-        $.post("PRSignIn/LoginConfirm",
+        var actionurl="@Url.Action("LoginConfirm","PRSignIn")"
+        $.post(actionurl,
             {
                 username: username,
                 pwd: encodestr
             },
             function (data, status) {
                 if (status == "success") {
-                    if (data != "用户名或密码错误") {
-                        location.href = data;
-                    }
-                    else {
+                    if (data == "用户名或密码错误") {
                         layer.alert(data, {
                             icon: 2,
                             closeBtn: false,
