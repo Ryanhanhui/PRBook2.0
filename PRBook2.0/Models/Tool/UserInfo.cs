@@ -33,5 +33,19 @@ namespace PRBook2._0.Models.Tool
                 _Instance = new UserInfo();
             return _Instance;
         }
+        /// <summary>
+        /// 设置登录用户的信息
+        /// </summary>
+        /// <param name="pr_userinfo">用户信息</param>
+        public void SetUserInfo(PR_UserInfo pr_userinfo)
+        {
+            _Instance.UserId = pr_userinfo.UserId;
+            _Instance.NickName = pr_userinfo.NickName;
+            _Instance.Name = pr_userinfo.Name;
+            _Instance.Age = pr_userinfo.Age;
+            _Instance.Sex = pr_userinfo.Sex;
+            _Instance.RoleType = pr_userinfo.RoleType;
+            _Instance.Password = pr_userinfo.Password;
+        }
     }
 }

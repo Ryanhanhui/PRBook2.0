@@ -87,6 +87,9 @@
                             title: '警告'
                         });
                     }
+                    else {
+                        location.href = "@Url.Action("Index","OverView")";
+                    }
                 }
                 else {
                     layer.alert("网络连接超时", {
