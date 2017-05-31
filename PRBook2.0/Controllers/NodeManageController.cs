@@ -7,16 +7,16 @@ using System.Web.Mvc;
 
 namespace PRBook2._0.Controllers
 {
-    public class HomeController : Controller
+    public class NodeManageController : Controller
     {
         PublicUtil util = new PublicUtil();
         //
-        // GET: /Home/
+        // GET: /NodeManage/
         public ActionResult Index()
         {
             if (!util.CheckLoginState())
                 return RedirectToAction("Login", "PRSignIn");
-            return View("Main");
+            return PartialView();
         }
 	}
 }

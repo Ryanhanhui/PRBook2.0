@@ -6,6 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="3852d8fbf09643aabfbec19a643ace2a" Name="Diagram1">
         <EntityTypeShape EntityType="PRBookModel.PR_UserInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="PRBookModel.NodeSetInfo" Width="1.5" PointX="3.375" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

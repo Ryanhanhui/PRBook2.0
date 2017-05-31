@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>人情来往管理系统</title>
     <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
 </head>
 <body>
     <!-- 布局容器 -->
@@ -21,7 +22,7 @@
                 <!-- 水平导航 -->
                 <ul class="layui-nav" style="position: absolute; top: 0; right: 0; background: none;">
                     <li class="layui-nav-item">
-                        <a href="@Url.Action("Index","OverView")">
+                        <a href="@Url.Action("Index","Home")">
                             返回首页
                         </a>
                     </li>
@@ -55,7 +56,6 @@
             <div class="layui-side-scroll">
                 <ul class="layui-nav layui-nav-tree" lay-filter="left-nav" style="border-radius: 0;">
                     <li class="layui-nav-item layui-this"><a href="javascript:;" data-url="main.html" data-id="1">主页</a></li>
-                    <li class="layui-nav-item"><a href="javascript:;" data-url="signin.html" data-id="7">登录</a></li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">搜索引擎<span class="layui-nav-more"></span></a>
                         <ul class="layui-nav-child">
@@ -65,12 +65,18 @@
                             <li class="layui-nav-item"><a href="javascript:;" data-url="https://www.sogou.com/" data-id="6">搜狗</a></li>
                         </ul>
                     </li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">系统设置</a>
+                        <ul class="layui-nav-child">
+                            <li class="layui-nav-item"><a href="javascript:;" onclick="LoadMainBody('@Url.Action("Index","NodeManage")')">节点设置</a></li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </div>
         <!-- 主体 -->
-        <div class="layui-body">
-            @RenderBody()
+        <div class="layui-body" id="MainBody">
+            
         </div>
         <!-- 底部 -->
         <div class="layui-footer" style="text-align: center; line-height: 44px;">
@@ -86,3 +92,11 @@
     </script>
 </body>
 </html>
+<script>
+    function LoadMainBody(strurl) {
+        debugger;
+        htmlobj = $.ajax({ url: strurl, async: false });
+        $("#MainBody").html(htmlobj.responseText);
+    }
+    LoadMainBody("@Url.Action("Index","OverView")");
+</script>

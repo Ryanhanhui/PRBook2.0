@@ -17,7 +17,7 @@ namespace PRBook2._0.Controllers
         {
             if (!util.CheckLoginState())
                 return RedirectToAction("Login", "PRSignIn");
-            return View();
+            return PartialView();
         }
 	}
 }

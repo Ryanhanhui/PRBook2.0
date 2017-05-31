@@ -4,7 +4,19 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="PRBookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="PRBookModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="NodeSetInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NodeName" Type="varchar" MaxLength="64" />
+          <Property Name="NodeUrl" Type="varchar" MaxLength="256" />
+          <Property Name="NodeType" Type="char" MaxLength="1" />
+          <Property Name="ParentNode" Type="int" />
+          <Property Name="NodeNum" Type="int" />
+          <Property Name="Status" Type="char" MaxLength="1" />
+        </EntityType>
         <EntityType Name="PR_UserInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -20,10 +32,10 @@
           <Property Name="Remark" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityContainer Name="PRBookModelStoreContainer">
+          <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="PRBookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -43,7 +55,20 @@
         </EntityType>
         <EntityContainer Name="PRBookEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" />
+          <EntitySet Name="NodeSetInfoes" EntityType="PRBookModel.NodeSetInfo" />
         </EntityContainer>
+        <EntityType Name="NodeSetInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NodeName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="NodeUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="NodeType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="ParentNode" Type="Int32" />
+          <Property Name="NodeNum" Type="Int32" />
+          <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -62,6 +87,19 @@
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="RoleType" ColumnName="RoleType" />
                 <ScalarProperty Name="Remark" ColumnName="Remark" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NodeSetInfoes">
+            <EntityTypeMapping TypeName="PRBookModel.NodeSetInfo">
+              <MappingFragment StoreEntitySet="NodeSetInfo">
+                <ScalarProperty Name="Status" ColumnName="Status" />
+                <ScalarProperty Name="NodeNum" ColumnName="NodeNum" />
+                <ScalarProperty Name="ParentNode" ColumnName="ParentNode" />
+                <ScalarProperty Name="NodeType" ColumnName="NodeType" />
+                <ScalarProperty Name="NodeUrl" ColumnName="NodeUrl" />
+                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
