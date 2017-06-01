@@ -8,17 +8,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
     <title>人情来往管理系统</title>
-    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
-    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
 </head>
 <body>
     <!-- 布局容器 -->
     <div class="layui-layout layui-layout-admin">
         <!-- 头部 -->
         <div class="layui-header">
-            <div class="layui-main">
+            <div class="layui-main ">
                 <!-- logo -->
-                <a href="/" style="color: #c2c2c2; font-size: 18px; line-height: 60px;">人情来往管理系统</a>
+                <a href="#" style="color: #c2c2c2; font-size: 18px; line-height: 60px;">人情来往管理系统</a>
                 <!-- 水平导航 -->
                 <ul class="layui-nav" style="position: absolute; top: 0; right: 0; background: none;">
                     <li class="layui-nav-item">
@@ -76,14 +78,13 @@
         </div>
         <!-- 主体 -->
         <div class="layui-body" id="MainBody">
-            
+
         </div>
         <!-- 底部 -->
         <div class="layui-footer" style="text-align: center; line-height: 44px;">
             Copyright © 2017 Harvey All rights reserved
         </div>
     </div>
-    <script src="~/Scripts/layui/layui.js"></script>
     <script type="text/javascript">
         layui.use('element', function () {
             var element = layui.element();
@@ -94,7 +95,6 @@
 </html>
 <script>
     function LoadMainBody(strurl) {
-        debugger;
         htmlobj = $.ajax({ url: strurl, async: false });
         $("#MainBody").html(htmlobj.responseText);
     }
