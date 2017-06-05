@@ -29,69 +29,42 @@
                         title: '警告'
                     });
                 }
-            }
+            },
+            "json"
             );
     //创建树节点
     var createNode = function (data) {
-        var items = data;
-        var nodearr = [];
-        var index1 = 0;
-        var index2 = 0;
-        
-        layui.each(items, function (i, nitem) {
-            if (nitem.ParentNode == "") {
-                debugger;
-                var node = {
-                    name: nitem.NodeName,
-                    id: nitem.Id
-                };
-                nodearr.push(node);
-                layui.each(items, function (j, citem) {
-                    if (citem.ParentNode == nitem.Id) {
-                        var child = [
-                            {
-                                name: citem.NodeName,
-                                id: citem.Id
-                            }
-                        ];
-                        node[index2].children = child;
-                        index2 = index2 + 1;
+        var treearr = [];
+        $.each(data, function (i) {
+            if (data[i].ParentNode == null) {
+                var child = [];
+                $.each(data, function (j) {
+                    if (data[j].ParentNode == data[i].Id) {
+                        child.push({
+                            name: data[j].NodeName,
+                            Id: data[j].Id
+                        });
                     }
                 });
-                index1 = index1 + 1;
+                treearr.push({
+                    name: data[i].NodeName,
+                    Id: data[i].Id,
+                    children: child
+                });
             }
         });
-        return nodearr;
+        return treearr;
     }
+   
     function loadTree(data) {//初始化树节点
         layui.use('tree', function () {
             layui.tree({
                 elem: '#NodeTree' //指定元素
             , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
             , click: function (item) { //点击节点回调
-                layer.msg('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
-                console.log(item);
+                layer.alert('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
             }
-            , nodes: [ //节点
-      {
-          name: '常用文件夹'
-        , id: 1
-        , alias: 'changyong'
-        , children: [
-          {
-              name: '所有未读（设置跳转）'
-            , id: 11
-            , href: 'http://www.layui.com/'
-            , alias: 'weidu'
-          }, {
-              name: '置顶邮件'
-            , id: 12
-          }, {
-              name: '标签邮件'
-            , id: 13
-          }
-        ]
-      }]
+            , nodes: createNode(data)
             });
         });
         
