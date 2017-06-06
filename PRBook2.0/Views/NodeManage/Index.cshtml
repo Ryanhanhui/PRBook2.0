@@ -1,20 +1,71 @@
-﻿<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+﻿<script>
+
+</script>
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>功能节点信息设置</legend>
 </fieldset>
 <div class="contentdiv-text contentdiv-block contentdiv-block-left">
     <div style="display: inline-block; width: 180px; padding: 10px; border: 1px solid #ddd; overflow: auto;">
-        <ul id="NodeTree">
-
-        </ul>
+        <ul id="NodeTree"></ul>
     </div>
 </div>
 <div class="contentdiv-text contentdiv-block contentdiv-block-right">
+    <div id="AddDiv" onclick="addBtnClick();">
+        <button class="layui-btn layui-btn-normal">
+            <i class="layui-icon">&#xe608;</i> 添加
+        </button>
+    </div>
+    <div id="ContentDiv" style="display:none">
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">节点名称</label>
+                <div class="layui-input-block">
+                    <input type="text" id="NodeName" name="NodeName" lay-verify="required" autocomplete="off" placeholder="请输入节点名称" class="layui-input" maxlength="32">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">节点链接</label>
+                <div class="layui-input-block">
+                    <input type="text" id="NodeUrl" name="NodeUrl" lay-verify="required" autocomplete="off" placeholder="请输入节点链接" class="layui-input" maxlength="128">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">序号</label>
+                <div class="layui-input-block">
+                    <input type="text" id="NodeNum" name="NodeNum" lay-verify="required|numberverify" autocomplete="off" placeholder="请输入序号" class="layui-input" maxlength="128" style="width:100px">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">父节点</label>
+                <div class="layui-input-inline">
+                    <select name="ParentNode" id="ParentNode"></select>
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">节点类型</label>
+                <div class="layui-input-block">
+                    <input type="radio" name="NodeType" id="NodeType0" value="0" title="业务" checked="">
+                    <input type="radio" name="NodeType" id="NodeType1" value="1" title="系统">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">是否开启</label>
+                <div class="layui-input-block">
+                    <input type="checkbox" checked="" id="Status" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="开启|关闭">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
+                    <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">取  消</button>
+                    <button class="layui-btn layui-btn-danger" id="DelBtn" onclick="delBtnClick()">删  除</button>
+                </div>
+            </div>
+        </div>
 
+    </div>
 </div>
 <script type="text/javascript">
-    layui.use('layer', function () {
-        var layer = layui.layer;
-    });
     //请求树节点数据
     $.post("@Url.Action("GetNodeTreeData","NodeManage")",
             {},
@@ -36,7 +87,7 @@
     var createNode = function (data) {
         var treearr = [];
         $.each(data, function (i) {
-            if (data[i].ParentNode == null) {
+            if (data[i].ParentNode == null || data[i].ParentNode == "") {
                 var child = [];
                 $.each(data, function (j) {
                     if (data[j].ParentNode == data[i].Id) {
@@ -55,19 +106,87 @@
         });
         return treearr;
     }
-   
+    //绑定节点选择框
+    function bindNodeParent(data) {
+        var htmlobj = "<option value=''></option>";
+        $.each(data, function (i) {
+            if (data[i].ParentNode == null || data[i].ParentNode == "") {
+                htmlobj += "<option value='" + data[i].Id + "'>" + data[i].NodeName + "</option>";
+            }
+        });
+        $("#ParentNode").html(htmlobj);
+    }
     function loadTree(data) {//初始化树节点
         layui.use('tree', function () {
             layui.tree({
                 elem: '#NodeTree' //指定元素
             , target: '_blank' //是否新选项卡打开（比如节点返回href才有效）
             , click: function (item) { //点击节点回调
-                layer.alert('当前节名称：' + item.name + '<br>全部参数：' + JSON.stringify(item));
+                treeClickBack(item);
             }
             , nodes: createNode(data)
             });
         });
-        
+        bindNodeParent(data);
     }
+    //树节点点击处理
+    function treeClickBack(item) {
+        $.post("@Url.Action("GetSingleData", "NodeManage")",
+            {
+                Id:item.Id
+            },
+            function (data, status) {
+                if (status == "success") {
+                    debugger;
+                    $("#NodeName").val(data.NodeName);
+                    $("#NodeUrl").val(data.NodeUrl);
+                    $("#NodeNum").val(data.NodeNum);
+                    $("#ParentNode").val(data.ParentNode);
+                    $("#ParentNode").attr("disabled");
+                    $("[name='NodeType']").removeAttr("checked");
+                    //$("#NodeType" + data.NodeType).attr("checked");
+                    if (data.Status == "1")
+                        $("#Status").attr("checked","checked");
+                }
+            },
+            "json"
+            );
+        $("#AddDiv").hide();
+        $("#ContentDiv").show();
+    }
+    //新增
+    function addBtnClick() {
+        $("#ContentDiv").show();
+        $("#AddDiv").hide();
+        $("#DelBtn").hide();
+    }
+    //取消
+    function cancelBtnClick() {
+        $("#ContentDiv").hide();
+        $("#AddDiv").show();
+    }
+    //保存
+    function saveBtnClick() {
+
+    }
+    //删除
+    function delBtnClick() {
+
+    }
+    $(document).ready(function () {
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            var form = layui.form();
+            form.verify({
+                //我们既支持上述函数式的方式，也支持下述数组的形式
+                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
+                numberverify: [
+                 /^[1-9]\d*$/
+                 , '只能填写正整数'
+                ]
+            });
+            form.render();
+        });
+    });
 </script>
 

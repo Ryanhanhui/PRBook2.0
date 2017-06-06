@@ -14,10 +14,36 @@ namespace PRBook2._0.Models.LogicL
         {
 
         }
+        /// <summary>
+        /// 获取树节点所有数据
+        /// </summary>
+        /// <returns>节点数据集合</returns>
         public string GetNodeTreeData()
         {
             List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.ToList();
             return putil.GetJsonData(nodemodel);
+        }
+        /// <summary>
+        /// 根据id获取对应树节点数据
+        /// </summary>
+        /// <param name="Id">ID</param>
+        /// <returns>节点数据</returns>
+        public string GetSingleData(string Id)
+        {
+            if (string.IsNullOrWhiteSpace(Id))
+                return "null";
+            int id = int.Parse(Id);
+            NodeSetInfo nodemodel = mdb.NodeSetInfoes.Where(u => u.Id == id).ToList().FirstOrDefault();
+            return putil.GetJsonData(nodemodel);
+        }
+        /// <summary>
+        /// 添加数据
+        /// </summary>
+        /// <param name="nodesetinfo">树节点</param>
+        /// <returns>成功与否</returns>
+        public bool AddNode(NodeSetInfo nodesetinfo)
+        {
+            return false;
         }
     }
 }
