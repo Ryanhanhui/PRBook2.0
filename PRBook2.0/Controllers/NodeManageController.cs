@@ -39,5 +39,11 @@ namespace PRBook2._0.Controllers
         {
             return "";
         }
+        [Authorize]
+        [HttpPost]
+        public string UpdateData()
+        {
+            return "";
+        }
 	}
 }

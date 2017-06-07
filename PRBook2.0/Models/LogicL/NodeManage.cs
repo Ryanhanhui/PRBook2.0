@@ -40,10 +40,19 @@ namespace PRBook2._0.Models.LogicL
         /// 添加数据
         /// </summary>
         /// <param name="nodesetinfo">树节点</param>
-        /// <returns>成功与否</returns>
-        public bool AddNode(NodeSetInfo nodesetinfo)
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string AddNode(NodeSetInfo nodesetinfo)
         {
-            return false;
+            return "";
+        }
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="nodesetinfo">树节点</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string UpdateData(NodeSetInfo nodesetinfo)
+        {
+            return "";
         }
     }
 }

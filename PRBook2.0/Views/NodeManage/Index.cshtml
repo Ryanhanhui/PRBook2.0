@@ -43,7 +43,7 @@
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">节点类型</label>
-                <div class="layui-input-block">
+                <div class="layui-input-inline">
                     <input type="radio" name="NodeType" id="NodeType0" value="0" title="业务" checked="">
                     <input type="radio" name="NodeType" id="NodeType1" value="1" title="系统">
                 </div>
@@ -64,8 +64,16 @@
         </div>
 
     </div>
+    <input type="hidden" id="IdField" value="" />
+    <input type="hidden" id="NodeNameField" value="" />
+    <input type="hidden" id="NodeUrlField" value="" />
+    <input type="hidden" id="NodeTypeField" value="" />
+    <input type="hidden" id="ParentNodeField" value="" />
+    <input type="hidden" id="NodeNumField" value="" />
+    <input type="hidden" id="StatusField" value="" />
 </div>
 <script type="text/javascript">
+    var form;
     //请求树节点数据
     $.post("@Url.Action("GetNodeTreeData","NodeManage")",
             {},
@@ -133,41 +141,113 @@
     function treeClickBack(item) {
         $.post("@Url.Action("GetSingleData", "NodeManage")",
             {
-                Id:item.Id
+                Id: item.Id
             },
             function (data, status) {
                 if (status == "success") {
-                    debugger;
+                    $("#IdField").val(data.Id);
+
                     $("#NodeName").val(data.NodeName);
+                    $("#NodeNameField").val(data.NodeName);
+
                     $("#NodeUrl").val(data.NodeUrl);
+                    $("#NodeUrlField").val(data.NodeUrl);
+
                     $("#NodeNum").val(data.NodeNum);
+                    $("#NodeNumField").val(data.NodeNum);
+
                     $("#ParentNode").val(data.ParentNode);
-                    $("#ParentNode").attr("disabled");
-                    $("[name='NodeType']").removeAttr("checked");
-                    //$("#NodeType" + data.NodeType).attr("checked");
-                    if (data.Status == "1")
-                        $("#Status").attr("checked","checked");
+                    $("#ParentNode").attr("disabled", "");
+                    $("#ParentNodeField").val(data.ParentNode);
+
+                    if (data.NodeType == "0") {
+                        document.getElementById("NodeType1").removeAttribute("checked");
+                        document.getElementById("NodeType0").setAttribute("checked", "checked");
+                    }
+                    else if (data.NodeType == "1") {
+                        document.getElementById("NodeType0").removeAttribute("checked");
+                        document.getElementById("NodeType1").setAttribute("checked", "checked");
+                    }
+                    $("#NodeTypeField").val(data.NodeType);
+
+                    if (data.Status == "1") {
+                        document.getElementById("Status").setAttribute("checked", "checked");
+                    }
+                    else {
+                        document.getElementById("Status").removeAttribute("checked");
+                    }
+                    $("#StatusField").val(data.Status);
+
+                    form.render();
                 }
             },
             "json"
             );
         $("#AddDiv").hide();
+        $("#DelBtn").show();
         $("#ContentDiv").show();
+    }
+    function clearField() {
+        $("#IdField").val("");
+        $("#NodeNameField").val("");
+        $("#NodeUrlField").val("");
+        $("#NodeNumField").val("");
+        $("#ParentNodeField").val("");
+        $("#NodeTypeField").val("0");
+        $("#StatusField").val("1");
+    }
+    function clearValue() {
+        $("#NodeName").val("");
+        $("#NodeUrl").val("");
+        $("#NodeNum").val("");
+        $("#ParentNode").val("");
+        $("#NodeType").val("0");
+        document.getElementById("NodeType1").removeAttribute("checked");
+        document.getElementById("NodeType0").setAttribute("checked", "checked");
+        $("#Status").val("1");
+        document.getElementById("Status").setAttribute("checked", "checked");
+        form.render();
     }
     //新增
     function addBtnClick() {
+        clearField();
+        clearValue();
         $("#ContentDiv").show();
         $("#AddDiv").hide();
         $("#DelBtn").hide();
     }
     //取消
     function cancelBtnClick() {
+        $("#ParentNode").val("");
+        $("#ParentNode").removeAttr("disabled", "");
         $("#ContentDiv").hide();
         $("#AddDiv").show();
+        form.render();
     }
     //保存
     function saveBtnClick() {
+        if ($("#IdField").val() == "") {//新增
 
+        }
+        else {
+            $.post("@Url.Action("UpdateData","NodeManage")",
+                {
+                    Id: $("#IdField").val(),
+                    NodeName: $("#NodeNameField").val(""),
+                    NodeUrl: $("#NodeUrlField").val(""),
+                    NodeNum: $("#NodeNumField").val(""),
+                    ParentNode: $("#ParentNodeField").val(""),
+                    NodeType: $("#NodeTypeField").val("0"),
+                    Status: $("#StatusField").val("1")
+                },
+                function (data, status) {
+                    if (status == "success" && data != "") {
+                        layer.msg("保存成功", { icon: 1 });
+                    }
+                },
+                "json"
+                );
+        }
     }
     //删除
     function delBtnClick() {
@@ -176,7 +256,7 @@
     $(document).ready(function () {
         layui.use(['layer', 'form'], function () {
             var layer = layui.layer;
-            var form = layui.form();
+            form = layui.form();
             form.verify({
                 //我们既支持上述函数式的方式，也支持下述数组的形式
                 //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
@@ -189,4 +269,3 @@
         });
     });
 </script>
-
