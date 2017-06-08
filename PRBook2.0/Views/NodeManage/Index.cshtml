@@ -1,7 +1,4 @@
-﻿<script>
-
-</script>
-<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+﻿<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
     <legend>功能节点信息设置</legend>
 </fieldset>
 <div class="contentdiv-text contentdiv-block contentdiv-block-left">
@@ -38,7 +35,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">父节点</label>
                 <div class="layui-input-inline">
-                    <select name="ParentNode" id="ParentNode"></select>
+                    <select name="ParentNode" id="ParentNode" lay-filter="ParentNode"></select>
                 </div>
             </div>
             <div class="layui-form-item">
@@ -51,7 +48,7 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">是否开启</label>
                 <div class="layui-input-block">
-                    <input type="checkbox" checked="" id="Status" name="open" lay-skin="switch" lay-filter="switchTest" lay-text="开启|关闭">
+                    <input type="checkbox" checked="" id="Status" name="open" lay-skin="switch" lay-filter="Status" lay-text="开启|关闭">
                 </div>
             </div>
             <div class="layui-form-item">
@@ -75,22 +72,25 @@
 <script type="text/javascript">
     var form;
     //请求树节点数据
-    $.post("@Url.Action("GetNodeTreeData","NodeManage")",
-            {},
-            function (data, status) {
-                if (status == "success") {
-                    loadTree(data);
-                }
-                else {
-                    layer.alert("网络连接超时", {
-                        icon: 2,
-                        closeBtn: false,
-                        title: '警告'
-                    });
-                }
-            },
+    function GetNode() {
+        $.post("@Url.Action("GetNodeTreeData","NodeManage")",
+    {},
+    function (data, status) {
+        if (status == "success") {
+            loadTree(data);
+        }
+        else {
+            layer.alert("网络连接超时", {
+                icon: 2,
+                closeBtn: false,
+                title: '警告'
+            });
+        }
+    },
             "json"
             );
+    }
+    GetNode();
     //创建树节点
     var createNode = function (data) {
         var treearr = [];
@@ -218,7 +218,8 @@
     }
     //取消
     function cancelBtnClick() {
-        $("#ParentNode").val("");
+        clearField();
+        clearValue();
         $("#ParentNode").removeAttr("disabled", "");
         $("#ContentDiv").hide();
         $("#AddDiv").show();
@@ -226,32 +227,71 @@
     }
     //保存
     function saveBtnClick() {
+        if (VerifyValid() == false)
+            return false;
         if ($("#IdField").val() == "") {//新增
-
-        }
-        else {
-            $.post("@Url.Action("UpdateData","NodeManage")",
+            $.post("@Url.Action("AddNode", "NodeManage")",
                 {
-                    Id: $("#IdField").val(),
-                    NodeName: $("#NodeNameField").val(""),
-                    NodeUrl: $("#NodeUrlField").val(""),
-                    NodeNum: $("#NodeNumField").val(""),
-                    ParentNode: $("#ParentNodeField").val(""),
-                    NodeType: $("#NodeTypeField").val("0"),
-                    Status: $("#StatusField").val("1")
+                    NodeName: $("#NodeName").val(),
+                    NodeUrl: $("#NodeUrl").val(),
+                    NodeNum: $("#NodeNum").val(),
+                    ParentNode: $("#ParentNodeField").val(),
+                    NodeType: $("#NodeTypeField").val(),
+                    Status: $("#StatusField").val()
                 },
                 function (data, status) {
                     if (status == "success" && data != "") {
-                        layer.msg("保存成功", { icon: 1 });
+                        layer.msg('保存成功', { icon: 1 });
+                        cancelBtnClick();
+                        $("#NodeTree").html("");
+                        GetNode();
                     }
+                }
+                );
+        }
+        else {//更新
+            $.post("@Url.Action("UpdateData","NodeManage")",
+                {
+                    Id: $("#IdField").val(),
+                    NodeName: $("#NodeName").val(),
+                    NodeUrl: $("#NodeUrl").val(),
+                    NodeNum: $("#NodeNum").val(),
+                    ParentNode: $("#ParentNodeField").val(),
+                    NodeType: $("#NodeTypeField").val(),
+                    Status: $("#StatusField").val()
                 },
-                "json"
+                function (data, status) {
+                    if (status == "success" && data != "") {
+                        layer.msg('保存成功', { icon: 1 });
+                        cancelBtnClick();
+                    }
+                }
                 );
         }
     }
     //删除
     function delBtnClick() {
-
+        layer.confirm('确定删除么？', {
+            btn: ['确定', '取消'], //按钮
+            icon: 3,
+            closeBtn:0
+        }, function () {
+            $.post("@Url.Action("DeleteNode", "NodeManage")",
+            {
+                Id: $("#IdField").val()
+            },
+            function (data, status) {
+                if (status == "success" && data != "") {
+                    layer.msg('删除成功', { icon: 1 });
+                    cancelBtnClick();
+                    $("#NodeTree").html("");
+                    GetNode();
+                }
+            }
+          );
+        }, function () {
+            
+        });
     }
     $(document).ready(function () {
         layui.use(['layer', 'form'], function () {
@@ -265,7 +305,36 @@
                  , '只能填写正整数'
                 ]
             });
+
+            form.on('select(ParentNode)', function (data) {
+                $("#ParentNodeField").val(data.value);
+            });
+            form.on('switch(Status)', function (data) {
+                $("#StatusField").val(data.value);
+            });
+            form.on('radio', function (data) {
+                if (data.elem.name == "NodeType") {
+                    $("#NodeTypeField").val(data.value);
+                }
+            });
             form.render();
         });
     });
+    function VerifyValid() {
+        if ($("#NodeName").val() == "") {
+            layer.tips('请输入节点名称', '#NodeName', {
+                tips: [2, '#ff0000'],
+                time: 3000
+            });
+            return false;
+        }
+        if ($("#NodeNum").val() == "") {
+            layer.tips('请输入节点序号', '#NodeNum', {
+                tips: [2, '#ff0000'],
+                time: 3000
+            });
+            return false;
+        }
+        return true;
+    }
 </script>

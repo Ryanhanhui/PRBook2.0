@@ -1,6 +1,7 @@
 ﻿using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -43,7 +44,12 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string AddNode(NodeSetInfo nodesetinfo)
         {
-            return "";
+            mdb.NodeSetInfoes.Add(nodesetinfo);
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
         }
         /// <summary>
         /// 更新数据
@@ -52,7 +58,34 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(NodeSetInfo nodesetinfo)
         {
-            return "";
+            DbEntityEntry<NodeSetInfo> entry = mdb.Entry<NodeSetInfo>(nodesetinfo);
+            entry.State = System.Data.EntityState.Unchanged;
+            entry.Property("NodeName").IsModified = true;
+            entry.Property("NodeUrl").IsModified = true;
+            entry.Property("NodeType").IsModified = true;
+            entry.Property("NodeNum").IsModified = true;
+            entry.Property("Status").IsModified = true;
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
+        }
+        /// <summary>
+        /// 删除节点
+        /// </summary>
+        /// <param name="Id">Id</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string DeleteNode(string Id)
+        {
+            int id = int.Parse(Id);
+            NodeSetInfo nodesetinfo = mdb.NodeSetInfoes.Where(u => u.Id == id).FirstOrDefault();
+            mdb.NodeSetInfoes.Remove(nodesetinfo);//删除实体
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
         }
     }
 }

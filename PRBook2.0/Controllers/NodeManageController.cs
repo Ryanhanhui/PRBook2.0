@@ -37,13 +37,44 @@ namespace PRBook2._0.Controllers
         [HttpPost]
         public string AddNode()
         {
-            return "";
+            PRBook2._0.Models.NodeSetInfo nodesetinfo = new Models.NodeSetInfo();
+            nodesetinfo.NodeName = Request.Params["NodeName"].ToString();
+            if (string.IsNullOrWhiteSpace(Request.Params["NodeNum"]))
+                nodesetinfo.NodeNum = null;
+            else
+                nodesetinfo.NodeNum = int.Parse(Request.Params["NodeNum"].ToString());
+            nodesetinfo.NodeType = Request.Params["NodeType"].ToString();
+            nodesetinfo.NodeUrl = Request.Params["NodeUrl"].ToString();
+            if (string.IsNullOrWhiteSpace(Request.Params["ParentNode"]))
+                nodesetinfo.ParentNode = null;
+            else
+                nodesetinfo.ParentNode = int.Parse(Request.Params["ParentNode"].ToString());
+            nodesetinfo.Status = Request.Params["Status"].ToString();
+            return nodeManage.AddNode(nodesetinfo);
         }
         [Authorize]
         [HttpPost]
         public string UpdateData()
         {
-            return "";
+            PRBook2._0.Models.NodeSetInfo nodesetinfo = new Models.NodeSetInfo();
+            nodesetinfo.Id = int.Parse(Request.Params["Id"].ToString());
+            nodesetinfo.NodeName = Request.Params["NodeName"].ToString();
+            nodesetinfo.NodeNum = int.Parse(Request.Params["NodeNum"].ToString());
+            nodesetinfo.NodeType = Request.Params["NodeType"].ToString();
+            nodesetinfo.NodeUrl = Request.Params["NodeUrl"].ToString();
+            if (string.IsNullOrWhiteSpace(Request.Params["ParentNode"]))
+                nodesetinfo.ParentNode = null;
+            else
+                nodesetinfo.ParentNode = int.Parse(Request.Params["ParentNode"].ToString());
+            nodesetinfo.Status = Request.Params["Status"].ToString();
+            return nodeManage.UpdateData(nodesetinfo);
+        }
+        public string DeleteNode()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                return nodeManage.DeleteNode(Request.Params["Id"].ToString());
+            else
+                return "";
         }
 	}
 }
