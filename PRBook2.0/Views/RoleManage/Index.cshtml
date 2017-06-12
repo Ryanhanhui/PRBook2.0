@@ -1,0 +1,81 @@
+﻿<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>角色管理</legend>
+</fieldset>
+<button class="layui-btn layui-btn-normal" style="margin-left:20px;" onclick="addClick()">新  增</button>
+<table class="layui-table" lay-even="">
+    <thead>
+        <tr>
+            <th style="width:30%">角色名称</th>
+            <th>角色说明</th>
+            <th style="width:10%">权限操作</th>
+            <th style="width:20%">更改操作</th>
+        </tr>
+    </thead>
+    <tbody id="tableBody"></tbody>
+</table>
+<div id="mypage"></div>
+<script>
+    var pagecount, form, layer, laypage;
+    var pagesize = 15;
+    pagecount=@ViewBag.PageCount
+    layui.use(['form', 'layer', 'laypage'], function () {
+        form = layui.form();
+        layer = layui.layer;
+        laypage = layui.laypage;
+        laypage({
+            cont: 'mypage'
+            , pages: Math.ceil(pagecount / pagesize)
+            , skip: true
+            , curr: 1
+            , jump: function (obj, first) {
+                //得到了当前页，用于向服务端请求对应数据
+                var curr = obj.curr;
+                $.post("@Url.Action("GetData","RoleManage")",
+                    {
+                        currpage: curr,
+                        pagesize: pagesize
+                    },
+                    function(data,status){
+                        if (status == "success") {
+                            bindTable(data);
+                        }
+                    },
+                    "json"
+                    );
+            }
+        });
+    });
+    function bindTable(data) {
+        var tablehtml = "";
+        var items = data;
+        $.each(items, function (i) {
+            tablehtml += "<tr>"
+            + "<td>" + items[i].RoleName + "</td>"
+            + "<td>" + items[i].RoleDesc + "</td>"
+            + "<td><button class='layui-btn layui-btn-normal layui-btn-small' onclick='powerSetClick(" + items[i].Id + ")'>权限分配</button></td>"
+            + "<td><button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(" + items[i].Id + ")'>编辑</button><button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(" + items[i].Id + ")'>删除</button></td>"
+        + "</tr>";
+        });
+        $("#tableBody").html(tablehtml);
+    }
+    function powerSetClick(id) {
+
+    }
+    function editClick(id) {
+
+    }
+    function deleteClick(id) {
+
+    }
+    function addClick() {
+        layer.open({
+            type: 2,
+            title: '角色信息',
+            shade: 0.8,
+            closeBtn: 0,
+            area:['500px','300px'],
+            content: '@Url.Action("DetialPage","RoleManage")?status=add'
+        });
+    }
+</script>
+

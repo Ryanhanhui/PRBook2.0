@@ -31,9 +31,27 @@
           <Property Name="RoleType" Type="varchar" MaxLength="16" />
           <Property Name="Remark" Type="varchar" MaxLength="128" />
         </EntityType>
+        <EntityType Name="SYS_RoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="64" />
+          <Property Name="RoleDesc" Type="nvarchar" MaxLength="128" />
+        </EntityType>
+        <EntityType Name="SYS_RolePower">
+          <Key>
+            <PropertyRef Name="PowerId" />
+          </Key>
+          <Property Name="PowerId" Type="varbinary" MaxLength="128" Nullable="false" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="PowerUrl" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -56,6 +74,8 @@
         <EntityContainer Name="PRBookEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" />
           <EntitySet Name="NodeSetInfoes" EntityType="PRBookModel.NodeSetInfo" />
+          <EntitySet Name="SYS_RoleInfo" EntityType="PRBookModel.SYS_RoleInfo" />
+          <EntitySet Name="SYS_RolePower" EntityType="PRBookModel.SYS_RolePower" />
         </EntityContainer>
         <EntityType Name="NodeSetInfo">
           <Key>
@@ -68,6 +88,22 @@
           <Property Name="ParentNode" Type="Int32" />
           <Property Name="NodeNum" Type="Int32" />
           <Property Name="Status" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SYS_RoleInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDesc" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SYS_RolePower">
+          <Key>
+            <PropertyRef Name="PowerId" />
+          </Key>
+          <Property Name="PowerId" Type="Binary" Nullable="false" MaxLength="128" FixedLength="false" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="PowerUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -100,6 +136,24 @@
                 <ScalarProperty Name="NodeUrl" ColumnName="NodeUrl" />
                 <ScalarProperty Name="NodeName" ColumnName="NodeName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_RoleInfo">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_RoleInfo">
+              <MappingFragment StoreEntitySet="SYS_RoleInfo">
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_RolePower">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_RolePower">
+              <MappingFragment StoreEntitySet="SYS_RolePower">
+                <ScalarProperty Name="PowerUrl" ColumnName="PowerUrl" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="PowerId" ColumnName="PowerId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

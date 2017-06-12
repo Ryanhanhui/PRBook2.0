@@ -27,5 +27,7 @@ namespace PRBook2._0.Models
     
         public DbSet<PR_UserInfo> PR_UserInfo { get; set; }
         public DbSet<NodeSetInfo> NodeSetInfoes { get; set; }
+        public DbSet<SYS_RoleInfo> SYS_RoleInfo { get; set; }
+        public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
     }
 }

@@ -17,8 +17,8 @@ namespace PRBook2._0.Controllers
         [Authorize]
         public ActionResult Index()
         {
-            if (!util.CheckLoginState())
-                return RedirectToAction("Login", "PRSignIn");
+            if (!util.CheckPower(Request.RawUrl.ToString()))
+                return PartialView("WithoutPower");
             return PartialView();
         }
         [Authorize]

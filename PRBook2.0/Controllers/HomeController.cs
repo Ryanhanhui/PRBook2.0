@@ -18,5 +18,9 @@ namespace PRBook2._0.Controllers
                 return RedirectToAction("Login", "PRSignIn");
             return View("Main");
         }
+        public ActionResult WithoutPower()
+        {
+            return PartialView();
+        }
 	}
 }

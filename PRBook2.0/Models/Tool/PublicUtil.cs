@@ -34,5 +34,14 @@ namespace PRBook2._0.Models.Tool
             json = jsS.Serialize(obj);
             return json;
         }
+        /// <summary>
+        /// 权限校验
+        /// </summary>
+        /// <param name="url">请求的地址</param>
+        /// <returns>是否具有请求地址的权限</returns>
+        public bool CheckPower(string url)
+        {
+            return true;
+        }
     }
 }
