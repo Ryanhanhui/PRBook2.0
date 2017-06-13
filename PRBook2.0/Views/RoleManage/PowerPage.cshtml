@@ -1,0 +1,54 @@
+﻿<div style="margin-top:20px;">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <div class="layui-collapse" lay-filter="test" style="width:400px" id="NodeList">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
+                <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+            </div>
+        </div>
+    </div>
+</div>
+<link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+<script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+<script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+<script>
+    $.post("@Url.Action("GetNodeTreeData","NodeManage")", {}, function (data, status) {
+        if (status == "success") {
+            loadNode(data);
+        }
+    }, "json");
+    function loadNode(data) {
+        var htmlobj = "";
+        $.each(data, function (i) {
+            if (data[i].ParentNode == null) {
+                htmlobj += "<div class='layui-colla-item'>"
+                        + "<h2 class='layui-colla-title'>" + data[i].NodeName + "</h2>"
+                        + "<div class='layui-colla-content' id='" + data[i].Id + "'>";
+                $.each(data, function (j) {
+                    if (data[j].ParentNode == data[i].Id) {
+                        htmlobj += "<p><input type='checkbox' name='' title='" + data[j].NodeName + "' value='" + data[j].Id + "'  ></p>";
+                    }
+                });
+                htmlobj += "</div>"
+                + "</div>";
+            }
+        });
+        $("#NodeList").html(htmlobj);
+        layui.use(['element', 'form'], function () {
+            var element = layui.element();
+            var form = layui.form();
+        });
+    }
+    function divFade(obj) {
+        $("#" + obj).fadeToggle();
+    }
+    function cancelBtnClick() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
+        parent.layer.close(index); //再执行关闭
+    }
+</script>

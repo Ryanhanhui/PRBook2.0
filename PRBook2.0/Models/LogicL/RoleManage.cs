@@ -1,6 +1,7 @@
 ﻿using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Web;
 
@@ -69,6 +70,38 @@ namespace PRBook2._0.Models.LogicL
                 return false;
             else
                 return true;
+        }
+        /// <summary>
+        /// 更新数据
+        /// </summary>
+        /// <param name="sysRoleInfo"></param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string UpdateData(SYS_RoleInfo sysRoleInfo)
+        {
+            DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
+            entry.State = System.Data.EntityState.Unchanged;
+            entry.Property("RoleDesc").IsModified = true;
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
+        }
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Id">Id</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string DeleteData(string Id)
+        {
+            int id = int.Parse(Id);
+            SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).FirstOrDefault();
+            mdb.SYS_RoleInfo.Remove(sysRoleInfo);//删除实体
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
         }
     }
 }

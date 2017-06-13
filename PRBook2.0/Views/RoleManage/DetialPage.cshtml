@@ -15,7 +15,7 @@
         <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
-                <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">取  消</button>
+                <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
             </div>
         </div>
     </div>
@@ -28,6 +28,7 @@
     var rid = "";
     if (rstatus == "edit") {
         rid = "@ViewBag.RId";
+        $("#RoleName").prop("disabled", true);
         $.post("@Url.Action("GetDetail","RoleManage")",
             {
                 Id: rid
@@ -52,26 +53,31 @@
     });
     function cancelBtnClick() {
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
         parent.layer.close(index); //再执行关闭
     }
     function saveBtnClick() {
         if (VerifyValid() == false)
             return false;
         if (rstatus == "add") {
-            $.post("@Url.Action("AddData", "RoleManage")",
+            $.ajax(
                 {
-                    RoleName: $("#RoleName").val(),
-                    RoleDesc: $("#RoleDesc").val()
-                },
-                function (data, status) {
-                    if (status == "success") {
-                        if (data == "success") {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("AddData", "RoleManage")',
+                    data:
+                        {
+                            RoleName: $("#RoleName").val(),
+                            RoleDesc: $("#RoleDesc").val()
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
                             layer.msg('保存成功', { icon: 1 });
                             //do something
                             RoleName: $("#RoleName").val("");
                             RoleDesc: $("#RoleDesc").val("");
                         }
-                        else if (data == "exists") {
+                        else if (datafield == "exists") {
                             layer.msg('角色名重复，请重新输入！', { icon: 2 });
                             layer.tips('请输入角色名称', '#RoleName', {
                                 tips: [2, '#ff0000'],
@@ -82,7 +88,24 @@
                 }
                 );
         } else {
-
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("UpdateData", "RoleManage")',
+                    data:
+                        {
+                            Id: rid,
+                            RoleName: $("#RoleName").val(),
+                            RoleDesc: $("#RoleDesc").val()
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
         }
     }
     function VerifyValid() {

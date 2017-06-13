@@ -40,16 +40,44 @@ namespace PRBook2._0.Controllers
             }
             return PartialView();
         }
+        [Authorize]
+        [HttpPost]
         public string GetDetail(string Id)
         {
             return roleManage.GetDetail(Id);
         }
+        [Authorize]
+        [HttpPost]
         public string AddData()
         {
             SYS_RoleInfo sysRoleInfo = new SYS_RoleInfo();
             sysRoleInfo.RoleName = Request.Params["RoleName"].ToString();
             sysRoleInfo.RoleDesc = Request.Params["RoleDesc"].ToString();
             return roleManage.AddData(sysRoleInfo);
+        }
+        [Authorize]
+        [HttpPost]
+        public string UpdateData()
+        {
+            SYS_RoleInfo sysRoleInfo = new SYS_RoleInfo();
+            sysRoleInfo.Id = int.Parse(Request.Params["Id"].ToString());
+            sysRoleInfo.RoleName = Request.Params["RoleName"].ToString();
+            sysRoleInfo.RoleDesc = Request.Params["RoleDesc"].ToString();
+            return roleManage.UpdateData(sysRoleInfo);
+        }
+        [Authorize]
+        [HttpPost]
+        public string DeleteData()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                return roleManage.DeleteData(Request.Params["Id"].ToString());
+            else
+                return "";
+        }
+        [Authorize]
+        public ActionResult PowerPage()
+        {
+            return PartialView();
         }
 	}
 }
