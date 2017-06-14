@@ -79,5 +79,12 @@ namespace PRBook2._0.Controllers
         {
             return PartialView();
         }
+        [Authorize]
+        [HttpPost]
+        public string GetRolePower()
+        {
+            string roleId = Request.Params["RoleId"].ToString();
+            return roleManage.GetRolePower(roleId);
+        }
 	}
 }

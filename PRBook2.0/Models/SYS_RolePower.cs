@@ -14,8 +14,8 @@ namespace PRBook2._0.Models
     
     public partial class SYS_RolePower
     {
-        public byte[] PowerId { get; set; }
+        public int PowerId { get; set; }
         public Nullable<int> RoleId { get; set; }
-        public string PowerUrl { get; set; }
+        public Nullable<int> NodeId { get; set; }
     }
 }

@@ -16,7 +16,7 @@
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
 <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
 <script>
-    $.post("@Url.Action("GetNodeTreeData","NodeManage")", {}, function (data, status) {
+    $.post("@Url.Action("GetNodeTreeDataBusiness","NodeManage")", {}, function (data, status) {
         if (status == "success") {
             loadNode(data);
         }

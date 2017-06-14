@@ -29,6 +29,12 @@ namespace PRBook2._0.Controllers
         }
         [Authorize]
         [HttpPost]
+        public string GetNodeTreeDataBusiness()
+        {
+            return nodeManage.GetNodeTreeDataBusiness();
+        }
+        [Authorize]
+        [HttpPost]
         public string GetSingleData(string Id)//获取指定树节点
         {
             return nodeManage.GetSingleData(Id);

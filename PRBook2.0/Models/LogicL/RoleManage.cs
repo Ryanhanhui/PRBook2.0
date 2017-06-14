@@ -103,5 +103,16 @@ namespace PRBook2._0.Models.LogicL
             else
                 return "";
         }
+        /// <summary>
+        /// 获取角色的权限节点信息
+        /// </summary>
+        /// <param name="roleId">角色id</param>
+        /// <returns>节点集合</returns>
+        public string GetRolePower(string roleId)
+        {
+            int rid=int.Parse(roleId);
+            List<SYS_RolePower> sysRolePower = mdb.SYS_RolePower.Where(u => u.RoleId == rid).ToList();
+            return putil.GetJsonData(sysRolePower);
+        }
     }
 }

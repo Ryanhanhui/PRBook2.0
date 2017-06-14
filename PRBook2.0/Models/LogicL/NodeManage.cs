@@ -24,6 +24,11 @@ namespace PRBook2._0.Models.LogicL
             List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.ToList();
             return putil.GetJsonData(nodemodel);
         }
+        public string GetNodeTreeDataBusiness()
+        {
+            List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.Where(u => u.NodeType.Equals("0")&&u.Status.Equals("1")).ToList();
+            return putil.GetJsonData(nodemodel);
+        }
         /// <summary>
         /// 根据id获取对应树节点数据
         /// </summary>

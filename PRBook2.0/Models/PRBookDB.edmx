@@ -43,9 +43,9 @@
           <Key>
             <PropertyRef Name="PowerId" />
           </Key>
-          <Property Name="PowerId" Type="varbinary" MaxLength="128" Nullable="false" />
+          <Property Name="PowerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleId" Type="int" />
-          <Property Name="PowerUrl" Type="nvarchar" MaxLength="128" />
+          <Property Name="NodeId" Type="int" />
         </EntityType>
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
@@ -101,9 +101,9 @@
           <Key>
             <PropertyRef Name="PowerId" />
           </Key>
-          <Property Name="PowerId" Type="Binary" Nullable="false" MaxLength="128" FixedLength="false" />
+          <Property Name="PowerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="RoleId" Type="Int32" />
-          <Property Name="PowerUrl" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="NodeId" Type="Int32" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -151,7 +151,7 @@
           <EntitySetMapping Name="SYS_RolePower">
             <EntityTypeMapping TypeName="PRBookModel.SYS_RolePower">
               <MappingFragment StoreEntitySet="SYS_RolePower">
-                <ScalarProperty Name="PowerUrl" ColumnName="PowerUrl" />
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="PowerId" ColumnName="PowerId" />
               </MappingFragment>
