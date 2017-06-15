@@ -64,7 +64,7 @@ namespace PRBook2._0.Models.LogicL
         public string UpdateData(NodeSetInfo nodesetinfo)
         {
             DbEntityEntry<NodeSetInfo> entry = mdb.Entry<NodeSetInfo>(nodesetinfo);
-            entry.State = System.Data.EntityState.Unchanged;
+            entry.State = System.Data.Entity.EntityState.Unchanged;
             entry.Property("NodeName").IsModified = true;
             entry.Property("NodeUrl").IsModified = true;
             entry.Property("NodeType").IsModified = true;

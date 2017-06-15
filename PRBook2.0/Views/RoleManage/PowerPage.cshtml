@@ -6,16 +6,19 @@
         </div>
         <div class="layui-form-item">
             <div class="layui-input-block">
-                <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
+                <button class="layui-btn layui-btn-normal" lay-submit lay-filter="*">保  存</button>
                 <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
             </div>
         </div>
+        <input type="hidden" name="roleId" id="roleId" value="" />
     </div>
 </div>
 <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
 <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
 <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
 <script>
+    var roleid = "@ViewBag.RoleId";
+    $("#roleId").val(roleid);
     $.post("@Url.Action("GetNodeTreeDataBusiness","NodeManage")", {}, function (data, status) {
         if (status == "success") {
             loadNode(data);
@@ -23,32 +26,79 @@
     }, "json");
     function loadNode(data) {
         var htmlobj = "";
-        $.each(data, function (i) {
-            if (data[i].ParentNode == null) {
-                htmlobj += "<div class='layui-colla-item'>"
-                        + "<h2 class='layui-colla-title'>" + data[i].NodeName + "</h2>"
-                        + "<div class='layui-colla-content' id='" + data[i].Id + "'>";
-                $.each(data, function (j) {
-                    if (data[j].ParentNode == data[i].Id) {
-                        htmlobj += "<p><input type='checkbox' name='' title='" + data[j].NodeName + "' value='" + data[j].Id + "'  ></p>";
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    dataType:'json',
+                    url: '@Url.Action("GetRolePower", "RoleManage")',
+                    data:
+                        {
+                            RoleId: roleid
+                        },
+                    success: function (nodedata) {
+                        $.each(data, function (i) {
+                            if (data[i].ParentNode == null) {
+                                htmlobj += "<div class='layui-colla-item'>"
+                                        + "<h2 class='layui-colla-title'>" + data[i].NodeName + "</h2>"
+                                        + "<div class='layui-colla-content' id='" + data[i].Id + "'>";
+                                $.each(data, function (j) {
+                                    if (data[j].ParentNode == data[i].Id) {
+                                        if (getIsPower(data[j].Id, nodedata) == true) {
+                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "'  checked='' ></p>";
+                                        }
+                                        else {
+                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "' ></p>";
+                                        }
+                                    }
+                                });
+                                htmlobj += "</div>"
+                                + "</div>";
+                            }
+                        });
                     }
-                });
-                htmlobj += "</div>"
-                + "</div>";
-            }
-        });
+                }
+                );
         $("#NodeList").html(htmlobj);
         layui.use(['element', 'form'], function () {
             var element = layui.element();
             var form = layui.form();
+            form.on('submit(*)', function (data) {
+                saveBtnClick(data);
+                return false;
+            });
+
         });
     }
-    function divFade(obj) {
-        $("#" + obj).fadeToggle();
+    function getIsPower(orinode, rolenodedatas) {
+        var ret = false;
+        $.each(rolenodedatas, function (i) {
+            if (rolenodedatas[i].NodeId == orinode) {
+                ret = true;
+                return false;
+            }
+        });
+        return ret;
     }
     function cancelBtnClick() {
         var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
         parent.initData();
         parent.layer.close(index); //再执行关闭
+    }
+    function saveBtnClick(data) {
+        debugger;
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("UpdateRolePower", "RoleManage")',
+                    data: data.field,
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
     }
 </script>

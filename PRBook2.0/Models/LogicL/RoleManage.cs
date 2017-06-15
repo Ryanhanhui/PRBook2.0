@@ -79,7 +79,7 @@ namespace PRBook2._0.Models.LogicL
         public string UpdateData(SYS_RoleInfo sysRoleInfo)
         {
             DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
-            entry.State = System.Data.EntityState.Unchanged;
+            entry.State = System.Data.Entity.EntityState.Unchanged;
             entry.Property("RoleDesc").IsModified = true;
             int ret = mdb.SaveChanges();
             if (ret != 0)
@@ -113,6 +113,26 @@ namespace PRBook2._0.Models.LogicL
             int rid=int.Parse(roleId);
             List<SYS_RolePower> sysRolePower = mdb.SYS_RolePower.Where(u => u.RoleId == rid).ToList();
             return putil.GetJsonData(sysRolePower);
+        }
+        /// <summary>
+        /// 更新角色权限
+        /// </summary>
+        /// <param name="sysRolePowers">角色权限</param>
+        /// <param name="roleId">角色id</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string UpdateRolePower(List<SYS_RolePower> sysRolePowers,string roleId)
+        {
+            int roleid=int.Parse(roleId);
+            //删除之前的权限
+            List<SYS_RolePower> dlist = mdb.SYS_RolePower.Where(u => u.RoleId == roleid).ToList();
+            mdb.SYS_RolePower.RemoveRange(dlist);
+            //重新插入
+            mdb.SYS_RolePower.AddRange(sysRolePowers);
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
         }
     }
 }

@@ -77,6 +77,7 @@ namespace PRBook2._0.Controllers
         [Authorize]
         public ActionResult PowerPage()
         {
+            ViewBag.RoleId = Request["Id"].ToString();
             return PartialView();
         }
         [Authorize]
@@ -85,6 +86,21 @@ namespace PRBook2._0.Controllers
         {
             string roleId = Request.Params["RoleId"].ToString();
             return roleManage.GetRolePower(roleId);
+        }
+        [Authorize]
+        [HttpPost]
+        public string UpdateRolePower()
+        {
+            string roleId = Request.Params["roleId"].ToString();
+            List<SYS_RolePower> sysRolePowers = new List<SYS_RolePower>();
+            for (int i = 0; i < Request.Form.Count-1; i++)
+            {
+                SYS_RolePower sysRolePower = new SYS_RolePower();
+                sysRolePower.RoleId = int.Parse(roleId);
+                sysRolePower.NodeId = int.Parse(Request.Form[i].ToString());
+                sysRolePowers.Add(sysRolePower);
+            }
+            return roleManage.UpdateRolePower(sysRolePowers,roleId);
         }
 	}
 }
