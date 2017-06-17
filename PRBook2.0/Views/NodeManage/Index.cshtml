@@ -204,7 +204,7 @@
         $("#NodeType").val("0");
         document.getElementById("NodeType1").removeAttribute("checked");
         document.getElementById("NodeType0").setAttribute("checked", "checked");
-        $("#Status").val("1");
+        //$("#Status").val("1");
         document.getElementById("Status").setAttribute("checked", "checked");
         form.render();
     }
@@ -310,7 +310,13 @@
                 $("#ParentNodeField").val(data.value);
             });
             form.on('switch(Status)', function (data) {
-                $("#StatusField").val(data.value);
+                if (data.elem.checked == true) {
+                    $("#StatusField").val("1");
+                }
+                else {
+                    $("#StatusField").val("0");
+                }
+                
             });
             form.on('radio', function (data) {
                 if (data.elem.name == "NodeType") {
