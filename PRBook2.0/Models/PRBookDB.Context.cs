@@ -12,6 +12,9 @@ namespace PRBook2._0.Models
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Data.Entity.Core.Objects.DataClasses;
+    using System.Linq;
     
     public partial class PRBookEntities : DbContext
     {
@@ -29,5 +32,19 @@ namespace PRBook2._0.Models
         public DbSet<NodeSetInfo> NodeSetInfoes { get; set; }
         public DbSet<SYS_RoleInfo> SYS_RoleInfo { get; set; }
         public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
+    
+        [EdmFunction("PRBookEntities", "TBFun_GetUserPower")]
+        public virtual IQueryable<TBFun_GetUserPower_Result> TBFun_GetUserPower(string usertype, string roletype)
+        {
+            var usertypeParameter = usertype != null ?
+                new ObjectParameter("usertype", usertype) :
+                new ObjectParameter("usertype", typeof(string));
+    
+            var roletypeParameter = roletype != null ?
+                new ObjectParameter("roletype", roletype) :
+                new ObjectParameter("roletype", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<TBFun_GetUserPower_Result>("[PRBookEntities].[TBFun_GetUserPower](@usertype, @roletype)", usertypeParameter, roletypeParameter);
+        }
     }
 }

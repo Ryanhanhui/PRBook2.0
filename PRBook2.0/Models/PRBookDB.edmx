@@ -93,6 +93,10 @@
           <EntitySet Name="NodeSetInfoes" EntityType="PRBookModel.NodeSetInfo" />
           <EntitySet Name="SYS_RoleInfo" EntityType="PRBookModel.SYS_RoleInfo" />
           <EntitySet Name="SYS_RolePower" EntityType="PRBookModel.SYS_RolePower" />
+          <FunctionImport Name="TBFun_GetUserPower" IsComposable="true" ReturnType="Collection(PRBookModel.TBFun_GetUserPower_Result)">
+            <Parameter Name="usertype" Mode="In" Type="String" />
+            <Parameter Name="roletype" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="NodeSetInfo">
           <Key>
@@ -122,6 +126,13 @@
           <Property Name="RoleId" Type="Int32" />
           <Property Name="NodeId" Type="Int32" />
         </EntityType>
+        <ComplexType Name="TBFun_GetUserPower_Result">
+          <Property Type="Int32" Name="NodeId" Nullable="true" />
+          <Property Type="String" Name="NodeName" Nullable="true" MaxLength="64" />
+          <Property Type="String" Name="NodeUrl" Nullable="true" MaxLength="256" />
+          <Property Type="Int32" Name="ParentNode" Nullable="true" />
+          <Property Type="Int32" Name="NodeNum" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -175,6 +186,17 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="TBFun_GetUserPower" FunctionName="PRBookModel.Store.TBFun_GetUserPower">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="PRBookModel.TBFun_GetUserPower_Result">
+                <ScalarProperty Name="NodeId" ColumnName="NodeId" />
+                <ScalarProperty Name="NodeName" ColumnName="NodeName" />
+                <ScalarProperty Name="NodeUrl" ColumnName="NodeUrl" />
+                <ScalarProperty Name="ParentNode" ColumnName="ParentNode" />
+                <ScalarProperty Name="NodeNum" ColumnName="NodeNum" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

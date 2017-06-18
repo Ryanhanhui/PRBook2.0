@@ -95,10 +95,19 @@ namespace PRBook2._0.Controllers
             List<SYS_RolePower> sysRolePowers = new List<SYS_RolePower>();
             for (int i = 0; i < Request.Form.Count-1; i++)
             {
+                string[] nddid = Request.Form[i].ToString().Split('|');
+                int parentnode=int.Parse(nddid[1]);
                 SYS_RolePower sysRolePower = new SYS_RolePower();
                 sysRolePower.RoleId = int.Parse(roleId);
-                sysRolePower.NodeId = int.Parse(Request.Form[i].ToString());
+                sysRolePower.NodeId = int.Parse(nddid[0]);
                 sysRolePowers.Add(sysRolePower);
+                if(!sysRolePowers.Any(u=>u.NodeId==parentnode))
+                {
+                    SYS_RolePower parentpower = new SYS_RolePower();
+                    parentpower.RoleId = int.Parse(roleId);
+                    parentpower.NodeId = parentnode;
+                    sysRolePowers.Add(parentpower);
+                }
             }
             return roleManage.UpdateRolePower(sysRolePowers,roleId);
         }

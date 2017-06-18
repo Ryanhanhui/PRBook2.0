@@ -13,11 +13,10 @@ namespace PRBook2._0.Models.LogicL
         public Home() { }
         public string GetPower()
         {
-            //string usertype=UserInfo.GetInstance().UserType;
-            //string roletype=UserInfo.GetInstance().RoleType;
-            //List<TBFun_GetUserPower_Result> powerlist=mdb.TBFun_GetUserPower(usertype,roletype).OrderBy(u=>u.NodeNum).ToList();
-            //return putil.GetJsonData(powerlist);
-            return "";
+            string usertype = UserInfo.GetInstance().UserType;
+            string roletype = UserInfo.GetInstance().RoleType;
+            List<TBFun_GetUserPower_Result> powerlist = mdb.TBFun_GetUserPower(usertype, roletype).OrderBy(u => u.NodeNum).ToList();
+            return putil.GetJsonData(powerlist);
         }
     }
 }

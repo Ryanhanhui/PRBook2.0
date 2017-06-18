@@ -45,10 +45,10 @@
                                 $.each(data, function (j) {
                                     if (data[j].ParentNode == data[i].Id) {
                                         if (getIsPower(data[j].Id, nodedata) == true) {
-                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "'  checked='' ></p>";
+                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "|" + data[j].ParentNode + "'  checked='' ></p>";
                                         }
                                         else {
-                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "' ></p>";
+                                            htmlobj += "<p><input type='checkbox' name='" + data[j].Id + "' title='" + data[j].NodeName + "' value='" + data[j].Id + "|" + data[j].ParentNode + "' ></p>";
                                         }
                                     }
                                 });
