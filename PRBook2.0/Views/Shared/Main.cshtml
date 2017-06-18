@@ -95,9 +95,12 @@
 </body>
 </html>
 <script>
-        function LoadMainBody(strurl) {
-            htmlobj = $.ajax({ url: strurl, async: false });
-            $("#MainBody").html(htmlobj.responseText);
-        }
-        LoadMainBody("@Url.Action("Index","OverView")");
+    function loadPower() {
+
+    }
+    function LoadMainBody(strurl) {
+        htmlobj = $.ajax({ url: strurl, async: false });
+        $("#MainBody").html(htmlobj.responseText);
+    }
+    LoadMainBody("@Url.Action("Index","OverView")");
 </script>

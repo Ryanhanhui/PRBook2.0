@@ -23,5 +23,6 @@ namespace PRBook2._0.Models
         public Nullable<int> Age { get; set; }
         public string RoleType { get; set; }
         public string Remark { get; set; }
+        public string UserType { get; set; }
     }
 }

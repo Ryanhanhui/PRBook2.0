@@ -30,6 +30,7 @@
           <Property Name="Age" Type="int" />
           <Property Name="RoleType" Type="varchar" MaxLength="16" />
           <Property Name="Remark" Type="varchar" MaxLength="128" />
+          <Property Name="UserType" Type="char" MaxLength="1" />
         </EntityType>
         <EntityType Name="SYS_RoleInfo">
           <Key>
@@ -47,6 +48,21 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="NodeId" Type="int" />
         </EntityType>
+        <Function Name="TBFun_GetUserPower" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="usertype" Type="char" Mode="In" />
+          <Parameter Name="roletype" Type="varchar" Mode="In" />
+          <ReturnType>
+            <CollectionType>
+              <RowType>
+                <Property Name="NodeId" Type="int" />
+                <Property Name="NodeName" Type="varchar" MaxLength="64" />
+                <Property Name="NodeUrl" Type="varchar" MaxLength="256" />
+                <Property Name="ParentNode" Type="int" />
+                <Property Name="NodeNum" Type="int" />
+              </RowType>
+            </CollectionType>
+          </ReturnType>
+        </Function>
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
@@ -70,6 +86,7 @@
           <Property Name="Age" Type="Int32" />
           <Property Name="RoleType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
           <Property Name="Remark" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
         </EntityType>
         <EntityContainer Name="PRBookEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" />
@@ -114,6 +131,7 @@
           <EntitySetMapping Name="PR_UserInfo">
             <EntityTypeMapping TypeName="PRBookModel.PR_UserInfo">
               <MappingFragment StoreEntitySet="PR_UserInfo">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

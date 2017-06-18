@@ -19,6 +19,7 @@ namespace PRBook2._0.Models.Tool
         public string Sex { get; set; }
         public Nullable<int> Age { get; set; }
         public string RoleType { get; set; }
+        public string UserType { get; set; }
         private UserInfo()
         {
 
@@ -46,6 +47,7 @@ namespace PRBook2._0.Models.Tool
             _Instance.Sex = pr_userinfo.Sex;
             _Instance.RoleType = pr_userinfo.RoleType;
             _Instance.Password = pr_userinfo.Password;
+            _Instance.UserType = pr_userinfo.UserType;
         }
     }
 }
