@@ -56,24 +56,8 @@
         <!-- 侧边栏 -->
         <div class="layui-side layui-bg-black">
             <div class="layui-side-scroll">
-                <ul class="layui-nav layui-nav-tree" lay-filter="left-nav" style="border-radius: 0;" id="MainNode">
-                    @*<li class="layui-nav-item layui-this"><a href="javascript:;" data-url="main.html" data-id="1">主页</a></li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">搜索引擎<span class="layui-nav-more"></span></a>
-                        <ul class="layui-nav-child">
-                            <li class="layui-nav-item"><a href="https://www.baidu.com/">百度</a></li>
-                            <li class="layui-nav-item"><a href="javascript:;" data-url="http://cn.bing.com/" data-id="4">必应</a></li>
-                            <li class="layui-nav-item"><a href="javascript:;" data-url="https://www.so.com/" data-id="5">360</a></li>
-                            <li class="layui-nav-item"><a href="javascript:;" data-url="https://www.sogou.com/" data-id="6">搜狗</a></li>
-                        </ul>
-                    </li>
-                    <li class="layui-nav-item">
-                        <a href="javascript:;">系统设置</a>
-                        <ul class="layui-nav-child">
-                            <li class="layui-nav-item"><a href="javascript:;" onclick="LoadMainBody('@Url.Action("Index","NodeManage")')">节点设置</a></li>
-                            <li class="layui-nav-item"><a href="javascript:;" onclick="LoadMainBody('@Url.Action("Index","RoleManage")')">角色管理</a></li>
-                        </ul>
-                    </li>*@
+                <ul class="layui-nav layui-nav-tree" id="MainNode">
+                   
                 </ul>
             </div>
         </div>
@@ -83,17 +67,13 @@
         </div>
         <!-- 底部 -->
         <div class="layui-footer" style="text-align: center; line-height: 44px;">
-            Copyright © 2017 Harvey All rights reserved
+            Copyright © 2017 Harvey All rights reserved. Based on Layui1.09
         </div>
     </div>
 </body>
 </html>
 <script>
     function loadPower() {
-        layui.use('element', function () {
-            var element = layui.element();
-
-        });
         $.ajax(
                 {
                     async: false,
@@ -104,6 +84,10 @@
                     success: function (datafield) {
                         debugger;
                         bindPower(datafield);
+                        layui.use('element', function () {
+                            var element = layui.element();
+
+                        });
                         }
                 }
                 );
@@ -115,13 +99,13 @@
             if (data[i].ParentNode == null || data[i].ParentNode == "") {
                 htmlstr += "<li class='layui-nav-item'>"
                     + "<a href='javascript:;' >" + data[i].NodeName + "<span class='layui-nav-more'></span></a>"
-                    + "<ul class='layui-nav-child'>";
+                    + "<dl class='layui-nav-child'>";
                 $.each(data, function (j) {
                     if (data[j].ParentNode == data[i].NodeId) {
-                        htmlstr += "<li class='layui-nav-item'><a href='javascript:;' onclick='LoadMainBody(&quot;" + data[j].NodeUrl + "&quot;)'>" + data[j].NodeName + "</a></li>";
+                        htmlstr += "<dd><a href='javascript:;' onclick='LoadMainBody(&quot;@Request.ApplicationPath" + data[j].NodeUrl + "&quot;)'>" + data[j].NodeName + "</a></dd>";
                     }
                 });
-                htmlstr += "</ul>"
+                htmlstr += "</dl>"
                     + "</li>";
             }
         });

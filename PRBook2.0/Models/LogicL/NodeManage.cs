@@ -21,7 +21,7 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>节点数据集合</returns>
         public string GetNodeTreeData()
         {
-            List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.ToList();
+            List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.OrderBy(u=>u.NodeNum).ToList();
             return putil.GetJsonData(nodemodel);
         }
         public string GetNodeTreeDataBusiness()
