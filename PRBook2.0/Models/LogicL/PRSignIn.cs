@@ -22,6 +22,7 @@ namespace PRBook2._0.Models.LogicL
         /// <returns></returns>
         public bool LoginConfirm(string username,string pwd)
         {
+            pwd = EnDecryptTil.SHA1_Encrypt(pwd);
             PR_UserInfo musers = mdb.PR_UserInfo.Where(u => u.UserId == username && u.Password == pwd).FirstOrDefault();
             UserInfo userinfo=UserInfo.GetInstance();
             if (musers != null)
