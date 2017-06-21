@@ -48,6 +48,17 @@
           <Property Name="RoleId" Type="int" />
           <Property Name="NodeId" Type="int" />
         </EntityType>
+        <EntityType Name="SYS_SystemConfigInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="System_Name" Type="varchar" MaxLength="64" />
+          <Property Name="LoginFooter" Type="varchar" MaxLength="128" />
+          <Property Name="MainFooter" Type="varchar" MaxLength="128" />
+          <Property Name="PhoneQR" Type="varchar" MaxLength="256" />
+          <Property Name="PhoneAddress" Type="varchar" MaxLength="256" />
+        </EntityType>
         <Function Name="TBFun_GetUserPower" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usertype" Type="char" Mode="In" />
           <Parameter Name="roletype" Type="varchar" Mode="In" />
@@ -68,6 +79,7 @@
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_SystemConfigInfo" EntityType="Self.SYS_SystemConfigInfo" Schema="dbo" store:Type="Tables" />
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -97,6 +109,7 @@
             <Parameter Name="usertype" Mode="In" Type="String" />
             <Parameter Name="roletype" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="SYS_SystemConfigInfo" EntityType="PRBookModel.SYS_SystemConfigInfo" />
         </EntityContainer>
         <EntityType Name="NodeSetInfo">
           <Key>
@@ -133,6 +146,17 @@
           <Property Type="Int32" Name="ParentNode" Nullable="true" />
           <Property Type="Int32" Name="NodeNum" Nullable="true" />
         </ComplexType>
+        <EntityType Name="SYS_SystemConfigInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="System_Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LoginFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="MainFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneQR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PhoneAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -197,6 +221,18 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <EntitySetMapping Name="SYS_SystemConfigInfo">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_SystemConfigInfo">
+              <MappingFragment StoreEntitySet="SYS_SystemConfigInfo">
+                <ScalarProperty Name="PhoneAddress" ColumnName="PhoneAddress" />
+                <ScalarProperty Name="PhoneQR" ColumnName="PhoneQR" />
+                <ScalarProperty Name="MainFooter" ColumnName="MainFooter" />
+                <ScalarProperty Name="LoginFooter" ColumnName="LoginFooter" />
+                <ScalarProperty Name="System_Name" ColumnName="System_Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

@@ -1,0 +1,45 @@
+﻿<link href="@Url.Content("~/Css/ssi-uploader.css")" rel="stylesheet" />
+<fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+    <legend>系统信息配置</legend>
+</fieldset>
+<div class="contentdiv-text contentdiv-block">
+    <div class="layui-form">
+        <div class="layui-form-item">
+            <label class="layui-form-label">节点名称</label>
+            <div class="layui-input-block">
+                <input type="text" id="System_Name" name="System_Name" lay-verify="required" autocomplete="off" placeholder="请输入系统名称" class="layui-input" maxlength="32">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">登录页页脚</label>
+            <div class="layui-input-block">
+                <input type="text" id="LoginFooter" name="LoginFooter" lay-verify="required" autocomplete="off" placeholder="请输入登录页页脚" class="layui-input" maxlength="64">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">主界面页脚</label>
+            <div class="layui-input-block">
+                <input type="text" id="MainFooter" name="MainFooter" lay-verify="required" autocomplete="off" placeholder="请输入主页面页脚" class="layui-input" maxlength="64">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机App文件</label>
+            <div class="layui-input-block">
+                <div>
+                    <input type="file" multiple id="PhoneAddress">
+                </div>
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <div class="layui-input-block">
+                <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
+<script>
+    $('PhoneAddress').ssi_uploader({
+        url: '/MyFile/FileUpload', dropZone: false, allowed: ['jpg', 'gif', 'txt', 'png', 'pdf', 'rar','apk'], locale: 'gr'
+    });
+</script>
