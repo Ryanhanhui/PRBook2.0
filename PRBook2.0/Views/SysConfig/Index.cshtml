@@ -1,33 +1,39 @@
-﻿<link href="@Url.Content("~/Css/ssi-uploader.css")" rel="stylesheet" />
+﻿<link href="@Url.Content("~/Content/ssi-uploader.min.css")" rel="stylesheet" />
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>系统信息配置</legend>
+    <legend>系统信息</legend>
 </fieldset>
 <div class="contentdiv-text contentdiv-block">
     <div class="layui-form">
         <div class="layui-form-item">
-            <label class="layui-form-label">节点名称</label>
+            <label class="layui-form-label">系统名称</label>
             <div class="layui-input-block">
-                <input type="text" id="System_Name" name="System_Name" lay-verify="required" autocomplete="off" placeholder="请输入系统名称" class="layui-input" maxlength="32">
+                <input type="text" id="System_Name" name="System_Name" lay-verify="required" autocomplete="off" placeholder="请输入系统名称" class="layui-input" maxlength="32" value="@ViewBag.System_Name">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">登录页页脚</label>
             <div class="layui-input-block">
-                <input type="text" id="LoginFooter" name="LoginFooter" lay-verify="required" autocomplete="off" placeholder="请输入登录页页脚" class="layui-input" maxlength="64">
+                <input type="text" id="LoginFooter" name="LoginFooter" lay-verify="required" autocomplete="off" placeholder="请输入登录页页脚" class="layui-input" maxlength="64" value="@ViewBag.LoginFooter">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">主界面页脚</label>
             <div class="layui-input-block">
-                <input type="text" id="MainFooter" name="MainFooter" lay-verify="required" autocomplete="off" placeholder="请输入主页面页脚" class="layui-input" maxlength="64">
+                <input type="text" id="MainFooter" name="MainFooter" lay-verify="required" autocomplete="off" placeholder="请输入主页面页脚" class="layui-input" maxlength="64" value="@ViewBag.MainFooter">
             </div>
         </div>
         <div class="layui-form-item">
             <label class="layui-form-label">手机App文件</label>
-            <div class="layui-input-block">
-                <div>
-                    <input type="file" multiple id="PhoneAddress">
-                </div>
+            <div class="layui-input-block" style="width:80%">
+                <input type="hidden" id="PhoneAddressField" value="@ViewBag.PhoneAddress" />
+                <input type="file" multiple id="PhoneAddress">
+            </div>
+        </div>
+        <div class="layui-form-item">
+            <label class="layui-form-label">手机端二维码</label>
+            <div class="layui-input-block" style="width:80%">
+                <input type="hidden" id="PhoneQRField" value="@ViewBag.PhoneQR" />
+                <input type="file" multiple id="PhoneQR">
             </div>
         </div>
         <div class="layui-form-item">
@@ -36,10 +42,41 @@
             </div>
         </div>
     </div>
+    <input type="hidden" id="IdField" value="@ViewBag.Id" />
 </div>
 <script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
-<script>
-    $('PhoneAddress').ssi_uploader({
-        url: '/MyFile/FileUpload', dropZone: false, allowed: ['jpg', 'gif', 'txt', 'png', 'pdf', 'rar','apk'], locale: 'gr'
+<script type="text/javascript">
+    var layer, form;
+    layui.use(['form', 'layer'], function () {
+        form = layui.form();
+        layer = layui.layer;
     });
+    $('#PhoneAddress').ssi_uploader({ url: 'uploadAction.php', dropZone: false, locale: 'zh_CN' });
+    $('#PhoneQR').ssi_uploader({
+        url: '@Url.Action("UploadFile","FileUpload")',
+        data:{"type":"1","folder":"SysConfig"},
+        allowed: ['png', 'jpg', 'pdf', 'txt'],
+        dropZone: false,
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        errorHandler: {
+            method: function (msg, type) {
+                if (type == "error") {
+                    layer.alert(msg, { icon: 2 });
+                }
+            },
+            success: 'success',
+            error: 'error'
+        }
+    });
+
+    function saveBtnClick() {
+        var id = $("#IdField").val();
+        if (id == "") {
+
+        }
+        else {
+
+        }
+    }
 </script>

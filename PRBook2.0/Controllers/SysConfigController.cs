@@ -1,4 +1,5 @@
-﻿using PRBook2._0.Models.LogicL;
+﻿using PRBook2._0.Models;
+using PRBook2._0.Models.LogicL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -14,7 +15,22 @@ namespace PRBook2._0.Controllers
         // GET: /SysConfig/
         public ActionResult Index()
         {
-            ViewBag.Model = sysConfig.GetBindData();
+            SYS_SystemConfigInfo sysmodel = sysConfig.GetBindData();
+            ViewBag.Id = "";
+            ViewBag.System_Name = "";
+            ViewBag.LoginFooter = "";
+            ViewBag.MainFooter = "";
+            ViewBag.PhoneAddress = "";
+            ViewBag.PhoneQR = "";
+            if(sysmodel!=null)
+            {
+                ViewBag.Id = sysmodel.Id;
+                ViewBag.System_Name = sysmodel.System_Name;
+                ViewBag.LoginFooter = sysmodel.LoginFooter;
+                ViewBag.MainFooter = sysmodel.MainFooter;
+                ViewBag.PhoneAddress = sysmodel.PhoneAddress;
+                ViewBag.PhoneQR = sysmodel.PhoneQR;
+            }
             return PartialView();
         }
 	}

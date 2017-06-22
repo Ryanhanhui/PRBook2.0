@@ -16,10 +16,19 @@ namespace PRBook2._0.Models.LogicL
         /// 获取信息
         /// </summary>
         /// <returns></returns>
-        public string GetBindData()
+        //public string GetBindData()
+        //{
+        //    SYS_SystemConfigInfo systemConfig = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
+        //    return putil.GetJsonData(systemConfig);
+        //}
+        /// <summary>
+        /// 获取信息
+        /// </summary>
+        /// <returns></returns>
+        public SYS_SystemConfigInfo GetBindData()
         {
             SYS_SystemConfigInfo systemConfig = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
-            return putil.GetJsonData(systemConfig);
+            return systemConfig;
         }
         /// <summary>
         /// 更新数据
