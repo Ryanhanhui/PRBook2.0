@@ -37,8 +37,7 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(SYS_SystemConfigInfo sysConfig)
         {
-            SYS_SystemConfigInfo tmp = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
-            if(tmp==null)//添加
+            if (string.IsNullOrWhiteSpace(sysConfig.Id.ToString()))//添加
             {
                 mdb.SYS_SystemConfigInfo.Add(sysConfig);
                 

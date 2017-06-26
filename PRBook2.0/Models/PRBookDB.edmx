@@ -54,8 +54,8 @@
           </Key>
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="System_Name" Type="varchar" MaxLength="64" />
-          <Property Name="LoginFooter" Type="varchar" MaxLength="128" />
-          <Property Name="MainFooter" Type="varchar" MaxLength="128" />
+          <Property Name="LoginFooter" Type="nvarchar" MaxLength="128" />
+          <Property Name="MainFooter" Type="nvarchar" MaxLength="128" />
           <Property Name="PhoneQR" Type="varchar" MaxLength="256" />
           <Property Name="PhoneAddress" Type="varchar" MaxLength="256" />
         </EntityType>
@@ -152,8 +152,8 @@
           </Key>
           <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="System_Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="LoginFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Name="MainFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="LoginFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+          <Property Name="MainFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PhoneQR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="PhoneAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>

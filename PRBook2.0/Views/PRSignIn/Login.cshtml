@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="@Url.Content("~/Css/style.css")" type="text/css" media="all">
     <title>登录</title>
 </head>
-<body>
+<body onkeydown="keyDownFunc()">
     <div class="banner">
         <div class="agileinfo-dot">
             <h1>人情来往管理系统</h1>
@@ -99,5 +99,9 @@
                 }
                 );
         }
+    }
+    function keyDownFunc() {
+        if (event.keyCode==13)  //回车键的键值为13
+            mlogin(); //调用登录按钮的登录事件
     }
 </script>

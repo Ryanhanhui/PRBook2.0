@@ -25,14 +25,23 @@
             <div class="layui-form-item">
                 <label class="layui-form-label">手机App文件</label>
                 <div class="layui-input-block" style="width:80%">
-                    <input type="hidden" id="PhoneAddressField" value="@ViewBag.PhoneAddress" />
+                    <input type="hidden" id="PhoneAddreesHidden" value="@ViewBag.PhoneAddress" />
+                    @{
+                        string phoneaddrss = "";
+                        if (!string.IsNullOrWhiteSpace(ViewBag.PhoneAddress))
+                        {
+                            phoneaddrss = ViewBag.PhoneAddress.Remove(0, ViewBag.PhoneAddress.LastIndexOf('/')+1); 
+                        }
+                    }
+                    <a id="PhoneAddressField" href="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneAddress">@phoneaddrss</a>
                     <input type="file" multiple id="PhoneAddress">
                 </div>
             </div>
             <div class="layui-form-item">
                 <label class="layui-form-label">手机端二维码</label>
                 <div class="layui-input-block" style="width:80%">
-                    <input type="hidden" id="PhoneQRField" value="@ViewBag.PhoneQR" />
+                    <input type="hidden" id="PhoneQRHidden" value="@ViewBag.PhoneQR" />
+                    <img src="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" id="PhoneQRField" onclick="imgBoxClick(this)" style="width:100px;height:80px"/>
                     <input type="file" multiple id="PhoneQR">
                 </div>
             </div>
@@ -45,18 +54,21 @@
         <input type="hidden" id="IdField" value="@ViewBag.Id" />
     </div>
 </fieldset>
+<div id="ImgBox" style="display:none;text-align:center">
+    <img id="BigImg" src="" onclick="closeImgBox()" />
+</div>
 <script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
 <script type="text/javascript">
     var layer, form;
+    var layindex;
     layui.use(['form', 'layer'], function () {
         form = layui.form();
         layer = layui.layer;
     });
-    $('#PhoneAddress').ssi_uploader({ url: 'uploadAction.php', dropZone: false, locale: 'zh_CN' });
-    $('#PhoneQR').ssi_uploader({
+    $('#PhoneAddress').ssi_uploader({
         url: '@Url.Action("UploadSingleFile","FileUpload")',
-        data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneQRField").val() },
-        allowed: ['png', 'jpg', 'pdf', 'txt'],
+        data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneAddreesHidden").val() },
+        allowed: ['apk', 'dmg','jpg'],
         dropZone: false,
         locale: 'zh_CN',
         maxNumberOfFiles: 1,
@@ -69,17 +81,78 @@
             success: 'success',
             error: 'error'
         },
-        onUpload: function () {
-            debugger;
+        onEachUpload: function (backdata) {
+            if (backdata.uploadStatus == "success" && backdata.responseMsg != "Error" && backdata.responseMsg != "Error0") {
+                $("#PhoneAddreesHidden").val(backdata.responseMsg);
+                $("#PhoneAddressField").prop("href", "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()" + backdata.responseMsg);
+                $("#PhoneAddressField").text(getFileName(backdata.responseMsg));
+            }
+        }
+    });
+    $('#PhoneQR').ssi_uploader({
+        url: '@Url.Action("UploadSingleFile","FileUpload")',
+        data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneQRHidden").val() },
+        allowed: ['png', 'jpg', 'bmp'],
+        dropZone: false,
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        errorHandler: {
+            method: function (msg, type) {
+                if (type == "error") {
+                    layer.alert(msg, { icon: 2 });
+                }
+            },
+            success: 'success',
+            error: 'error'
+        },
+        onEachUpload: function (backdata) {
+            if (backdata.uploadStatus == "success" && backdata.responseMsg != "Error" && backdata.responseMsg!="Error0") {
+                $("#PhoneQRHidden").val(backdata.responseMsg);
+                $("#PhoneQRField").prop("src", "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()" + backdata.responseMsg);
+
+            }
         }
     });
     function saveBtnClick() {
-        var id = $("#IdField").val();
-        if (id == "") {
-
-        }
-        else {
-
-        }
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("UpdateData", "SysConfig")',
+                    data:
+                        {
+                            Id: $("#IdField").val(),
+                            System_Name: $("#System_Name").val(),
+                            LoginFooter: $("#LoginFooter").val(),
+                            MainFooter: $("#MainFooter").val(),
+                            PhoneQR: $("#PhoneQRHidden").val(),
+                            PhoneAddress: $("#PhoneAddreesHidden").val()
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
+    }
+    function imgBoxClick(obj) {
+        $("#BigImg").prop("src", obj.src);
+        layindex=layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 1,
+            area: ['800','600px'],
+            shadeClose: true,
+            content: $('#ImgBox'),
+            shade:0
+        });
+    }
+    function closeImgBox() {
+        layer.close(layindex);
+    }
+    function getFileName(filepath) {
+        var str = filepath.substr(filepath.lastIndexOf('/')+1);
+        return str;
     }
 </script>

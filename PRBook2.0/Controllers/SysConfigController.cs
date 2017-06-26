@@ -13,6 +13,7 @@ namespace PRBook2._0.Controllers
         SysConfig sysConfig = new SysConfig();
         //
         // GET: /SysConfig/
+        [Authorize]
         public ActionResult Index()
         {
             SYS_SystemConfigInfo sysmodel = sysConfig.GetBindData();
@@ -32,6 +33,20 @@ namespace PRBook2._0.Controllers
                 ViewBag.PhoneQR = sysmodel.PhoneQR;
             }
             return PartialView();
+        }
+        [Authorize]
+        [HttpPost]
+        public string UpdateData()
+        {
+            SYS_SystemConfigInfo sysconfig = new SYS_SystemConfigInfo();
+            if(!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                sysconfig.Id = int.Parse(Request.Params["Id"].ToString());
+            sysconfig.System_Name = Request.Params["System_Name"].ToString();
+            sysconfig.LoginFooter = Request.Params["LoginFooter"].ToString();
+            sysconfig.MainFooter = Request.Params["MainFooter"].ToString();
+            sysconfig.PhoneAddress = Request.Params["PhoneAddress"].ToString();
+            sysconfig.PhoneQR = Request.Params["PhoneQR"].ToString();
+            return sysConfig.UpdateData(sysconfig);
         }
 	}
 }
