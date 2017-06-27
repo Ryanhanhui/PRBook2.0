@@ -15,6 +15,15 @@ namespace PRBook2._0.Models.LogicL
 
         }
         /// <summary>
+        /// 获取登录页页脚
+        /// </summary>
+        /// <returns></returns>
+        public SYS_SystemConfigInfo GetFooter()
+        {
+            SYS_SystemConfigInfo sysconfig = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
+            return sysconfig;
+        }
+        /// <summary>
         /// 登录验证
         /// </summary>
         /// <param name="username">用户名</param>

@@ -15,7 +15,7 @@
 <body onkeydown="keyDownFunc()">
     <div class="banner">
         <div class="agileinfo-dot">
-            <h1>人情来往管理系统</h1>
+            <h1>@ViewBag.System_Name</h1>
             <div class="layoutscontainer">
                 <h2>登  录</h2>
                 <form action="#" method="post">
@@ -30,7 +30,7 @@
 
 
             <div class="w3footeragile">
-                <p> &copy; 2017 Harvey All rights reserved | Design by <a href="http://w3layouts.com" target="_blank">W3layouts</a></p>
+                <p> @ViewBag.LoginFooter | Design by <a href="http://w3layouts.com" target="_blank">W3layouts</a></p>
             </div>
         </div>
     </div>
@@ -46,9 +46,19 @@
     layui.use('layer', function () {
         layer = layui.layer;
     });
+    function openPage() {
+        layer.open({
+            title: '',
+            type: 2,
+            content: 'bb_checklogin.html',
+            time: 30000,
+            area: ['100%', '100%'],
+            closeBtn: false
+        });
+    }
     function mlogin() {
         if (logincount >= 3) {
-            layer.alert("错误次数达到3次，请刷新页面后重试", { icon: 2, closeBtn: false });
+            openPage();
         }
         else {
             var username = $("#Username").val();
@@ -101,7 +111,7 @@
         }
     }
     function keyDownFunc() {
-        if (event.keyCode==13)  //回车键的键值为13
+        if (event.keyCode == 13)  //回车键的键值为13
             mlogin(); //调用登录按钮的登录事件
     }
 </script>

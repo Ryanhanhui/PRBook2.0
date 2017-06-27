@@ -18,5 +18,10 @@ namespace PRBook2._0.Models.LogicL
             List<TBFun_GetUserPower_Result> powerlist = mdb.TBFun_GetUserPower(usertype, roletype).OrderBy(u => u.NodeNum).ToList();
             return putil.GetJsonData(powerlist);
         }
+        public SYS_SystemConfigInfo GetSysConfig()
+        {
+            SYS_SystemConfigInfo sysconfig = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
+            return sysconfig;
+        }
     }
 }

@@ -1,4 +1,5 @@
-﻿using PRBook2._0.Models.LogicL;
+﻿using PRBook2._0.Models;
+using PRBook2._0.Models.LogicL;
 using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
@@ -18,6 +19,10 @@ namespace PRBook2._0.Controllers
         {
             if (!util.CheckLoginState())
                 return RedirectToAction("Login", "PRSignIn");
+            SYS_SystemConfigInfo sysconfig = home.GetSysConfig();
+            ViewBag.System_Name = sysconfig.System_Name;
+            ViewBag.MainFooter = sysconfig.MainFooter;
+            ViewBag.PhoneQR = sysconfig.PhoneQR;
             return View("Main");
         }
         public ActionResult WithoutPower()
