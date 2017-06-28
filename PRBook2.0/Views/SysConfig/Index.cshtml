@@ -1,4 +1,5 @@
 ﻿<link href="@Url.Content("~/Content/ssi-uploader.min.css")" rel="stylesheet" />
+<link href="@Url.Content("~/Content/viewer.min.css")" rel="stylesheet" />
 <fieldset class="layui-elem-field" style="margin-top: 20px;">
     <legend>系统信息</legend>
 
@@ -41,7 +42,9 @@
                 <label class="layui-form-label">手机端二维码</label>
                 <div class="layui-input-block" style="width:80%">
                     <input type="hidden" id="PhoneQRHidden" value="@ViewBag.PhoneQR" />
-                    <img src="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" id="PhoneQRField" onclick="imgBoxClick(this)" style="width:100px;height:80px"/>
+                    <div>
+                        <img class="viewer-toggle" data-original="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" src="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" id="PhoneQRField" style="width:100px;height:80px" />
+                    </div>
                     <input type="file" multiple id="PhoneQR">
                 </div>
             </div>
@@ -58,6 +61,7 @@
     <img id="BigImg" src="" onclick="closeImgBox()" />
 </div>
 <script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
+<script src="@Url.Content("~/Scripts/viewer.min.js")"></script>
 <script type="text/javascript">
     var layer, form;
     var layindex;
@@ -65,6 +69,14 @@
         form = layui.form();
         layer = layui.layer;
     });
+    var viewer = new Viewer(document.getElementById('PhoneQRField'), {
+        url: 'data-original',
+        title: false,
+        navbar: false,
+        toolbar: false,
+        zIndex:2015
+    });
+
     $('#PhoneAddress').ssi_uploader({
         url: '@Url.Action("UploadSingleFile","FileUpload")',
         data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneAddreesHidden").val() },
