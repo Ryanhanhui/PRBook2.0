@@ -30,11 +30,11 @@
                     </li>
                     <li class="layui-nav-item">
                         <a href="javascript:;">
-                            梦想星辰大海
+                            @PRBook2._0.Models.Tool.UserInfo.GetInstance().NickName
                         </a>
                         <dl class="layui-nav-child">
                             <dd>
-                                <a href="javascript:;">
+                                <a href="javascript:;" onclick="myInfo('@PRBook2._0.Models.Tool.UserInfo.GetInstance().UserId')">
                                     个人信息
                                 </a>
                             </dd>
@@ -72,6 +72,7 @@
 </body>
 </html>
 <script>
+    var layer;
     function loadPower() {
         $.ajax(
                 {
@@ -118,4 +119,21 @@
         $("#MainBody").html(htmlobj.responseText);
     }
     LoadMainBody("@Url.Action("Index","OverView")");
+
+    $(document).ready(function () {
+        layui.use('layer', function () {
+            layer = layui.layer;
+        });
+    });
+    function myInfo(userid) {
+        layer.open({
+            type: 2,
+            title: '用户信息维护',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['600px', '500px'],
+            content: '@Url.Action("EditPage", "UserInfo")?UserId=' + userid + ''
+        });
+    }
+    function initData(){}
 </script>
