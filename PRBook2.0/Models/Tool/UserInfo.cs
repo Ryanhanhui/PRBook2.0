@@ -11,6 +11,7 @@ namespace PRBook2._0.Models.Tool
     public class UserInfo
     {
         private static UserInfo _Instance;//全局单例
+        private static readonly object locker = new object();
 
         public string UserId { get; set; }
         public string Password { get; set; }
@@ -31,7 +32,13 @@ namespace PRBook2._0.Models.Tool
         public static UserInfo GetInstance()
         {
             if (_Instance == null)
-                _Instance = new UserInfo();
+            {
+                lock (locker)
+                {
+                    if (_Instance == null)
+                        _Instance = new UserInfo();
+                }
+            }
             return _Instance;
         }
         /// <summary>

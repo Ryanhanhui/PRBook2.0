@@ -80,15 +80,19 @@
             }
             var encodestr = hex_md5(password);
             encodestr = hex_sha1(encodestr);
-            var actionurl = "@Url.Action("LoginConfirm","PRSignIn")"
-            $.post(actionurl,
+            var actionurl = "@Url.Action("LoginConfirm","PRSignIn")";
+            $.ajax(
                 {
-                    username: username,
-                    pwd: encodestr
-                },
-                function (data, status) {
-                    if (status == "success") {
-                        if (data == "用户名或密码错误") {
+                    async: false,
+                    type: 'POST',
+                    url: actionurl,
+                    data:
+                        {
+                            username: username,
+                            pwd: encodestr
+                        },
+                    success: function (datafield) {
+                        if (datafield == "用户名或密码错误") {
                             logincount++;
                             layer.alert(data, {
                                 icon: 2,
@@ -99,8 +103,8 @@
                         else {
                             location.href = "@Url.Action("Index","Home")";
                         }
-                    }
-                    else {
+                    },
+                    error:function(){
                         layer.alert("网络连接超时", {
                             icon: 2,
                             closeBtn: false,
