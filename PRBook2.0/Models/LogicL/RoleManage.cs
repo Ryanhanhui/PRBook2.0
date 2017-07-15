@@ -1,4 +1,5 @@
-﻿using PRBook2._0.Models.Tool;
+﻿using PRBook2._0.Models.DataL;
+using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -9,7 +10,6 @@ namespace PRBook2._0.Models.LogicL
 {
     public class RoleManage
     {
-        PRBookEntities mdb = new PRBookEntities();
         PublicUtil putil = new PublicUtil();
         public RoleManage()
         {
@@ -24,7 +24,7 @@ namespace PRBook2._0.Models.LogicL
         public string GetData(int currpage, int pagesize)
         {
             List<SYS_RoleInfo> sysRoleInfo =
-                mdb.SYS_RoleInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+                DBTool.GetInstance().mdb.SYS_RoleInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
             return putil.GetJsonData(sysRoleInfo);
         }
         /// <summary>
@@ -33,7 +33,7 @@ namespace PRBook2._0.Models.LogicL
         /// <returns></returns>
         public int GetDataCount()
         {
-            return mdb.SYS_RoleInfo.OrderBy(u => u.Id).ToList().Count;
+            return DBTool.GetInstance().mdb.SYS_RoleInfo.OrderBy(u => u.Id).ToList().Count;
         }
         /// <summary>
         /// 获取编辑页的数据
@@ -43,7 +43,7 @@ namespace PRBook2._0.Models.LogicL
         public string GetDetail(string Id)
         {
             int id = int.Parse(Id);
-            SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).ToList().SingleOrDefault();
+            SYS_RoleInfo sysRoleInfo = DBTool.GetInstance().mdb.SYS_RoleInfo.Where(u => u.Id == id).ToList().SingleOrDefault();
             return putil.GetJsonData(sysRoleInfo);
         }
         /// <summary>
@@ -55,8 +55,8 @@ namespace PRBook2._0.Models.LogicL
         {
             if (!IsExists(sysRoleInfo))
                 return "exists";
-            mdb.SYS_RoleInfo.Add(sysRoleInfo);
-            int ret = mdb.SaveChanges();
+            DBTool.GetInstance().mdb.SYS_RoleInfo.Add(sysRoleInfo);
+            int ret = DBTool.GetInstance().SaveChanges(sysRoleInfo);
             if (ret != 0)
                 return "success";
             else
@@ -64,7 +64,7 @@ namespace PRBook2._0.Models.LogicL
         }
         private bool IsExists(SYS_RoleInfo sysRoleInfo)
         {
-            int ncount = mdb.SYS_RoleInfo.Where(u => u.RoleName.Equals(sysRoleInfo.RoleName)).ToList().Count;
+            int ncount = DBTool.GetInstance().mdb.SYS_RoleInfo.Where(u => u.RoleName.Equals(sysRoleInfo.RoleName)).ToList().Count;
 
             if (ncount > 0)
                 return false;
@@ -78,10 +78,10 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(SYS_RoleInfo sysRoleInfo)
         {
-            DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
+            DbEntityEntry<SYS_RoleInfo> entry = DBTool.GetInstance().mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
             entry.State = System.Data.Entity.EntityState.Unchanged;
             entry.Property("RoleDesc").IsModified = true;
-            int ret = mdb.SaveChanges();
+            int ret = DBTool.GetInstance().SaveChanges(sysRoleInfo);
             if (ret != 0)
                 return "success";
             else
@@ -95,9 +95,9 @@ namespace PRBook2._0.Models.LogicL
         public string DeleteData(string Id)
         {
             int id = int.Parse(Id);
-            SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).FirstOrDefault();
-            mdb.SYS_RoleInfo.Remove(sysRoleInfo);//删除实体
-            int ret = mdb.SaveChanges();
+            SYS_RoleInfo sysRoleInfo = DBTool.GetInstance().mdb.SYS_RoleInfo.Where(u => u.Id == id).FirstOrDefault();
+            DBTool.GetInstance().mdb.SYS_RoleInfo.Remove(sysRoleInfo);//删除实体
+            int ret = DBTool.GetInstance().SaveChanges(sysRoleInfo);
             if (ret != 0)
                 return "success";
             else
@@ -111,7 +111,7 @@ namespace PRBook2._0.Models.LogicL
         public string GetRolePower(string roleId)
         {
             int rid=int.Parse(roleId);
-            List<SYS_RolePower> sysRolePower = mdb.SYS_RolePower.Where(u => u.RoleId == rid).ToList();
+            List<SYS_RolePower> sysRolePower = DBTool.GetInstance().mdb.SYS_RolePower.Where(u => u.RoleId == rid).ToList();
             return putil.GetJsonData(sysRolePower);
         }
         /// <summary>
@@ -124,11 +124,11 @@ namespace PRBook2._0.Models.LogicL
         {
             int roleid=int.Parse(roleId);
             //删除之前的权限
-            List<SYS_RolePower> dlist = mdb.SYS_RolePower.Where(u => u.RoleId == roleid).ToList();
-            mdb.SYS_RolePower.RemoveRange(dlist);
+            List<SYS_RolePower> dlist = DBTool.GetInstance().mdb.SYS_RolePower.Where(u => u.RoleId == roleid).ToList();
+            DBTool.GetInstance().mdb.SYS_RolePower.RemoveRange(dlist);
             //重新插入
-            mdb.SYS_RolePower.AddRange(sysRolePowers);
-            int ret = mdb.SaveChanges();
+            DBTool.GetInstance().mdb.SYS_RolePower.AddRange(sysRolePowers);
+            int ret = DBTool.GetInstance().SaveChanges(sysRolePowers);
             if (ret != 0)
                 return "success";
             else

@@ -32,6 +32,8 @@ namespace PRBook2._0.Controllers.UserManage
             }
             return View();
         }
+        [Authorize]
+        [HttpPost]
         public string UpdateData()
         {
             PR_UserInfo pr = new PR_UserInfo();
@@ -46,6 +48,27 @@ namespace PRBook2._0.Controllers.UserManage
                 pr.Age = int.Parse(Request.Params["Age"]);
             pr.Remark = Request.Params["Remark"].ToString();
             return usi.UpdateData(pr);
+        }
+        [Authorize]
+        public ActionResult PwdPage()
+        {
+            if (Request["UserId"] != null)
+            {
+                ViewBag.RStatus = "edit";
+                PR_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                ViewBag.Model = pr;
+            }
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public string UpdatePwdData()
+        {
+            string oldpwd = Request.Form["oldPwdField"].ToString();
+            string newpwd = Request.Form["newPwdField"].ToString();
+            string newpwdconfirm = Request.Form["newPwd1Field"].ToString();
+            int pid = int.Parse(Request.Form["Id"].ToString());
+            return usi.UpdatePwdData(pid, oldpwd, newpwd, newpwdconfirm);
         }
 	}
 }

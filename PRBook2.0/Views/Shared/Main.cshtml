@@ -39,7 +39,7 @@
                                 </a>
                             </dd>
                             <dd>
-                                <a href="javascript:;">
+                                <a href="javascript:;" onclick="editPwd('@PRBook2._0.Models.Tool.UserInfo.GetInstance().UserId')">
                                     修改密码
                                 </a>
                             </dd>
@@ -132,6 +132,16 @@
             closeBtn: 0,
             area: ['600px', '500px'],
             content: '@Url.Action("EditPage", "UserInfo")?UserId=' + userid + ''
+        });
+    }
+    function editPwd(userid) {
+        layer.open({
+            type: 2,
+            title: '用户密码维护',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['600px', '300px'],
+            content: '@Url.Action("PwdPage", "UserInfo")?UserId=' + userid + ''
         });
     }
     function initData() { }

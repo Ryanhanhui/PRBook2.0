@@ -13,7 +13,7 @@ namespace PRBook2._0.Models.DataL
         
         private static DBTool _Instance;
         private static readonly object locker = new object();
-        public PRBookEntities mdb { set; get; }
+        public PRBookEntities mdb { private set; get; }
 
         private DBTool()
         {
@@ -36,6 +36,15 @@ namespace PRBook2._0.Models.DataL
                 }
             }
             return _Instance;
+        }
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <returns></returns>
+        public int SaveChanges(object obj)
+        {
+            //do something like log
+            return mdb.SaveChanges();
         }
     }
 }

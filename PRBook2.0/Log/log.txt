@@ -1,0 +1,109 @@
+已于 2017/7/15 17:32:04 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/15 17:32:04 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:04 +08:00
+ 关闭了连接已于 2017/7/15 17:32:23 +08:00
+ 打开了连接SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    WHERE (([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))) AND (([Extent1].[Password] = @p__linq__1) OR (([Extent1].[Password] IS NULL) AND (@p__linq__1 IS NULL)))
+-- p__linq__0: 'admin' (Type = AnsiString, Size = 8000)
+-- p__linq__1: '9a9f06a73877922f7a81ceae0921dec85195d54c' (Type = AnsiString, Size = 8000)
+-- 正在 2017/7/15 17:32:23 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:23 +08:00
+ 关闭了连接已于 2017/7/15 17:32:23 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/15 17:32:23 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:23 +08:00
+ 关闭了连接已于 2017/7/15 17:32:23 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/15 17:32:23 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:23 +08:00
+ 关闭了连接已于 2017/7/15 17:32:29 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    WHERE ([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))
+-- p__linq__0: 'admin' (Type = AnsiString, Size = 8000)
+-- 正在 2017/7/15 17:32:29 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:29 +08:00
+ 关闭了连接已于 2017/7/15 17:32:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '1' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/15 17:32:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/15 17:32:46 +08:00
+ 关闭了连接
