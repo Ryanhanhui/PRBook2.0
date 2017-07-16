@@ -19,6 +19,7 @@ namespace PRBook2._0.Controllers.UserManage
         {
             if (!util.CheckPower(Request.RawUrl.ToString()))
                 return PartialView("WithoutPower");
+            ViewBag.PageCount = usi.GetDataCount();
             return PartialView();
         }
         [Authorize]
@@ -69,6 +70,12 @@ namespace PRBook2._0.Controllers.UserManage
             string newpwdconfirm = Request.Form["newPwd1Field"].ToString();
             int pid = int.Parse(Request.Form["Id"].ToString());
             return usi.UpdatePwdData(pid, oldpwd, newpwd, newpwdconfirm);
+        }
+        [Authorize]
+        [HttpPost]
+        public string GetData(int currpage, int pagesize)
+        {
+            return usi.GetData(currpage, pagesize);
         }
 	}
 }

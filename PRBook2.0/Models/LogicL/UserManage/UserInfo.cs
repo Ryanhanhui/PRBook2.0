@@ -10,6 +10,7 @@ namespace PRBook2._0.Models.LogicL.UserManage
 {
     public class UserInfo
     {
+        PublicUtil putil = new PublicUtil();
         public PR_UserInfo GetEditInfo(string userId)
         {
             PR_UserInfo userinfo =DBTool.GetInstance().mdb.PR_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
@@ -66,6 +67,20 @@ namespace PRBook2._0.Models.LogicL.UserManage
                     return "success";
                 }
             }
+        }
+        /// <summary>
+        /// 获取数据条数
+        /// </summary>
+        /// <returns></returns>
+        public int GetDataCount()
+        {
+            return DBTool.GetInstance().mdb.PR_UserInfo.OrderBy(u => u.Id).ToList().Count;
+        }
+        public string GetData(int currpage, int pagesize)
+        {
+            List<PR_UserInfo> pruserinfo =
+                DBTool.GetInstance().mdb.PR_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+            return putil.GetJsonData(pruserinfo);
         }
     }
 }

@@ -71,6 +71,30 @@
 </div>
 <script type="text/javascript">
     var form;
+    layui.use('form', function () {
+        form = layui.form();
+        //var layer = layui.layer;
+        form.on('select(ParentNode)', function (data) {
+            $("#ParentNodeField").val(data.value);
+        });
+        form.on('switch(Status)', function (data) {
+            if (data.elem.checked == true) {
+                $("#StatusField").val("1");
+            }
+            else {
+                $("#StatusField").val("0");
+            }
+
+        });
+        form.on('radio', function (data) {
+            if (data.elem.name == "NodeType") {
+                $("#NodeTypeField").val(data.value);
+            }
+        });
+        form.render();
+        
+    });
+    GetNode();
     //请求树节点数据
     function GetNode() {
         $.post("@Url.Action("GetNodeTreeData","NodeManage")",
@@ -90,7 +114,6 @@
             "json"
             );
     }
-    GetNode();
     //创建树节点
     var createNode = function (data) {
         var treearr = [];
@@ -274,7 +297,7 @@
         layer.confirm('确定删除么？', {
             btn: ['确定', '取消'], //按钮
             icon: 3,
-            closeBtn:0
+            closeBtn: 0
         }, function () {
             $.post("@Url.Action("DeleteNode", "NodeManage")",
             {
@@ -290,42 +313,10 @@
             }
           );
         }, function () {
-            
+
         });
     }
-    $(document).ready(function () {
-        layui.use(['layer', 'form'], function () {
-            var layer = layui.layer;
-            form = layui.form();
-            form.verify({
-                //我们既支持上述函数式的方式，也支持下述数组的形式
-                //数组的两个值分别代表：[正则匹配、匹配不符时的提示文字]
-                numberverify: [
-                 /^[1-9]\d*$/
-                 , '只能填写正整数'
-                ]
-            });
 
-            form.on('select(ParentNode)', function (data) {
-                $("#ParentNodeField").val(data.value);
-            });
-            form.on('switch(Status)', function (data) {
-                if (data.elem.checked == true) {
-                    $("#StatusField").val("1");
-                }
-                else {
-                    $("#StatusField").val("0");
-                }
-                
-            });
-            form.on('radio', function (data) {
-                if (data.elem.name == "NodeType") {
-                    $("#NodeTypeField").val(data.value);
-                }
-            });
-            form.render();
-        });
-    });
     function VerifyValid() {
         if ($("#NodeName").val() == "") {
             layer.tips('请输入节点名称', '#NodeName', {
