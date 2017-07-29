@@ -63,6 +63,7 @@
         </div>
         <!-- 主体 -->
         <div class="layui-body" id="MainBody">
+            <iframe id="MainFrame" frameborder="0" scrolling="auto" width="100%" height="99%" ></iframe>
         </div>
         <!-- 底部 -->
         <div class="layui-footer" style="text-align: center; line-height: 44px;">
@@ -115,7 +116,8 @@
             return;
         }
         htmlobj = $.ajax({ url: strurl, async: false });
-        $("#MainBody").html(htmlobj.responseText);
+        //$("#MainBody").html(htmlobj.responseText);
+        $("#MainFrame").prop("src", strurl);
     }
     LoadMainBody("@Url.Action("Index","OverView")");
 

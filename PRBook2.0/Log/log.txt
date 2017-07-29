@@ -1,4 +1,103 @@
-已于 2017/7/15 17:32:04 +08:00
+已于 2017/7/29 18:21:43 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:21:44 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:21:44 +08:00
+ 关闭了连接已于 2017/7/29 18:21:44 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:21:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:21:44 +08:00
+ 关闭了连接已于 2017/7/29 18:21:47 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:21:47 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:21:47 +08:00
+ 关闭了连接已于 2017/7/29 18:21:47 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:21:47 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:21:47 +08:00
+ 关闭了连接已于 2017/7/29 18:21:47 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:21:47 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:21:47 +08:00
+ 关闭了连接已于 2017/7/29 18:21:51 +08:00
  打开了连接SELECT 
     [Extent1].[Id] AS [Id], 
     [Extent1].[System_Name] AS [System_Name], 
@@ -7,11 +106,11 @@
     [Extent1].[PhoneQR] AS [PhoneQR], 
     [Extent1].[PhoneAddress] AS [PhoneAddress]
     FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
--- 正在 2017/7/15 17:32:04 +08:00
- 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+-- 正在 2017/7/29 18:21:51 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:04 +08:00
- 关闭了连接已于 2017/7/15 17:32:23 +08:00
+已于 2017/7/29 18:21:51 +08:00
+ 关闭了连接已于 2017/7/29 18:22:03 +08:00
  打开了连接SELECT TOP (1) 
     [Extent1].[Id] AS [Id], 
     [Extent1].[UserId] AS [UserId], 
@@ -27,11 +126,11 @@
     WHERE (([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))) AND (([Extent1].[Password] = @p__linq__1) OR (([Extent1].[Password] IS NULL) AND (@p__linq__1 IS NULL)))
 -- p__linq__0: 'admin' (Type = AnsiString, Size = 8000)
 -- p__linq__1: '9a9f06a73877922f7a81ceae0921dec85195d54c' (Type = AnsiString, Size = 8000)
--- 正在 2017/7/15 17:32:23 +08:00
- 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+-- 正在 2017/7/29 18:22:03 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:23 +08:00
- 关闭了连接已于 2017/7/15 17:32:23 +08:00
+已于 2017/7/29 18:22:03 +08:00
+ 关闭了连接已于 2017/7/29 18:22:03 +08:00
  打开了连接SELECT 
     [Extent1].[Id] AS [Id], 
     [Extent1].[System_Name] AS [System_Name], 
@@ -40,11 +139,11 @@
     [Extent1].[PhoneQR] AS [PhoneQR], 
     [Extent1].[PhoneAddress] AS [PhoneAddress]
     FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
--- 正在 2017/7/15 17:32:23 +08:00
- 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+-- 正在 2017/7/29 18:22:03 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:23 +08:00
- 关闭了连接已于 2017/7/15 17:32:23 +08:00
+已于 2017/7/29 18:22:03 +08:00
+ 关闭了连接已于 2017/7/29 18:22:03 +08:00
  打开了连接SELECT 
     [Project1].[C1] AS [C1], 
     [Project1].[NodeId] AS [NodeId], 
@@ -64,11 +163,2203 @@
     ORDER BY [Project1].[NodeNum] ASC
 -- usertype: '1' (Type = String, Size = 4000)
 -- roletype: '1' (Type = String, Size = 4000)
--- 正在 2017/7/15 17:32:23 +08:00
+-- 正在 2017/7/29 18:22:04 +08:00
  执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:23 +08:00
- 关闭了连接已于 2017/7/15 17:32:29 +08:00
+已于 2017/7/29 18:22:04 +08:00
+ 关闭了连接已于 2017/7/29 18:22:06 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:22:06 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:22:06 +08:00
+ 关闭了连接已于 2017/7/29 18:22:06 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:22:06 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:22:06 +08:00
+ 关闭了连接已于 2017/7/29 18:22:06 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:22:06 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:22:06 +08:00
+ 关闭了连接已于 2017/7/29 18:23:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:23:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:46 +08:00
+ 关闭了连接已于 2017/7/29 18:23:47 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:23:47 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:47 +08:00
+ 关闭了连接已于 2017/7/29 18:23:47 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:23:47 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:47 +08:00
+ 关闭了连接已于 2017/7/29 18:23:49 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:23:49 +08:00
+ 执行-- 已在 3 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:49 +08:00
+ 关闭了连接已于 2017/7/29 18:23:49 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '1' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:23:49 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:49 +08:00
+ 关闭了连接已于 2017/7/29 18:23:54 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:23:54 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:54 +08:00
+ 关闭了连接已于 2017/7/29 18:23:55 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:23:55 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:55 +08:00
+ 关闭了连接已于 2017/7/29 18:23:55 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:23:55 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:55 +08:00
+ 关闭了连接已于 2017/7/29 18:23:57 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:23:57 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:57 +08:00
+ 关闭了连接已于 2017/7/29 18:23:59 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:23:59 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:59 +08:00
+ 关闭了连接已于 2017/7/29 18:23:59 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:23:59 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:23:59 +08:00
+ 关闭了连接已于 2017/7/29 18:24:03 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:24:03 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:24:03 +08:00
+ 关闭了连接已于 2017/7/29 18:24:55 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    WHERE ([Extent1].[RoleName] = @p__linq__0) OR (([Extent1].[RoleName] IS NULL) AND (@p__linq__0 IS NULL))
+-- p__linq__0: '角色4' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:24:55 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:24:55 +08:00
+ 关闭了连接已于 2017/7/29 18:24:55 +08:00
+ 打开了连接已于 2017/7/29 18:24:55 +08:00
+ 启动了事务INSERT [dbo].[SYS_RoleInfo]([RoleName], [RoleDesc])
+VALUES (@0, @1)
+SELECT [Id]
+FROM [dbo].[SYS_RoleInfo]
+WHERE @@ROWCOUNT > 0 AND [Id] = scope_identity()
+-- @0: '角色4' (Type = String, Size = 64)
+-- @1: '哈哈哈啊' (Type = String, Size = 128)
+-- 正在 2017/7/29 18:24:55 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:24:56 +08:00
+ 提交了事务已于 2017/7/29 18:24:56 +08:00
+ 关闭了连接已于 2017/7/29 18:24:59 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:24:59 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:24:59 +08:00
+ 关闭了连接已于 2017/7/29 18:25:02 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '10' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:25:02 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:25:02 +08:00
+ 关闭了连接已于 2017/7/29 18:25:03 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:25:03 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:25:03 +08:00
+ 关闭了连接已于 2017/7/29 18:25:07 +08:00
+ 打开了连接SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '10' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:25:07 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:25:07 +08:00
+ 关闭了连接已于 2017/7/29 18:25:07 +08:00
+ 打开了连接已于 2017/7/29 18:25:07 +08:00
+ 启动了事务DELETE [dbo].[SYS_RoleInfo]
+WHERE ([Id] = @0)
+-- @0: '10' (Type = Int32)
+-- 正在 2017/7/29 18:25:07 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: 1
+
+已于 2017/7/29 18:25:07 +08:00
+ 提交了事务已于 2017/7/29 18:25:07 +08:00
+ 关闭了连接已于 2017/7/29 18:25:07 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:25:07 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:25:07 +08:00
+ 关闭了连接已于 2017/7/29 18:26:30 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    ORDER BY [Extent1].[NodeNum] ASC
+-- 正在 2017/7/29 18:26:30 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:30 +08:00
+ 关闭了连接已于 2017/7/29 18:26:31 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '9' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:26:31 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:31 +08:00
+ 关闭了连接已于 2017/7/29 18:26:34 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:34 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:34 +08:00
+ 关闭了连接已于 2017/7/29 18:26:34 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:34 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:34 +08:00
+ 关闭了连接已于 2017/7/29 18:26:34 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:34 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:34 +08:00
+ 关闭了连接已于 2017/7/29 18:26:38 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:38 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:38 +08:00
+ 关闭了连接已于 2017/7/29 18:26:38 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:38 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:38 +08:00
+ 关闭了连接已于 2017/7/29 18:26:38 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:38 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:38 +08:00
+ 关闭了连接已于 2017/7/29 18:26:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:39 +08:00
+ 关闭了连接已于 2017/7/29 18:26:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:39 +08:00
+ 关闭了连接已于 2017/7/29 18:26:39 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:39 +08:00
+ 关闭了连接已于 2017/7/29 18:26:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:44 +08:00
+ 关闭了连接已于 2017/7/29 18:26:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:44 +08:00
+ 关闭了连接已于 2017/7/29 18:26:45 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:45 +08:00
+ 关闭了连接已于 2017/7/29 18:26:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:46 +08:00
+ 关闭了连接已于 2017/7/29 18:26:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:46 +08:00
+ 关闭了连接已于 2017/7/29 18:26:46 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:26:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:46 +08:00
+ 关闭了连接已于 2017/7/29 18:26:49 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:26:49 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:49 +08:00
+ 关闭了连接已于 2017/7/29 18:26:49 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:26:49 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:26:49 +08:00
+ 关闭了连接已于 2017/7/29 18:27:51 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:27:51 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:27:51 +08:00
+ 关闭了连接已于 2017/7/29 18:27:52 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:27:52 +08:00
+ 执行-- 已在 5 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:27:52 +08:00
+ 关闭了连接已于 2017/7/29 18:27:53 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:27:53 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:27:53 +08:00
+ 关闭了连接已于 2017/7/29 18:27:54 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:27:54 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:27:54 +08:00
+ 关闭了连接已于 2017/7/29 18:33:05 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:05 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:05 +08:00
+ 关闭了连接已于 2017/7/29 18:33:05 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:05 +08:00
+ 执行-- 已在 3 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:05 +08:00
+ 关闭了连接已于 2017/7/29 18:33:07 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:07 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:07 +08:00
+ 关闭了连接已于 2017/7/29 18:33:07 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:07 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:07 +08:00
+ 关闭了连接已于 2017/7/29 18:33:07 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:07 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:07 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:08 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:08 +08:00
+ 关闭了连接已于 2017/7/29 18:33:09 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:09 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:09 +08:00
+ 关闭了连接已于 2017/7/29 18:33:09 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:09 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:09 +08:00
+ 关闭了连接已于 2017/7/29 18:33:09 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:09 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:09 +08:00
+ 关闭了连接已于 2017/7/29 18:33:11 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:11 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:11 +08:00
+ 关闭了连接已于 2017/7/29 18:33:11 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:11 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:11 +08:00
+ 关闭了连接已于 2017/7/29 18:33:21 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:21 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:21 +08:00
+ 关闭了连接已于 2017/7/29 18:33:21 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:21 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:21 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:44 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:44 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:45 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:45 +08:00
+ 关闭了连接已于 2017/7/29 18:33:46 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:33:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:46 +08:00
+ 关闭了连接已于 2017/7/29 18:33:48 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:48 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:48 +08:00
+ 关闭了连接已于 2017/7/29 18:33:48 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:33:48 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:33:48 +08:00
+ 关闭了连接已于 2017/7/29 18:34:03 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:03 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:03 +08:00
+ 关闭了连接已于 2017/7/29 18:34:03 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:34:03 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:03 +08:00
+ 关闭了连接已于 2017/7/29 18:34:05 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:05 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:05 +08:00
+ 关闭了连接已于 2017/7/29 18:34:05 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:05 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:05 +08:00
+ 关闭了连接已于 2017/7/29 18:34:28 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:28 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:28 +08:00
+ 关闭了连接已于 2017/7/29 18:34:28 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:28 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:28 +08:00
+ 关闭了连接已于 2017/7/29 18:34:28 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:28 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:28 +08:00
+ 关闭了连接已于 2017/7/29 18:34:28 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:28 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:28 +08:00
+ 关闭了连接已于 2017/7/29 18:34:32 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:32 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:32 +08:00
+ 关闭了连接已于 2017/7/29 18:34:32 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:32 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:32 +08:00
+ 关闭了连接已于 2017/7/29 18:34:32 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:32 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:32 +08:00
+ 关闭了连接已于 2017/7/29 18:34:33 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:33 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:33 +08:00
+ 关闭了连接已于 2017/7/29 18:34:39 +08:00
+ 打开了连接SELECT TOP (1) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    WHERE (([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))) AND (([Extent1].[Password] = @p__linq__1) OR (([Extent1].[Password] IS NULL) AND (@p__linq__1 IS NULL)))
+-- p__linq__0: 'admin' (Type = AnsiString, Size = 8000)
+-- p__linq__1: '9a9f06a73877922f7a81ceae0921dec85195d54c' (Type = AnsiString, Size = 8000)
+-- 正在 2017/7/29 18:34:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:39 +08:00
+ 关闭了连接已于 2017/7/29 18:34:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:39 +08:00
+ 关闭了连接已于 2017/7/29 18:34:39 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:34:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:39 +08:00
+ 关闭了连接已于 2017/7/29 18:34:41 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:34:41 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:41 +08:00
+ 关闭了连接已于 2017/7/29 18:34:41 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:34:41 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:34:41 +08:00
+ 关闭了连接已于 2017/7/29 18:35:29 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:35:29 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:35:29 +08:00
+ 关闭了连接已于 2017/7/29 18:35:29 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:35:29 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:35:29 +08:00
+ 关闭了连接已于 2017/7/29 18:36:04 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:04 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:04 +08:00
+ 关闭了连接已于 2017/7/29 18:36:04 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:04 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:04 +08:00
+ 关闭了连接已于 2017/7/29 18:36:04 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:04 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:04 +08:00
+ 关闭了连接已于 2017/7/29 18:36:06 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:36:06 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:06 +08:00
+ 关闭了连接已于 2017/7/29 18:36:06 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:36:06 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:06 +08:00
+ 关闭了连接已于 2017/7/29 18:36:07 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:07 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:07 +08:00
+ 关闭了连接已于 2017/7/29 18:36:08 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:36:08 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:08 +08:00
+ 关闭了连接已于 2017/7/29 18:36:08 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:08 +08:00
+ 关闭了连接已于 2017/7/29 18:36:09 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '3' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:36:09 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:09 +08:00
+ 关闭了连接已于 2017/7/29 18:36:10 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:10 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:10 +08:00
+ 关闭了连接已于 2017/7/29 18:36:12 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    ORDER BY [Extent1].[NodeNum] ASC
+-- 正在 2017/7/29 18:36:12 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:12 +08:00
+ 关闭了连接已于 2017/7/29 18:36:13 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '9' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:36:13 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:13 +08:00
+ 关闭了连接已于 2017/7/29 18:36:15 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '4' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:36:15 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:15 +08:00
+ 关闭了连接已于 2017/7/29 18:36:19 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:19 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:19 +08:00
+ 关闭了连接已于 2017/7/29 18:36:19 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:19 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:19 +08:00
+ 关闭了连接已于 2017/7/29 18:36:19 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:19 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:19 +08:00
+ 关闭了连接已于 2017/7/29 18:36:26 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:36:26 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:36:26 +08:00
+ 关闭了连接已于 2017/7/29 18:39:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:39:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:39:44 +08:00
+ 关闭了连接已于 2017/7/29 18:39:45 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:39:45 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:39:45 +08:00
+ 关闭了连接已于 2017/7/29 18:39:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:39:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:39:46 +08:00
+ 关闭了连接已于 2017/7/29 18:39:46 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:39:46 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:39:46 +08:00
+ 关闭了连接已于 2017/7/29 18:39:46 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:39:46 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:39:46 +08:00
+ 关闭了连接已于 2017/7/29 18:40:49 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:40:49 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:40:49 +08:00
+ 关闭了连接已于 2017/7/29 18:40:49 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:40:49 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:40:49 +08:00
+ 关闭了连接已于 2017/7/29 18:40:51 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:40:51 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:40:51 +08:00
+ 关闭了连接已于 2017/7/29 18:40:51 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:40:51 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:40:51 +08:00
+ 关闭了连接已于 2017/7/29 18:40:51 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:40:51 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:40:51 +08:00
+ 关闭了连接已于 2017/7/29 18:41:42 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:41:42 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:41:42 +08:00
+ 关闭了连接已于 2017/7/29 18:41:42 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:41:42 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:41:42 +08:00
+ 关闭了连接已于 2017/7/29 18:41:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:41:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:41:44 +08:00
+ 关闭了连接已于 2017/7/29 18:41:44 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:41:44 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:41:44 +08:00
+ 关闭了连接已于 2017/7/29 18:41:45 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:41:45 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:41:45 +08:00
+ 关闭了连接已于 2017/7/29 18:42:58 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:42:58 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:42:58 +08:00
+ 关闭了连接已于 2017/7/29 18:42:58 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:42:58 +08:00
+ 执行-- 已在 4 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:42:58 +08:00
+ 关闭了连接已于 2017/7/29 18:43:00 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:00 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:00 +08:00
+ 关闭了连接已于 2017/7/29 18:43:00 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:00 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:00 +08:00
+ 关闭了连接已于 2017/7/29 18:43:00 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:00 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:00 +08:00
+ 关闭了连接已于 2017/7/29 18:43:05 +08:00
  打开了连接SELECT 
     [Extent1].[Id] AS [Id], 
     [Extent1].[UserId] AS [UserId], 
@@ -82,12 +2373,33 @@
     [Extent1].[UserType] AS [UserType]
     FROM [dbo].[PR_UserInfo] AS [Extent1]
     WHERE ([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))
--- p__linq__0: 'admin' (Type = AnsiString, Size = 8000)
--- 正在 2017/7/15 17:32:29 +08:00
+-- p__linq__0: 'test001' (Type = AnsiString, Size = 8000)
+-- 正在 2017/7/29 18:43:05 +08:00
  执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:29 +08:00
- 关闭了连接已于 2017/7/15 17:32:46 +08:00
+已于 2017/7/29 18:43:05 +08:00
+ 关闭了连接已于 2017/7/29 18:43:08 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:08 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:08 +08:00
+ 关闭了连接已于 2017/7/29 18:43:19 +08:00
  打开了连接SELECT 
     [Extent1].[Id] AS [Id], 
     [Extent1].[UserId] AS [UserId], 
@@ -100,10 +2412,756 @@
     [Extent1].[Remark] AS [Remark], 
     [Extent1].[UserType] AS [UserType]
     FROM [dbo].[PR_UserInfo] AS [Extent1]
-    WHERE [Extent1].[Id] = @p__linq__0
--- p__linq__0: '1' (Type = Int32, IsNullable = false)
--- 正在 2017/7/15 17:32:46 +08:00
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:19 +08:00
  执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
 
-已于 2017/7/15 17:32:46 +08:00
+已于 2017/7/29 18:43:19 +08:00
+ 关闭了连接已于 2017/7/29 18:43:19 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:19 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:19 +08:00
+ 关闭了连接已于 2017/7/29 18:43:19 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:43:19 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:19 +08:00
+ 关闭了连接已于 2017/7/29 18:43:21 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:43:21 +08:00
+ 执行-- 已在 3 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:21 +08:00
+ 关闭了连接已于 2017/7/29 18:43:22 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:43:22 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:22 +08:00
+ 关闭了连接已于 2017/7/29 18:43:31 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:43:31 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:31 +08:00
+ 关闭了连接已于 2017/7/29 18:43:32 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:43:32 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:32 +08:00
+ 关闭了连接已于 2017/7/29 18:43:35 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:43:35 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:35 +08:00
+ 关闭了连接已于 2017/7/29 18:43:35 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:43:35 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:35 +08:00
+ 关闭了连接已于 2017/7/29 18:43:57 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:43:57 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:57 +08:00
+ 关闭了连接已于 2017/7/29 18:43:57 +08:00
+ 打开了连接SELECT 
+    [Project1].[C1] AS [C1], 
+    [Project1].[NodeId] AS [NodeId], 
+    [Project1].[NodeName] AS [NodeName], 
+    [Project1].[NodeUrl] AS [NodeUrl], 
+    [Project1].[ParentNode] AS [ParentNode], 
+    [Project1].[NodeNum] AS [NodeNum]
+    FROM ( SELECT 
+        [Extent1].[NodeId] AS [NodeId], 
+        [Extent1].[NodeName] AS [NodeName], 
+        [Extent1].[NodeUrl] AS [NodeUrl], 
+        [Extent1].[ParentNode] AS [ParentNode], 
+        [Extent1].[NodeNum] AS [NodeNum], 
+        1 AS [C1]
+        FROM [dbo].[TBFun_GetUserPower](@usertype, @roletype) AS [Extent1]
+    )  AS [Project1]
+    ORDER BY [Project1].[NodeNum] ASC
+-- usertype: '1' (Type = String, Size = 4000)
+-- roletype: '1' (Type = String, Size = 4000)
+-- 正在 2017/7/29 18:43:57 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:43:57 +08:00
+ 关闭了连接已于 2017/7/29 18:44:01 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:01 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:01 +08:00
+ 关闭了连接已于 2017/7/29 18:44:01 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:01 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:01 +08:00
+ 关闭了连接已于 2017/7/29 18:44:01 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:01 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:01 +08:00
+ 关闭了连接已于 2017/7/29 18:44:02 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    WHERE ([Extent1].[UserId] = @p__linq__0) OR (([Extent1].[UserId] IS NULL) AND (@p__linq__0 IS NULL))
+-- p__linq__0: 'test001' (Type = AnsiString, Size = 8000)
+-- 正在 2017/7/29 18:44:02 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:02 +08:00
+ 关闭了连接已于 2017/7/29 18:44:17 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:17 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:17 +08:00
+ 关闭了连接已于 2017/7/29 18:44:20 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:20 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:20 +08:00
+ 关闭了连接已于 2017/7/29 18:44:20 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:20 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:20 +08:00
+ 关闭了连接已于 2017/7/29 18:44:20 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:20 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:20 +08:00
+ 关闭了连接已于 2017/7/29 18:44:22 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    ORDER BY [Extent1].[NodeNum] ASC
+-- 正在 2017/7/29 18:44:22 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:22 +08:00
+ 关闭了连接已于 2017/7/29 18:44:24 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE [Extent1].[Id] = @p__linq__0
+-- p__linq__0: '9' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:44:24 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:24 +08:00
+ 关闭了连接已于 2017/7/29 18:44:25 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:25 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:25 +08:00
+ 关闭了连接已于 2017/7/29 18:44:25 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:25 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:25 +08:00
+ 关闭了连接已于 2017/7/29 18:44:25 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:25 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:25 +08:00
+ 关闭了连接已于 2017/7/29 18:44:26 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:44:26 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:26 +08:00
+ 关闭了连接已于 2017/7/29 18:44:26 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:44:26 +08:00
+ 执行-- 已在 1 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:26 +08:00
+ 关闭了连接已于 2017/7/29 18:44:28 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:28 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:28 +08:00
+ 关闭了连接已于 2017/7/29 18:44:29 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:44:29 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:29 +08:00
+ 关闭了连接已于 2017/7/29 18:44:29 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:44:29 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:29 +08:00
+ 关闭了连接已于 2017/7/29 18:44:30 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:30 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:30 +08:00
+ 关闭了连接已于 2017/7/29 18:44:30 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:30 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:30 +08:00
+ 关闭了连接已于 2017/7/29 18:44:30 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:30 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:30 +08:00
+ 关闭了连接已于 2017/7/29 18:44:31 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:44:31 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:31 +08:00
+ 关闭了连接已于 2017/7/29 18:44:31 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '2' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:44:31 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:31 +08:00
+ 关闭了连接已于 2017/7/29 18:44:32 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:32 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:32 +08:00
+ 关闭了连接已于 2017/7/29 18:44:33 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:44:33 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:33 +08:00
+ 关闭了连接已于 2017/7/29 18:44:33 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '1' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:44:33 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:33 +08:00
+ 关闭了连接已于 2017/7/29 18:44:34 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:34 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:34 +08:00
+ 关闭了连接已于 2017/7/29 18:44:36 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    WHERE ('0' = [Extent1].[NodeType]) AND ('1' = [Extent1].[Status])
+-- 正在 2017/7/29 18:44:36 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:36 +08:00
+ 关闭了连接已于 2017/7/29 18:44:36 +08:00
+ 打开了连接SELECT 
+    [Extent1].[PowerId] AS [PowerId], 
+    [Extent1].[RoleId] AS [RoleId], 
+    [Extent1].[NodeId] AS [NodeId]
+    FROM [dbo].[SYS_RolePower] AS [Extent1]
+    WHERE [Extent1].[RoleId] = @p__linq__0
+-- p__linq__0: '3' (Type = Int32, IsNullable = false)
+-- 正在 2017/7/29 18:44:36 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:36 +08:00
+ 关闭了连接已于 2017/7/29 18:44:37 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:37 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:37 +08:00
+ 关闭了连接已于 2017/7/29 18:44:38 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[NodeName] AS [NodeName], 
+    [Extent1].[NodeUrl] AS [NodeUrl], 
+    [Extent1].[NodeType] AS [NodeType], 
+    [Extent1].[ParentNode] AS [ParentNode], 
+    [Extent1].[NodeNum] AS [NodeNum], 
+    [Extent1].[Status] AS [Status]
+    FROM [dbo].[NodeSetInfo] AS [Extent1]
+    ORDER BY [Extent1].[NodeNum] ASC
+-- 正在 2017/7/29 18:44:38 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:38 +08:00
+ 关闭了连接已于 2017/7/29 18:44:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:39 +08:00
+ 关闭了连接已于 2017/7/29 18:44:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:39 +08:00
+ 关闭了连接已于 2017/7/29 18:44:39 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[RoleName] AS [RoleName], 
+    [Extent1].[RoleDesc] AS [RoleDesc]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[RoleName] AS [RoleName], [Extent1].[RoleDesc] AS [RoleDesc], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[SYS_RoleInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:44:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:39 +08:00
+ 关闭了连接已于 2017/7/29 18:44:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:44:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:39 +08:00
+ 关闭了连接已于 2017/7/29 18:44:39 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[System_Name] AS [System_Name], 
+    [Extent1].[LoginFooter] AS [LoginFooter], 
+    [Extent1].[MainFooter] AS [MainFooter], 
+    [Extent1].[PhoneQR] AS [PhoneQR], 
+    [Extent1].[PhoneAddress] AS [PhoneAddress]
+    FROM [dbo].[SYS_SystemConfigInfo] AS [Extent1]
+-- 正在 2017/7/29 18:44:39 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:44:39 +08:00
+ 关闭了连接已于 2017/7/29 18:45:17 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:45:17 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:45:17 +08:00
+ 关闭了连接已于 2017/7/29 18:45:17 +08:00
+ 打开了连接SELECT 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM [dbo].[PR_UserInfo] AS [Extent1]
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:45:17 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:45:17 +08:00
+ 关闭了连接已于 2017/7/29 18:45:17 +08:00
+ 打开了连接SELECT TOP (15) 
+    [Extent1].[Id] AS [Id], 
+    [Extent1].[UserId] AS [UserId], 
+    [Extent1].[Password] AS [Password], 
+    [Extent1].[NickName] AS [NickName], 
+    [Extent1].[Name] AS [Name], 
+    [Extent1].[Sex] AS [Sex], 
+    [Extent1].[Age] AS [Age], 
+    [Extent1].[RoleType] AS [RoleType], 
+    [Extent1].[Remark] AS [Remark], 
+    [Extent1].[UserType] AS [UserType]
+    FROM ( SELECT [Extent1].[Id] AS [Id], [Extent1].[UserId] AS [UserId], [Extent1].[Password] AS [Password], [Extent1].[NickName] AS [NickName], [Extent1].[Name] AS [Name], [Extent1].[Sex] AS [Sex], [Extent1].[Age] AS [Age], [Extent1].[RoleType] AS [RoleType], [Extent1].[Remark] AS [Remark], [Extent1].[UserType] AS [UserType], row_number() OVER (ORDER BY [Extent1].[Id] ASC) AS [row_number]
+        FROM [dbo].[PR_UserInfo] AS [Extent1]
+    )  AS [Extent1]
+    WHERE [Extent1].[row_number] > 0
+    ORDER BY [Extent1].[Id] ASC
+-- 正在 2017/7/29 18:45:17 +08:00
+ 执行-- 已在 0 毫秒内完成，结果为: SqlDataReader
+
+已于 2017/7/29 18:45:17 +08:00
  关闭了连接

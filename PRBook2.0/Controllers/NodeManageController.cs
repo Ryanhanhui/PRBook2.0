@@ -22,6 +22,13 @@ namespace PRBook2._0.Controllers
             return PartialView();
         }
         [Authorize]
+        public ActionResult NodeIndex()
+        {
+            if (!util.CheckPower(Request.RawUrl.ToString()))
+                return PartialView("WithoutPower");
+            return PartialView();
+        }
+        [Authorize]
         [HttpPost]
         public string GetNodeTreeData()
         {

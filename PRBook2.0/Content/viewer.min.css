@@ -284,7 +284,7 @@
 
 .viewer-button {
     position: absolute;
-    top: 20px;
+    top: -40px;
     right: -40px;
     width: 80px;
     height: 80px;

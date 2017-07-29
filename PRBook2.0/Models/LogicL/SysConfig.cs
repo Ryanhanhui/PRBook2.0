@@ -1,5 +1,4 @@
-﻿using PRBook2._0.Models.DataL;
-using PRBook2._0.Models.Tool;
+﻿using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -11,6 +10,7 @@ namespace PRBook2._0.Models.LogicL
     public class SysConfig
     {
         PublicUtil putil = new PublicUtil();
+        PRBookEntities mdb = new PRBookEntities();
         public SysConfig() { }
         /// <summary>
         /// 获取信息
@@ -27,7 +27,7 @@ namespace PRBook2._0.Models.LogicL
         /// <returns></returns>
         public SYS_SystemConfigInfo GetBindData()
         {
-            SYS_SystemConfigInfo systemConfig = DBTool.GetInstance().mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
+            SYS_SystemConfigInfo systemConfig = mdb.SYS_SystemConfigInfo.ToList().FirstOrDefault();
             return systemConfig;
         }
         /// <summary>
@@ -39,12 +39,12 @@ namespace PRBook2._0.Models.LogicL
         {
             if (string.IsNullOrWhiteSpace(sysConfig.Id.ToString()))//添加
             {
-                DBTool.GetInstance().mdb.SYS_SystemConfigInfo.Add(sysConfig);
+                mdb.SYS_SystemConfigInfo.Add(sysConfig);
                 
             }
             else//更新
             {
-                DbEntityEntry<SYS_SystemConfigInfo> entry = DBTool.GetInstance().mdb.Entry<SYS_SystemConfigInfo>(sysConfig);
+                DbEntityEntry<SYS_SystemConfigInfo> entry = mdb.Entry<SYS_SystemConfigInfo>(sysConfig);
                 entry.State = System.Data.Entity.EntityState.Unchanged;
                 entry.Property("System_Name").IsModified = true;
                 entry.Property("LoginFooter").IsModified = true;
@@ -52,7 +52,7 @@ namespace PRBook2._0.Models.LogicL
                 entry.Property("PhoneQR").IsModified = true;
                 entry.Property("PhoneAddress").IsModified = true;
             }
-            int ret = DBTool.GetInstance().SaveChanges(sysConfig);
+            int ret = mdb.SaveChanges();
             if (ret != 0)
                 return "success";
             else

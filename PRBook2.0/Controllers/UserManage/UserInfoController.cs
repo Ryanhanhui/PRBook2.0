@@ -31,6 +31,12 @@ namespace PRBook2._0.Controllers.UserManage
                 PR_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
+            else
+            {
+                ViewBag.RStatus = "add";
+                PR_UserInfo pr = new PR_UserInfo();
+                ViewBag.Model = pr;
+            }
             return View();
         }
         [Authorize]
@@ -76,6 +82,33 @@ namespace PRBook2._0.Controllers.UserManage
         public string GetData(int currpage, int pagesize)
         {
             return usi.GetData(currpage, pagesize);
+        }
+        [Authorize]
+        [HttpPost]
+        public string AddData()
+        {
+            PR_UserInfo pr = new PR_UserInfo();
+            pr.UserId = Request.Form["UserId"].ToString();
+            pr.NickName = Request.Form["NickName"].ToString();
+            pr.Name = Request.Form["Name"].ToString();
+            pr.Sex = Request.Form["Sex"].ToString();
+            if (string.IsNullOrWhiteSpace(Request.Form["Age"]))
+                pr.Age = null;
+            else
+                pr.Age = int.Parse(Request.Form["Age"]);
+            pr.Remark = Request.Form["Remark"].ToString();
+            pr.UserType = "0";
+            pr.Password = "10470c3b4b1fed12c3baac014be15fac67c6e815";
+            return usi.AddData(pr);
+        }
+        [Authorize]
+        [HttpPost]
+        public string DeleteData()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                return usi.DeleteData(Request.Params["Id"].ToString());
+            else
+                return "";
         }
 	}
 }

@@ -1,5 +1,4 @@
-﻿using PRBook2._0.Models.DataL;
-using PRBook2._0.Models.Tool;
+﻿using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.Infrastructure;
@@ -11,14 +10,15 @@ namespace PRBook2._0.Models.LogicL.UserManage
     public class UserInfo
     {
         PublicUtil putil = new PublicUtil();
+        PRBookEntities mdb = new PRBookEntities();
         public PR_UserInfo GetEditInfo(string userId)
         {
-            PR_UserInfo userinfo =DBTool.GetInstance().mdb.PR_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
+            PR_UserInfo userinfo =mdb.PR_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
             return userinfo;
         }
         public string UpdateData(PR_UserInfo userInfo)
         {
-            DbEntityEntry<PR_UserInfo> entry = DBTool.GetInstance().mdb.Entry<PR_UserInfo>(userInfo);
+            DbEntityEntry<PR_UserInfo> entry = mdb.Entry<PR_UserInfo>(userInfo);
             entry.State = System.Data.Entity.EntityState.Unchanged;
             entry.Property("UserId").IsModified = true;
             entry.Property("Name").IsModified = true;
@@ -26,7 +26,24 @@ namespace PRBook2._0.Models.LogicL.UserManage
             entry.Property("Sex").IsModified = true;
             entry.Property("Age").IsModified = true;
             entry.Property("Remark").IsModified = true;
-            int ret = DBTool.GetInstance().SaveChanges(userInfo);
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
+        }
+        /// <summary>
+        /// 新增数据
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public string AddData(PR_UserInfo userInfo)
+        {
+            if (!IsExists(userInfo))
+                return "exists";
+            userInfo.Password = EnDecryptTil.SHA1_Encrypt(userInfo.Password);
+            mdb.PR_UserInfo.Add(userInfo);
+            int ret = mdb.SaveChanges();
             if (ret != 0)
                 return "success";
             else
@@ -34,7 +51,7 @@ namespace PRBook2._0.Models.LogicL.UserManage
         }
         private bool IsExists(PR_UserInfo userInfo)
         {
-            int ncount = DBTool.GetInstance().mdb.PR_UserInfo.Where(u => u.UserId.Equals(userInfo.UserId)).ToList().Count;
+            int ncount = mdb.PR_UserInfo.Where(u => u.UserId.Equals(userInfo.UserId)).ToList().Count;
 
             if (ncount > 0)
                 return false;
@@ -51,7 +68,7 @@ namespace PRBook2._0.Models.LogicL.UserManage
         /// <returns></returns>
         public string UpdatePwdData(int pid,string oldpwd,string newpwd,string newpwdconfirm)
         {
-            PR_UserInfo userinfo = DBTool.GetInstance().mdb.PR_UserInfo.Where(u => u.Id == pid).ToList().FirstOrDefault();
+            PR_UserInfo userinfo = mdb.PR_UserInfo.Where(u => u.Id == pid).ToList().FirstOrDefault();
             if (EnDecryptTil.SHA1_Encrypt(oldpwd) != userinfo.Password)
                 return "旧密码错误";
             else
@@ -62,7 +79,7 @@ namespace PRBook2._0.Models.LogicL.UserManage
                 {
                     newpwd = EnDecryptTil.SHA1_Encrypt(newpwd);
                     userinfo.Password = newpwd;
-                    DBTool.GetInstance().SaveChanges(userinfo);
+                    mdb.SaveChanges();
                     LogHandle.GetInstance().WriteLog("更新数据", "info", "用户密码更改");
                     return "success";
                 }
@@ -74,13 +91,29 @@ namespace PRBook2._0.Models.LogicL.UserManage
         /// <returns></returns>
         public int GetDataCount()
         {
-            return DBTool.GetInstance().mdb.PR_UserInfo.OrderBy(u => u.Id).ToList().Count;
+            return mdb.PR_UserInfo.OrderBy(u => u.Id).ToList().Count;
         }
         public string GetData(int currpage, int pagesize)
         {
             List<PR_UserInfo> pruserinfo =
-                DBTool.GetInstance().mdb.PR_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+                mdb.PR_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
             return putil.GetJsonData(pruserinfo);
+        }
+        /// <summary>
+        /// 删除数据
+        /// </summary>
+        /// <param name="Id">Id</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string DeleteData(string Id)
+        {
+            int id = int.Parse(Id);
+            PR_UserInfo userInfo = mdb.PR_UserInfo.Where(u => u.Id == id).FirstOrDefault();
+            mdb.PR_UserInfo.Remove(userInfo);//删除实体
+            int ret = mdb.SaveChanges();
+            if (ret != 0)
+                return "success";
+            else
+                return "";
         }
     }
 }

@@ -109,12 +109,15 @@
                         if (datafield == "success") {
                             layer.msg('保存成功', { icon: 1 });
                             //do something
-                            //RoleName: $("#RoleName").val("");
-                            //RoleDesc: $("#RoleDesc").val("");
+                            $("#UserId").val("");
+                            $("#NickName").val("");
+                            $("#Name").val("");
+                            $("#Age").val("");
+                            $("#Remark").val("");
                         }
                         else if (datafield == "exists") {
-                            layer.msg('角色名重复，请重新输入！', { icon: 2 });
-                            layer.tips('请输入角色名称', '#RoleName', {
+                            layer.msg('用户名重复，请重新输入！', { icon: 2 });
+                            layer.tips('请输入用户名', '#UserId', {
                                 tips: [2, '#ff0000'],
                                 time: 3000
                             });
