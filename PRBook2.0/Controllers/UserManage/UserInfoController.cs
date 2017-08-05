@@ -79,9 +79,15 @@ namespace PRBook2._0.Controllers.UserManage
         }
         [Authorize]
         [HttpPost]
-        public string GetData(int currpage, int pagesize)
+        public string GetData()
         {
-            return usi.GetData(currpage, pagesize);
+            int currpage=int.Parse(Request.Form["currpage"].ToString());
+            int pagesize = int.Parse(Request.Form["pagesize"].ToString());
+            PR_UserInfo prUserinfo = new PR_UserInfo();
+            prUserinfo.UserId = Request.Form["UserId"].ToString();
+            prUserinfo.Name = Request.Form["Name"].ToString();
+            ViewBag.PageCount = usi.GetDataCount(prUserinfo);
+            return usi.GetData(currpage, pagesize,prUserinfo);
         }
         [Authorize]
         [HttpPost]
@@ -109,6 +115,15 @@ namespace PRBook2._0.Controllers.UserManage
                 return usi.DeleteData(Request.Params["Id"].ToString());
             else
                 return "";
+        }
+        [Authorize]
+        [HttpPost]
+        public string GetDataCount()
+        {
+            PR_UserInfo prUserinfo = new PR_UserInfo();
+            prUserinfo.UserId = Request.Form["UserId"].ToString();
+            prUserinfo.Name = Request.Form["Name"].ToString();
+            return usi.GetDataCount(prUserinfo).ToString();
         }
 	}
 }

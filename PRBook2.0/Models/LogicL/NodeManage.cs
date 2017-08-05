@@ -49,14 +49,23 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string AddNode(NodeSetInfo nodesetinfo)
         {
-            mdb.NodeSetInfoes.Add(nodesetinfo);
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
+            try
             {
-                return "success";
+                mdb.NodeSetInfoes.Add(nodesetinfo);
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【添加数据】" + UserInfo.GetInstance().UserId + " 添加节点信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
             }
-            else
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
         /// <summary>
         /// 更新数据
@@ -65,18 +74,29 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(NodeSetInfo nodesetinfo)
         {
-            DbEntityEntry<NodeSetInfo> entry = mdb.Entry<NodeSetInfo>(nodesetinfo);
-            entry.State = System.Data.Entity.EntityState.Unchanged;
-            entry.Property("NodeName").IsModified = true;
-            entry.Property("NodeUrl").IsModified = true;
-            entry.Property("NodeType").IsModified = true;
-            entry.Property("NodeNum").IsModified = true;
-            entry.Property("Status").IsModified = true;
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                DbEntityEntry<NodeSetInfo> entry = mdb.Entry<NodeSetInfo>(nodesetinfo);
+                entry.State = System.Data.Entity.EntityState.Unchanged;
+                entry.Property("NodeName").IsModified = true;
+                entry.Property("NodeUrl").IsModified = true;
+                entry.Property("NodeType").IsModified = true;
+                entry.Property("NodeNum").IsModified = true;
+                entry.Property("Status").IsModified = true;
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【更新数据】" + UserInfo.GetInstance().UserId + " 更新节点信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
         /// <summary>
         /// 删除节点
@@ -85,14 +105,25 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string DeleteNode(string Id)
         {
-            int id = int.Parse(Id);
-            NodeSetInfo nodesetinfo = mdb.NodeSetInfoes.Where(u => u.Id == id).FirstOrDefault();
-            mdb.NodeSetInfoes.Remove(nodesetinfo);//删除实体
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                int id = int.Parse(Id);
+                NodeSetInfo nodesetinfo = mdb.NodeSetInfoes.Where(u => u.Id == id).FirstOrDefault();
+                mdb.NodeSetInfoes.Remove(nodesetinfo);//删除实体
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【删除数据】" + UserInfo.GetInstance().UserId + " 删除节点信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
     }
 }

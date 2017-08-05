@@ -37,26 +37,34 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(SYS_SystemConfigInfo sysConfig)
         {
-            if (string.IsNullOrWhiteSpace(sysConfig.Id.ToString()))//添加
+            try
             {
-                mdb.SYS_SystemConfigInfo.Add(sysConfig);
-                
+                if (string.IsNullOrWhiteSpace(sysConfig.Id.ToString()))//添加
+                {
+                    mdb.SYS_SystemConfigInfo.Add(sysConfig);
+
+                }
+                else//更新
+                {
+                    DbEntityEntry<SYS_SystemConfigInfo> entry = mdb.Entry<SYS_SystemConfigInfo>(sysConfig);
+                    entry.State = System.Data.Entity.EntityState.Unchanged;
+                    entry.Property("System_Name").IsModified = true;
+                    entry.Property("LoginFooter").IsModified = true;
+                    entry.Property("MainFooter").IsModified = true;
+                    entry.Property("PhoneQR").IsModified = true;
+                    entry.Property("PhoneAddress").IsModified = true;
+                }
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                    return "success";
+                else
+                    return "";
             }
-            else//更新
+            catch (Exception ex)
             {
-                DbEntityEntry<SYS_SystemConfigInfo> entry = mdb.Entry<SYS_SystemConfigInfo>(sysConfig);
-                entry.State = System.Data.Entity.EntityState.Unchanged;
-                entry.Property("System_Name").IsModified = true;
-                entry.Property("LoginFooter").IsModified = true;
-                entry.Property("MainFooter").IsModified = true;
-                entry.Property("PhoneQR").IsModified = true;
-                entry.Property("PhoneAddress").IsModified = true;
-            }
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
     }
 }

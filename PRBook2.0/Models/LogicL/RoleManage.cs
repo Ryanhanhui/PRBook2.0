@@ -53,14 +53,25 @@ namespace PRBook2._0.Models.LogicL
         /// <returns></returns>
         public string AddData(SYS_RoleInfo sysRoleInfo)
         {
-            if (!IsExists(sysRoleInfo))
-                return "exists";
-            mdb.SYS_RoleInfo.Add(sysRoleInfo);
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                if (!IsExists(sysRoleInfo))
+                    return "exists";
+                mdb.SYS_RoleInfo.Add(sysRoleInfo);
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【添加数据】" + UserInfo.GetInstance().UserId + " 添加角色信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
         private bool IsExists(SYS_RoleInfo sysRoleInfo)
         {
@@ -78,14 +89,25 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateData(SYS_RoleInfo sysRoleInfo)
         {
-            DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
-            entry.State = System.Data.Entity.EntityState.Unchanged;
-            entry.Property("RoleDesc").IsModified = true;
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
+                entry.State = System.Data.Entity.EntityState.Unchanged;
+                entry.Property("RoleDesc").IsModified = true;
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【更新数据】" + UserInfo.GetInstance().UserId + " 更新角色信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
         /// <summary>
         /// 删除数据
@@ -94,14 +116,25 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string DeleteData(string Id)
         {
-            int id = int.Parse(Id);
-            SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).FirstOrDefault();
-            mdb.SYS_RoleInfo.Remove(sysRoleInfo);//删除实体
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                int id = int.Parse(Id);
+                SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).FirstOrDefault();
+                mdb.SYS_RoleInfo.Remove(sysRoleInfo);//删除实体
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【删除数据】"+UserInfo.GetInstance().UserId+" 删除角色数据", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
         /// <summary>
         /// 获取角色的权限节点信息
@@ -122,17 +155,28 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>标志,成功 success,不成功为空</returns>
         public string UpdateRolePower(List<SYS_RolePower> sysRolePowers,string roleId)
         {
-            int roleid=int.Parse(roleId);
-            //删除之前的权限
-            List<SYS_RolePower> dlist = mdb.SYS_RolePower.Where(u => u.RoleId == roleid).ToList();
-            mdb.SYS_RolePower.RemoveRange(dlist);
-            //重新插入
-            mdb.SYS_RolePower.AddRange(sysRolePowers);
-            int ret = mdb.SaveChanges();
-            if (ret != 0)
-                return "success";
-            else
+            try
+            {
+                int roleid = int.Parse(roleId);
+                //删除之前的权限
+                List<SYS_RolePower> dlist = mdb.SYS_RolePower.Where(u => u.RoleId == roleid).ToList();
+                mdb.SYS_RolePower.RemoveRange(dlist);
+                //重新插入
+                mdb.SYS_RolePower.AddRange(sysRolePowers);
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【更新数据】" + UserInfo.GetInstance().UserId + " 更新角色权限", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return "";
+            }
         }
     }
 }
