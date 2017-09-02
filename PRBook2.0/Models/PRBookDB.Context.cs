@@ -33,6 +33,8 @@ namespace PRBook2._0.Models
         public DbSet<SYS_RoleInfo> SYS_RoleInfo { get; set; }
         public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
         public DbSet<SYS_SystemConfigInfo> SYS_SystemConfigInfo { get; set; }
+        public DbSet<V_UserInfo> V_UserInfo { get; set; }
+        public DbSet<SYS_LoginLog> SYS_LoginLog { get; set; }
     
         [EdmFunction("PRBookEntities", "TBFun_GetUserPower")]
         public virtual IQueryable<TBFun_GetUserPower_Result> TBFun_GetUserPower(string usertype, string roletype)

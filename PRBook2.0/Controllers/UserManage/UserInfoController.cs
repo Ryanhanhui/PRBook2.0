@@ -28,13 +28,13 @@ namespace PRBook2._0.Controllers.UserManage
             if(Request["UserId"]!=null)
             {
                 ViewBag.RStatus = "edit";
-                PR_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
             else
             {
                 ViewBag.RStatus = "add";
-                PR_UserInfo pr = new PR_UserInfo();
+                V_UserInfo pr = new V_UserInfo();
                 ViewBag.Model = pr;
             }
             return View();
@@ -62,7 +62,7 @@ namespace PRBook2._0.Controllers.UserManage
             if (Request["UserId"] != null)
             {
                 ViewBag.RStatus = "edit";
-                PR_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
             return View();
@@ -83,7 +83,7 @@ namespace PRBook2._0.Controllers.UserManage
         {
             int currpage=int.Parse(Request.Form["currpage"].ToString());
             int pagesize = int.Parse(Request.Form["pagesize"].ToString());
-            PR_UserInfo prUserinfo = new PR_UserInfo();
+            V_UserInfo prUserinfo = new V_UserInfo();
             prUserinfo.UserId = Request.Form["UserId"].ToString();
             prUserinfo.Name = Request.Form["Name"].ToString();
             ViewBag.PageCount = usi.GetDataCount(prUserinfo);
@@ -120,10 +120,51 @@ namespace PRBook2._0.Controllers.UserManage
         [HttpPost]
         public string GetDataCount()
         {
-            PR_UserInfo prUserinfo = new PR_UserInfo();
+            V_UserInfo prUserinfo = new V_UserInfo();
             prUserinfo.UserId = Request.Form["UserId"].ToString();
             prUserinfo.Name = Request.Form["Name"].ToString();
             return usi.GetDataCount(prUserinfo).ToString();
+        }
+        [Authorize]
+        public ActionResult RoleSetPage()
+        {
+            if (Request["UserId"] != null)
+            {
+                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                ViewBag.Model = pr;
+            }
+            else
+            {
+                V_UserInfo pr = new V_UserInfo();
+                ViewBag.Model = pr;
+            }
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public string GetRoleList()
+        {
+            return usi.GetRoleList();
+        }
+        [Authorize]
+        [HttpPost]
+        public string SetUserRole()
+        {
+            int pid = int.Parse(Request.Form["Id"].ToString());
+            string roletype = Request.Form["RoleType"].ToString();
+            PR_UserInfo pruserinfo = new PR_UserInfo();
+            pruserinfo.Id = pid;
+            pruserinfo.RoleType = roletype;
+            return usi.SetUserRole(pruserinfo);
+        }
+        [Authorize]
+        [HttpPost]
+        public string ResetPassword()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                return usi.ResetPassword(Request.Params["Id"].ToString());
+            else
+                return "";
         }
 	}
 }

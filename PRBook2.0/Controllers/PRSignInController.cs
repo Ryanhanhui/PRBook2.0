@@ -26,6 +26,7 @@ namespace PRBook2._0.Controllers
         [HttpPost]
         public string LoginConfirm(string username,string pwd)
         {
+            string lipaddress = signin.GetIpAddress(Request.UserHostAddress);
             bool result = signin.LoginConfirm(username, pwd);
             if (result)
             {

@@ -11,9 +11,9 @@ namespace PRBook2._0.Models.LogicL.UserManage
     {
         PublicUtil putil = new PublicUtil();
         PRBookEntities mdb = new PRBookEntities();
-        public PR_UserInfo GetEditInfo(string userId)
+        public V_UserInfo GetEditInfo(string userId)
         {
-            PR_UserInfo userinfo =mdb.PR_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
+            V_UserInfo userinfo = mdb.V_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
             return userinfo;
         }
         public string UpdateData(PR_UserInfo userInfo)
@@ -121,23 +121,23 @@ namespace PRBook2._0.Models.LogicL.UserManage
         /// <returns></returns>
         public int GetDataCount()
         {
-            return mdb.PR_UserInfo.OrderBy(u => u.Id).ToList().Count;
+            return mdb.V_UserInfo.OrderBy(u => u.Id).ToList().Count;
         }
-        public int GetDataCount(PR_UserInfo userinfo)
+        public int GetDataCount(V_UserInfo userinfo)
         {
             try
             {
-                DbQuery<PR_UserInfo> userinfoquery = mdb.PR_UserInfo as DbQuery<PR_UserInfo>;
+                DbQuery<V_UserInfo> userinfoquery = mdb.V_UserInfo as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.UserId))
-                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.NickName))
-                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Name))
-                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Sex))
-                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<V_UserInfo>;
                 if (userinfo.Age != null)
-                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<V_UserInfo>;
 
                 return userinfoquery.ToList().Count;
             }
@@ -149,29 +149,29 @@ namespace PRBook2._0.Models.LogicL.UserManage
         }
         public string GetData(int currpage, int pagesize)
         {
-            List<PR_UserInfo> pruserinfo =
-                mdb.PR_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+            List<V_UserInfo> pruserinfo =
+                mdb.V_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
             return putil.GetJsonData(pruserinfo);
         }
-        public string GetData(int currpage, int pagesize,PR_UserInfo userinfo)
+        public string GetData(int currpage, int pagesize, V_UserInfo userinfo)
         {
             try
             {
-                DbQuery<PR_UserInfo> userinfoquery = mdb.PR_UserInfo as DbQuery<PR_UserInfo>;
+                DbQuery<V_UserInfo> userinfoquery = mdb.V_UserInfo as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.UserId))
-                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.NickName))
-                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Name))
-                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<V_UserInfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Sex))
-                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<V_UserInfo>;
                 if (userinfo.Age != null)
-                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<PR_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<V_UserInfo>;
 
-                userinfoquery = userinfoquery.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<PR_UserInfo>;
+                userinfoquery = userinfoquery.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<V_UserInfo>;
 
-                List<PR_UserInfo> pruserinfo = userinfoquery.ToList();
+                List<V_UserInfo> pruserinfo = userinfoquery.ToList();
                 return putil.GetJsonData(pruserinfo);
             }
             catch (Exception ex)
@@ -196,6 +196,73 @@ namespace PRBook2._0.Models.LogicL.UserManage
                 if (ret != 0)
                 {
                     LogHandle.GetInstance().Info("【删除数据】" + PRBook2._0.Models.Tool.UserInfo.GetInstance().UserId + " 删除用户", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// 获取角色列表信息
+        /// </summary>
+        /// <returns>角色列表</returns>
+        public string GetRoleList()
+        {
+            List<SYS_RoleInfo> sysroleinfos = mdb.SYS_RoleInfo.OrderBy(u => u.Id).ToList();
+            return putil.GetJsonData(sysroleinfos);
+        }
+        /// <summary>
+        /// 更新用户角色信息
+        /// </summary>
+        /// <param name="userInfo">用户信息</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string SetUserRole(PR_UserInfo userInfo)
+        {
+            try
+            {
+                DbEntityEntry<PR_UserInfo> entry = mdb.Entry<PR_UserInfo>(userInfo);
+                entry.State = System.Data.Entity.EntityState.Unchanged;
+                entry.Property("RoleType").IsModified = true;
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【更新数据】" + PRBook2._0.Models.Tool.UserInfo.GetInstance().UserId + " 更新用户角色信息", GetType().ToString());
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public string ResetPassword(string Id)
+        {
+            try
+            {
+                int id = int.Parse(Id);
+                PR_UserInfo userinfo = new PR_UserInfo();
+                userinfo.Id = id;
+                userinfo.Password = @"9a9f06a73877922f7a81ceae0921dec85195d54c";
+                DbEntityEntry<PR_UserInfo> entry = mdb.Entry<PR_UserInfo>(userinfo);
+                entry.State = System.Data.Entity.EntityState.Unchanged;
+                entry.Property("Password").IsModified = true;
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    LogHandle.GetInstance().Info("【更新数据】" + PRBook2._0.Models.Tool.UserInfo.GetInstance().UserId + " 重置用户密码", GetType().ToString());
                     return "success";
                 }
                 else

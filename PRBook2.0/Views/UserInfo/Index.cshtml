@@ -41,12 +41,13 @@
     <table class="layui-table" lay-even="">
         <thead>
             <tr>
-                <th style="width:30%">用户名</th>
-                <th>昵称</th>
-                <th style="width:10%">姓名</th>
+                <th style="width:10%">用户名</th>
+                <th style="width:15%">昵称</th>
+                <th style="width:15%">姓名</th>
                 <th style="width:10%">性别</th>
                 <th style="width:10%">年龄</th>
-                <th style="width:20%">操作</th>
+                <th style="width:10%">用户角色</th>
+                <th>操作</th>
             </tr>
         </thead>
         <tbody id="tableBody"></tbody>
@@ -105,16 +106,31 @@
         var items = data;
         $.each(items, function (i) {
             var sex = items[i].Sex == "1" ? "男" : "女";
+            var rolename = items[i].RoleName == null ? "" : items[i].RoleName;
             tablehtml += "<tr>"
             + "<td>" + items[i].UserId + "</td>"
             + "<td>" + items[i].NickName + "</td>"
             + "<td>" + items[i].Name + "</td>"
             + "<td>" + sex + "</td>"
             + "<td>" + items[i].Age + "</td>"
-            + "<td><button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(&quot;" + items[i].UserId + "&quot;)'><i class='layui-icon'>&#xe642;</i>编辑</button><button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe640;</i>删除</button></td>"
+            + "<td>" + rolename + "</td>"
+            + "<td><button class='layui-btn layui-btn-primary layui-btn-small' onclick='roleSet(&quot;" + items[i].UserId + "&quot;)'><i class='layui-icon'>&#xe614;</i> 分配角色</button>"
+            + "<button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(&quot;" + items[i].UserId + "&quot;)'><i class='layui-icon'>&#xe642;</i> 编辑</button>"
+            + "<button class='layui-btn layui-btn-danger layui-btn-small' onclick='pwdReset(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe628;</i> 重置密码</button>"
+            +"<button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe640;</i> 删除</button></td>"
         + "</tr>";
         });
         $("#tableBody").html(tablehtml);
+    }
+    function roleSet(userid) {
+        layer.open({
+            type: 2,
+            title: '用户角色配置',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['600px', '500px'],
+            content: '@Url.Action("RoleSetPage", "UserInfo")?UserId=' + userid + ''
+        });
     }
     function editClick(userid) {
         layer.open({
@@ -145,6 +161,34 @@
                         if (datafield == "success") {
                             initData();
                             layer.closeAll('dialog');
+                        }
+                    }
+                }
+                );
+        }, function () {
+
+        });
+    }
+    function pwdReset(id) {
+        layer.confirm('确定重置密码么？', {
+            btn: ['确定', '取消'], //按钮
+            icon: 3,
+            closeBtn: 0
+        }, function () {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("ResetPassword", "UserInfo")',
+                    data:
+                        {
+                            Id: id
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            initData();
+                            layer.closeAll('dialog');
+                            layer.msg('重置密码成功', { icon: 1 });
                         }
                     }
                 }

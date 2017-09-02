@@ -32,6 +32,16 @@
           <Property Name="Remark" Type="varchar" MaxLength="128" />
           <Property Name="UserType" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SYS_LoginLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+          <Property Name="LoginIP" Type="varchar" MaxLength="32" />
+          <Property Name="LoginAddress" Type="varchar" MaxLength="64" />
+          <Property Name="LoginTime" Type="datetime" />
+        </EntityType>
         <EntityType Name="SYS_RoleInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -59,6 +69,25 @@
           <Property Name="PhoneQR" Type="varchar" MaxLength="256" />
           <Property Name="PhoneAddress" Type="varchar" MaxLength="256" />
         </EntityType>
+        <!--生成过程中发现错误:
+警告 6002: 表/视图“PRBook.dbo.V_UserInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="24" />
+          <Property Name="Password" Type="varchar" MaxLength="256" />
+          <Property Name="NickName" Type="varchar" MaxLength="64" />
+          <Property Name="Name" Type="varchar" MaxLength="64" />
+          <Property Name="Sex" Type="char" MaxLength="1" />
+          <Property Name="Age" Type="int" />
+          <Property Name="RoleType" Type="varchar" MaxLength="16" />
+          <Property Name="Remark" Type="varchar" MaxLength="128" />
+          <Property Name="UserType" Type="char" MaxLength="1" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="64" />
+          <Property Name="RoleDesc" Type="nvarchar" MaxLength="128" />
+        </EntityType>
         <Function Name="TBFun_GetUserPower" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="usertype" Type="char" Mode="In" />
           <Parameter Name="roletype" Type="varchar" Mode="In" />
@@ -77,9 +106,26 @@
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_LoginLog" EntityType="Self.SYS_LoginLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="Self.SYS_SystemConfigInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_UserInfo" EntityType="Self.V_UserInfo" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[V_UserInfo].[Id] AS [Id], 
+[V_UserInfo].[UserId] AS [UserId], 
+[V_UserInfo].[Password] AS [Password], 
+[V_UserInfo].[NickName] AS [NickName], 
+[V_UserInfo].[Name] AS [Name], 
+[V_UserInfo].[Sex] AS [Sex], 
+[V_UserInfo].[Age] AS [Age], 
+[V_UserInfo].[RoleType] AS [RoleType], 
+[V_UserInfo].[Remark] AS [Remark], 
+[V_UserInfo].[UserType] AS [UserType], 
+[V_UserInfo].[RoleName] AS [RoleName], 
+[V_UserInfo].[RoleDesc] AS [RoleDesc]
+FROM [dbo].[V_UserInfo] AS [V_UserInfo]</DefiningQuery>
+          </EntitySet>
         </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
@@ -110,6 +156,8 @@
             <Parameter Name="roletype" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="PRBookModel.SYS_SystemConfigInfo" />
+          <EntitySet Name="V_UserInfo" EntityType="PRBookModel.V_UserInfo" />
+          <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
         </EntityContainer>
         <EntityType Name="NodeSetInfo">
           <Key>
@@ -156,6 +204,33 @@
           <Property Name="MainFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
           <Property Name="PhoneQR" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="PhoneAddress" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="V_UserInfo">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="UserId" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+          <Property Name="Password" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Sex" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="Age" Type="Int32" />
+          <Property Name="RoleType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+          <Property Name="Remark" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="UserType" Type="String" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Name="RoleName" Type="String" MaxLength="64" FixedLength="false" Unicode="true" />
+          <Property Name="RoleDesc" Type="String" MaxLength="128" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="SYS_LoginLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -230,6 +305,35 @@
                 <ScalarProperty Name="LoginFooter" ColumnName="LoginFooter" />
                 <ScalarProperty Name="System_Name" ColumnName="System_Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_UserInfo">
+            <EntityTypeMapping TypeName="PRBookModel.V_UserInfo">
+              <MappingFragment StoreEntitySet="V_UserInfo">
+                <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="Remark" ColumnName="Remark" />
+                <ScalarProperty Name="RoleType" ColumnName="RoleType" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Sex" ColumnName="Sex" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_LoginLog">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_LoginLog">
+              <MappingFragment StoreEntitySet="SYS_LoginLog">
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
