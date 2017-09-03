@@ -29,7 +29,7 @@
 /*-- Index-Page-Styling --*/
 
 .banner {
-	background: url("../images/b1.jpg");
+	/*background: url("../images/b1.jpg");*/
 	background-repeat: no-repeat;
 	background-attachment: fixed;
 	background-position: center;

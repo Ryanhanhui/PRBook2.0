@@ -71,8 +71,10 @@ namespace PRBook2._0.Controllers
                 file = Request.Files[0];
                 //保存成自己的文件全路径,newfile就是你上传后保存的文件,
                 //服务器上的UpLoadFile文件夹必须有读写权限
-                newfile = folder + "/" + file.FileName;
-                string newfilename = newfilepath + file.FileName;
+                string fileextension = System.IO.Path.GetExtension(file.FileName);
+                string filename = Guid.NewGuid().ToString("N") + fileextension;
+                newfile = folder + "/" + filename;
+                string newfilename = newfilepath + filename;
                 file.SaveAs(Server.MapPath(newfilename));
                 return newfile;
             }

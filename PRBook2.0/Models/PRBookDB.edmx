@@ -32,6 +32,13 @@
           <Property Name="Remark" Type="varchar" MaxLength="128" />
           <Property Name="UserType" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="SYS_LoginImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="ImgUrl" Type="varchar" MaxLength="256" />
+        </EntityType>
         <EntityType Name="SYS_LoginLog">
           <Key>
             <PropertyRef Name="LogId" />
@@ -70,6 +77,19 @@
           <Property Name="PhoneAddress" Type="varchar" MaxLength="256" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“PRBook.dbo.V_SYS_LoginLog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="V_SYS_LoginLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+          <Property Name="LoginIP" Type="varchar" MaxLength="32" />
+          <Property Name="LoginAddress" Type="varchar" MaxLength="64" />
+          <Property Name="LoginTime" Type="datetime" />
+          <Property Name="NickName" Type="varchar" MaxLength="64" />
+          <Property Name="LogId" Type="varchar" MaxLength="32" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“PRBook.dbo.V_UserInfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="V_UserInfo">
           <Key>
@@ -106,10 +126,21 @@
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="SYS_LoginImg" EntityType="Self.SYS_LoginImg" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_LoginLog" EntityType="Self.SYS_LoginLog" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="Self.SYS_SystemConfigInfo" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="V_SYS_LoginLog" EntityType="Self.V_SYS_LoginLog" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+[V_SYS_LoginLog].[UserId] AS [UserId], 
+[V_SYS_LoginLog].[LoginIP] AS [LoginIP], 
+[V_SYS_LoginLog].[LoginAddress] AS [LoginAddress], 
+[V_SYS_LoginLog].[LoginTime] AS [LoginTime], 
+[V_SYS_LoginLog].[NickName] AS [NickName], 
+[V_SYS_LoginLog].[LogId] AS [LogId]
+FROM [dbo].[V_SYS_LoginLog] AS [V_SYS_LoginLog]</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="V_UserInfo" EntityType="Self.V_UserInfo" store:Type="Views" store:Schema="dbo">
             <DefiningQuery>SELECT 
 [V_UserInfo].[Id] AS [Id], 
@@ -158,6 +189,8 @@ FROM [dbo].[V_UserInfo] AS [V_UserInfo]</DefiningQuery>
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="PRBookModel.SYS_SystemConfigInfo" />
           <EntitySet Name="V_UserInfo" EntityType="PRBookModel.V_UserInfo" />
           <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
+          <EntitySet Name="V_SYS_LoginLog" EntityType="PRBookModel.V_SYS_LoginLog" />
+          <EntitySet Name="SYS_LoginImg" EntityType="PRBookModel.SYS_LoginImg" />
         </EntityContainer>
         <EntityType Name="NodeSetInfo">
           <Key>
@@ -231,6 +264,24 @@ FROM [dbo].[V_UserInfo] AS [V_UserInfo]</DefiningQuery>
           <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="LoginTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="V_SYS_LoginLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LoginTime" Type="DateTime" Precision="3" />
+          <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="SYS_LoginImg">
+          <Key>
+            <PropertyRef Name="ImgId" />
+          </Key>
+          <Property Name="ImgId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="ImgUrl" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
         </EntityType>
       </Schema>
     </edmx:ConceptualModels>
@@ -334,6 +385,26 @@ FROM [dbo].[V_UserInfo] AS [V_UserInfo]</DefiningQuery>
                 <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="V_SYS_LoginLog">
+            <EntityTypeMapping TypeName="PRBookModel.V_SYS_LoginLog">
+              <MappingFragment StoreEntitySet="V_SYS_LoginLog">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_LoginImg">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_LoginImg">
+              <MappingFragment StoreEntitySet="SYS_LoginImg">
+                <ScalarProperty Name="ImgUrl" ColumnName="ImgUrl" />
+                <ScalarProperty Name="ImgId" ColumnName="ImgId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

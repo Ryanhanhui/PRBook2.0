@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 using System.Web;
 
 namespace PRBook2._0.Models.Tool
@@ -32,6 +33,13 @@ namespace PRBook2._0.Models.Tool
             System.Web.Script.Serialization.JavaScriptSerializer jsS = new System.Web.Script.Serialization.JavaScriptSerializer();
             string json = "";
             json = jsS.Serialize(obj);
+            json = Regex.Replace(json, @"\\/Date\((\d+)\)\\/", match =>
+            {
+                DateTime dt = new DateTime(1970, 1, 1);
+                dt = dt.AddMilliseconds(long.Parse(match.Groups[1].Value));
+                dt = dt.ToLocalTime();
+                return dt.ToString("yyyy-MM-dd HH:mm:ss.fff");
+            });
             return json;
         }
         /// <summary>
@@ -42,6 +50,30 @@ namespace PRBook2._0.Models.Tool
         public bool CheckPower(string url)
         {
             return true;
+        }
+        public string GetIpAddress(string ip)
+        {
+            string backMsg = "";
+            try
+            {
+                System.Net.WebRequest httpRquest = System.Net.HttpWebRequest.Create(@"http://whois.pconline.com.cn/ip.jsp?ip=" + ip);
+                httpRquest.Method = "GET";
+                //这行代码很关键，不设置ContentType将导致后台参数获取不到值  
+                //httpRquest.ContentType = "application/x-www-form-urlencoded;charset=UTF-8";
+                System.Net.WebResponse response = httpRquest.GetResponse();
+                System.IO.Stream responseStream = response.GetResponseStream();
+                System.IO.StreamReader reader = new System.IO.StreamReader(responseStream, System.Text.Encoding.GetEncoding("GB2312"));
+                backMsg = reader.ReadToEnd().Trim();
+                reader.Close();
+                reader.Dispose();
+                responseStream.Close();
+                responseStream.Dispose();
+            }
+            catch (Exception ex)
+            {
+                Tool.LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+            }
+            return backMsg;
         }
     }
 }

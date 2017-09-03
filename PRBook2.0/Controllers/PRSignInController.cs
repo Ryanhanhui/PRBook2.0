@@ -21,13 +21,14 @@ namespace PRBook2._0.Controllers
             SYS_SystemConfigInfo sysconfig=signin.GetFooter();
             ViewBag.LoginFooter = sysconfig.LoginFooter;
             ViewBag.System_Name = sysconfig.System_Name;
+            LoginImg imgfunc = new LoginImg();
+            ViewBag.BgImgs = imgfunc.GetAllData();
             return View();
         }
         [HttpPost]
         public string LoginConfirm(string username,string pwd)
         {
-            string lipaddress = signin.GetIpAddress(Request.UserHostAddress);
-            bool result = signin.LoginConfirm(username, pwd);
+            bool result = signin.LoginConfirm(username, pwd,Request.UserHostAddress);
             if (result)
             {
                 FormsAuthentication.SetAuthCookie(username, false);

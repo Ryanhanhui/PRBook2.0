@@ -12,6 +12,8 @@
         <EntityTypeShape EntityType="PRBookModel.SYS_SystemConfigInfo" Width="1.5" PointX="5.375" PointY="0.75" />
         <EntityTypeShape EntityType="PRBookModel.V_UserInfo" Width="1.5" PointX="5.375" PointY="3.75" />
         <EntityTypeShape EntityType="PRBookModel.SYS_LoginLog" Width="1.5" PointX="7.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.V_SYS_LoginLog" Width="1.5" PointX="7.5" PointY="4" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_LoginImg" Width="1.5" PointX="0.75" PointY="7.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

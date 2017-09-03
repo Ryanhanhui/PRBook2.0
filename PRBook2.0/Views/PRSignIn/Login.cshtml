@@ -43,9 +43,14 @@
 <script>
     var layer;
     var logincount = 0;
+    var bgurl = "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.BgImgs[new Random().Next(ViewBag.BgImgs.Count)].ImgUrl";
+    //document.getElementsByClassName("banner").background = bgurl;
+    $(".banner").css({ "background": "url("+bgurl+")" });
+    debugger;
     layui.use('layer', function () {
         layer = layui.layer;
     });
+
     function openPage() {
         layer.open({
             title: '',
