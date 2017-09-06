@@ -75,9 +75,9 @@ namespace PRBook2._0.Models.LogicL.UserManage
                     loginlogquery = loginlogquery.Where(u => u.LoginTime <= _endtime) as DbQuery<V_SYS_LoginLog>;
                 }
 
-                loginlogquery = loginlogquery.OrderBy(u => u.LoginTime).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<V_SYS_LoginLog>;
+                loginlogquery = loginlogquery.OrderByDescending(u => u.LoginTime).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<V_SYS_LoginLog>;
 
-                List<V_SYS_LoginLog> loginloginfo = loginlogquery.OrderByDescending(u => u.LoginTime).ToList();
+                List<V_SYS_LoginLog> loginloginfo = loginlogquery.ToList();
                 return putil.GetJsonData(loginloginfo);
             }
             catch (Exception ex)
