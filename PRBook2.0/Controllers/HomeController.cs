@@ -27,11 +27,6 @@ namespace PRBook2._0.Controllers
             return View("Main");
         }
         [Authorize]
-        public ActionResult WithoutPower()
-        {
-            return PartialView();
-        }
-        [Authorize]
         [HttpPost]
         public string GetPower()
         {

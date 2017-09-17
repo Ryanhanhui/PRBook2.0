@@ -8,6 +8,7 @@ namespace PRBook2._0.Models.Tool
 {
     public class PublicUtil
     {
+        PRBookEntities mdb = new PRBookEntities();
         public PublicUtil()
         {
 
@@ -49,7 +50,15 @@ namespace PRBook2._0.Models.Tool
         /// <returns>是否具有请求地址的权限</returns>
         public bool CheckPower(string url)
         {
-            return true;
+            string usertype = UserInfo.GetInstance().UserType;
+            string roletype = UserInfo.GetInstance().RoleType;
+            List<TBFun_GetUserPower_Result> powerlist = mdb.TBFun_GetUserPower(usertype, roletype).OrderBy(u => u.NodeNum).ToList();
+            foreach (TBFun_GetUserPower_Result item in powerlist)
+            {
+                if (url.Contains(item.NodeUrl) && !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(item.NodeUrl))
+                    return true;
+            }
+            return false;
         }
         public string GetIpAddress(string ip)
         {

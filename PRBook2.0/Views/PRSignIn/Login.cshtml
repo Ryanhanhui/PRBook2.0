@@ -11,8 +11,38 @@
     <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
     <link rel="stylesheet" href="@Url.Content("~/Css/style.css")" type="text/css" media="all">
     <title>登录</title>
+    <style>
+    html, body, .full {
+        width: 100%;
+        height: 100%;
+        margin: 0;
+        padding: 0;
+    }
+
+    .full {
+        background: #aaa;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+    </style>
+    <style>
+        .banner {
+            background: url("@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.BgImgs[new Random().Next(ViewBag.BgImgs.Count)].ImgUrl");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-position: center;
+            background-size: cover;
+            -webkit-background-size: cover;
+            -moz-background-size: cover;
+            -o-background-size: cover;
+            color: #FFF;
+            font-family: 'Quicksand', sans-serif;
+            text-align: center;
+        }
+    </style>
 </head>
-<body onkeydown="keyDownFunc()">
+<body onkeydown="keyDownFunc()" style="overflow:hidden">
     <div class="banner">
         <div class="agileinfo-dot">
             <h1>@ViewBag.System_Name</h1>
@@ -43,10 +73,8 @@
 <script>
     var layer;
     var logincount = 0;
-    var bgurl = "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.BgImgs[new Random().Next(ViewBag.BgImgs.Count)].ImgUrl";
-    //document.getElementsByClassName("banner").background = bgurl;
-    $(".banner").css({ "background": "url("+bgurl+")" });
-    debugger;
+    //var bgurl = "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.BgImgs[new Random().Next(ViewBag.BgImgs.Count)].ImgUrl";
+    //$(".banner").css({ "background": "url(" + bgurl + ")", "background-repeat": "no-repeat", "background-attachment": "fixed" });
     layui.use('layer', function () {
         layer = layui.layer;
     });
