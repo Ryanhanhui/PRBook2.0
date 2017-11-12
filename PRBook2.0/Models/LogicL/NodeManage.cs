@@ -21,12 +21,12 @@ namespace PRBook2._0.Models.LogicL
         /// <returns>节点数据集合</returns>
         public string GetNodeTreeData()
         {
-            List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.OrderBy(u => u.NodeNum).ToList();
+            List<NodeSetInfo> nodemodel = mdb.NodeSetInfo.OrderBy(u => u.NodeNum).ToList();
             return putil.GetJsonData(nodemodel);
         }
         public string GetNodeTreeDataBusiness()
         {
-            List<NodeSetInfo> nodemodel = mdb.NodeSetInfoes.Where(u => u.NodeType.Equals("0") && u.Status.Equals("1")).ToList();
+            List<NodeSetInfo> nodemodel = mdb.NodeSetInfo.Where(u => u.NodeType.Equals("0") && u.Status.Equals("1")).ToList();
             return putil.GetJsonData(nodemodel);
         }
         /// <summary>
@@ -39,7 +39,7 @@ namespace PRBook2._0.Models.LogicL
             if (string.IsNullOrWhiteSpace(Id))
                 return "null";
             int id = int.Parse(Id);
-            NodeSetInfo nodemodel = mdb.NodeSetInfoes.Where(u => u.Id == id).ToList().FirstOrDefault();
+            NodeSetInfo nodemodel = mdb.NodeSetInfo.Where(u => u.Id == id).ToList().FirstOrDefault();
             return putil.GetJsonData(nodemodel);
         }
         /// <summary>
@@ -51,7 +51,7 @@ namespace PRBook2._0.Models.LogicL
         {
             try
             {
-                mdb.NodeSetInfoes.Add(nodesetinfo);
+                mdb.NodeSetInfo.Add(nodesetinfo);
                 int ret = mdb.SaveChanges();
                 if (ret != 0)
                 {
@@ -108,8 +108,8 @@ namespace PRBook2._0.Models.LogicL
             try
             {
                 int id = int.Parse(Id);
-                NodeSetInfo nodesetinfo = mdb.NodeSetInfoes.Where(u => u.Id == id).FirstOrDefault();
-                mdb.NodeSetInfoes.Remove(nodesetinfo);//删除实体
+                NodeSetInfo nodesetinfo = mdb.NodeSetInfo.Where(u => u.Id == id).FirstOrDefault();
+                mdb.NodeSetInfo.Remove(nodesetinfo);//删除实体
                 int ret = mdb.SaveChanges();
                 if (ret != 0)
                 {

@@ -28,15 +28,18 @@ namespace PRBook2._0.Models
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<NodeSetInfo> NodeSetInfo { get; set; }
         public DbSet<PR_UserInfo> PR_UserInfo { get; set; }
-        public DbSet<NodeSetInfo> NodeSetInfoes { get; set; }
-        public DbSet<SYS_RoleInfo> SYS_RoleInfo { get; set; }
-        public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
-        public DbSet<SYS_SystemConfigInfo> SYS_SystemConfigInfo { get; set; }
-        public DbSet<V_UserInfo> V_UserInfo { get; set; }
-        public DbSet<SYS_LoginLog> SYS_LoginLog { get; set; }
-        public DbSet<V_SYS_LoginLog> V_SYS_LoginLog { get; set; }
         public DbSet<SYS_LoginImg> SYS_LoginImg { get; set; }
+        public DbSet<SYS_LoginLog> SYS_LoginLog { get; set; }
+        public DbSet<SYS_RoleInfo> SYS_RoleInfo { get; set; }
+        public DbSet<SYS_SystemConfigInfo> SYS_SystemConfigInfo { get; set; }
+        public DbSet<v_getuserpower> v_getuserpower { get; set; }
+        public DbSet<v_sys_loginlog> v_sys_loginlog { get; set; }
+        public DbSet<v_userinfo> v_userinfo { get; set; }
+        public DbSet<PR_MoneyInfo> PR_MoneyInfo { get; set; }
+        public DbSet<PR_PeopleInfo人> PR_PeopleInfo人 { get; set; }
+        public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
     
         [EdmFunction("PRBookEntities", "TBFun_GetUserPower")]
         public virtual IQueryable<TBFun_GetUserPower_Result> TBFun_GetUserPower(string usertype, string roletype)

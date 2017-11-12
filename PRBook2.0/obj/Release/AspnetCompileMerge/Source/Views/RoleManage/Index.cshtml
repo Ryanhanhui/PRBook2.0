@@ -1,0 +1,146 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@ViewBag.System_Name</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+</head>
+<body>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>角色管理 <button class="layui-btn layui-btn-normal" style="margin-left:20px;" onclick="addClick()"><i class="layui-icon">&#xe654;</i> 新 增</button></legend>
+    </fieldset>
+    <table class="layui-table" lay-even="">
+        <thead>
+            <tr>
+                <th style="width:30%">角色名称</th>
+                <th>角色说明</th>
+                <th style="width:10%">权限操作</th>
+                <th style="width:20%">更改操作</th>
+            </tr>
+        </thead>
+        <tbody id="tableBody"></tbody>
+    </table>
+    <div id="mypage"></div>
+</body>
+</html>
+<script>
+    var pagecount, form, layer, laypage;
+    var pagesize = 15;
+    layui.use(['form', 'layer'], function () {
+        form = layui.form();
+        layer = layui.layer;
+    });
+    function initData() {
+        pagecount =@ViewBag.PageCount
+        layui.use('laypage', function () {
+            laypage = layui.laypage;
+            laypage({
+                cont: 'mypage'
+                , pages: Math.ceil(pagecount / pagesize)
+                , skip: true
+                , curr: 1
+                , jump: function (obj, first) {
+                    //得到了当前页，用于向服务端请求对应数据
+                    var curr = obj.curr;
+                    $.ajax(
+                        {
+                            async: false,
+                            type: 'POST',
+                            dataType: 'json',
+                            url: '@Url.Action("GetData","RoleManage")',
+                            data:
+                                {
+                                    currpage: curr,
+                                    pagesize: pagesize
+                                },
+                            success: function (datafield) {
+                                bindTable(datafield);
+                            }
+                        }
+                        );
+                }
+            });
+        });
+    }
+    initData();
+    function bindTable(data) {
+        var tablehtml = "";
+        var items = data;
+        $.each(items, function (i) {
+            var psc = items[i].RoleName + "|" + items[i].Id;
+            tablehtml += "<tr>"
+            + "<td>" + items[i].RoleName + "</td>"
+            + "<td>" + items[i].RoleDesc + "</td>"
+            + "<td><button class='layui-btn layui-btn-normal layui-btn-small' onclick='powerSetClick(&quot;" + items[i].RoleName + "&quot;,&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe620;</i>权限分配</button></td>"
+            + "<td><button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe642;</i>编辑</button><button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe640;</i>删除</button></td>"
+        + "</tr>";
+        });
+        $("#tableBody").html(tablehtml);
+    }
+    function powerSetClick(rolename, id) {
+        layer.open({
+            type: 2,
+            title: '为' + rolename + '分配权限',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['400px', '90%'],
+            content: '@Url.Action("PowerPage", "RoleManage")?id=' + id + ''
+        });
+    }
+    function editClick(id) {
+        layer.open({
+            type: 2,
+            title: '角色信息',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['500px', '300px'],
+            content: '@Url.Action("DetialPage","RoleManage")?status=edit&id=' + id + ''
+        });
+    }
+    function deleteClick(id) {
+        layer.confirm('确定删除么？', {
+            btn: ['确定', '取消'], //按钮
+            icon: 3,
+            closeBtn: 0
+        }, function () {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("DeleteData", "RoleManage")',
+                    data:
+                        {
+                            Id: id
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            initData();
+                            layer.closeAll('dialog');
+                        }
+                    }
+                }
+                );
+        }, function () {
+
+        });
+    }
+    function addClick() {
+        layer.open({
+            type: 2,
+            title: '角色信息',
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['500px', '300px'],
+            content: '@Url.Action("DetialPage","RoleManage")?status=add'
+        });
+    }
+</script>
+

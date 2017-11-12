@@ -12,7 +12,7 @@ namespace PRBook2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class V_UserInfo
+    public partial class v_userinfo
     {
         public int Id { get; set; }
         public string UserId { get; set; }

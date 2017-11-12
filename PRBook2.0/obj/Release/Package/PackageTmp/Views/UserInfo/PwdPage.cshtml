@@ -1,0 +1,105 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>密码修改</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <script src="@Url.Content("~/Scripts/md5.js")"></script>
+    <script src="@Url.Content("~/Scripts/sha1.js")"></script>
+</head>
+<body>
+    <div>
+        <div style="margin-top:20px;">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">旧密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="oldPwd" name="oldPwd" autocomplete="off" lay-verify="required" placeholder="请输入旧密码" class="layui-input" style="width:400px" maxlength="256" onchange="txtChange()">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="newPwd" name="newPwd" autocomplete="off" lay-verify="required" placeholder="请输入新密码" class="layui-input" style="width:400px" maxlength="256" onchange="txtChange()">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">确认新密码</label>
+                    <div class="layui-input-block">
+                        <input type="password" id="newPwd1" name="newPwd1" autocomplete="off" lay-verify="required" placeholder="请再次输入新密码" class="layui-input" style="width:400px" maxlength="256" onchange="txtChange()">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div style="text-align:center">
+                        <button class="layui-btn layui-btn-normal" lay-submit>确认修改</button>
+                        <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+                    </div>
+                </div>
+                <input id="Id" name="Id" value="@ViewBag.Model.Id" type="hidden" />
+                <input id="oldPwdField" name="oldPwdField" type="hidden" />
+                <input id="newPwdField" name="newPwdField" type="hidden" />
+                <input id="newPwd1Field" name="newPwd1Field" type="hidden" />
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var rstatus = "@ViewBag.RStatus";
+    $(document).ready(function () {
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            form = layui.form();
+            form.render();
+
+            form.on('submit', function (data) {
+                saveBtnClick(data);
+                return false;
+            });
+
+        });
+    });
+    function cancelBtnClick() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
+        parent.layer.close(index); //再执行关闭
+    }
+    function txtChange() {
+        var encodestr = hex_md5($("#oldPwd").val());
+        encodestr = hex_sha1(encodestr);
+        $("#oldPwdField").val(encodestr);
+
+        encodestr = hex_md5($("#newPwd").val());
+        encodestr = hex_sha1(encodestr);
+        $("#newPwdField").val(encodestr);
+
+        encodestr = hex_md5($("#newPwd1").val());
+        encodestr = hex_sha1(encodestr);
+        $("#newPwd1Field").val(encodestr);
+    }
+    function saveBtnClick(datafield) {
+        $.ajax(
+            {
+                async: false,
+                type: 'POST',
+                url: '@Url.Action("UpdatePwdData", "UserInfo")',
+                data: datafield.field,
+                success: function (datafield) {
+                    if (datafield == "success") {
+                        layer.msg('保存成功', { icon: 1 });
+                    }
+                    else {
+                        layer.msg(datafield, { icon: 2 });
+                    }
+                }
+            }
+            );
+    }
+</script>

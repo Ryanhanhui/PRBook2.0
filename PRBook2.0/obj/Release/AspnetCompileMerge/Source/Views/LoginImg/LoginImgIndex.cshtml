@@ -1,0 +1,134 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>登录背景</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ssi-uploader.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/viewer.min.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
+    <script src="@Url.Content("~/Scripts/viewer.min.js")"></script>
+</head>
+<body>
+    <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+        <legend>登录页背景</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <label class="layui-form-label">上传背景图</label>
+        <div class="layui-input-inline" style="width:80%">
+            <input type="file" multiple id="LoginBg">
+        </div>
+    </div>
+    <fieldset class="layui-elem-field">
+        <legend>登录背景</legend>
+        <div class="layui-field-box" id="imgbox">
+            @for (int i = 0; i < ViewBag.Model.Count;i++ )
+            {
+                <div style="width:200px;height:200px;float:left;margin-left:20px;">
+                    <div>
+                        <img class="viewer-toggle" data-original="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.Model[i].ImgUrl" src="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.Model[i].ImgUrl" id="bgimg@i" style="width:200px;height:150px" />
+                    </div>
+                    <div>
+                        <button class='layui-btn layui-btn-danger layui-btn-small' onclick="deleteImg('@ViewBag.Model[i].ImgId','@ViewBag.Model[i].ImgUrl')"><i class='layui-icon'>&#xe640;</i> 删除</button>
+                    </div>
+                </div>
+            }
+        </div>
+    </fieldset>
+</body>
+</html>
+<script>
+    var layer, form;
+    var viewer = new Viewer(document.getElementById('imgbox'), {
+        url: 'data-original',
+        title: false,
+        navbar: false,
+        toolbar: false,
+        zIndex: 2015
+    });
+    layui.use(['form', 'layer'], function () {
+        form = layui.form();
+        layer = layui.layer;
+    });
+    $('#LoginBg').ssi_uploader({
+        url: '@Url.Action("UploadSingleFile", "FileUpload")',
+        data: { "type": "1", "folder": "LoginBg", "oldpath": "" },
+        allowed: ['png', 'jpg', 'bmp'],
+        dropZone: false,
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        errorHandler: {
+            method: function (msg, type) {
+                if (type == "error") {
+                    layer.alert(msg, { icon: 2 });
+                }
+            },
+            success: 'success',
+            error: 'error'
+        },
+        onEachUpload: function (backdata) {
+            if (backdata.uploadStatus == "success" && backdata.responseMsg != "Error" && backdata.responseMsg != "Error0") {
+                saveFunc(backdata.responseMsg);
+            }
+        }
+    });
+    function saveFunc(imgurl) {
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("AddData", "LoginImg")',
+                    data:
+                        {
+                            ImgUrl: imgurl
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('添加成功', { icon: 1 });
+                            initData();
+                        }
+                    }
+                }
+                );
+    }
+    function deleteImg(imgid,imgurl) {
+        layer.confirm('确定删除么？', {
+            btn: ['确定', '取消'], //按钮
+            icon: 3,
+            closeBtn: 0
+        }, function () {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("DeleteData", "LoginImg")',
+                    data:
+                        {
+                            ImgId: imgid,
+                            ImgUrl:imgurl
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.closeAll('dialog');
+                            initData();
+                        }
+                    }
+                }
+                );
+        }, function () {
+
+        });
+    }
+    function initData() {
+        window.location.href = window.location.href;
+    }
+</script>

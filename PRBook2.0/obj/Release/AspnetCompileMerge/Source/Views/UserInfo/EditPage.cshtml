@@ -1,0 +1,151 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户信息</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+</head>
+<body>
+    <div style="margin-top:20px;">
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="UserId" name="UserId" autocomplete="off" lay-verify="required" placeholder="请输入用户名" class="layui-input" style="width:400px" maxlength="24" value="@ViewBag.Model.UserId">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" id="NickName" name="NickName" autocomplete="off" lay-verify="required" placeholder="请输入昵称" class="layui-input" style="width:400px" maxlength="32" value="@ViewBag.Model.NickName">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="Name" name="Name" autocomplete="off" lay-verify="required" placeholder="请输入姓名" class="layui-input" style="width:400px" maxlength="32" value="@ViewBag.Model.Name">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">性别</label>
+                <div class="layui-input-inline">
+                    <input type="radio" name="Sex" id="Sex1" value="1" title="男" checked="">
+                    <input type="radio" name="Sex" id="Sex0" value="0" title="女">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">年龄</label>
+                <div class="layui-input-block">
+                    <input type="text" id="Age" name="Age" autocomplete="off" lay-verify="number" placeholder="请输入年龄" class="layui-input" style="width:150px" value="@ViewBag.Model.Age">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <input type="text" id="Remark" name="Remark" autocomplete="off" placeholder="" class="layui-input" style="width:400px" maxlength="64" value="@ViewBag.Model.Remark">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div style="text-align:center">
+                    <button class="layui-btn layui-btn-normal" lay-submit >保  存</button>
+                    <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+                </div>
+            </div>
+            <input id="Id" name="Id" value="@ViewBag.Model.Id" type="hidden" />
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var rstatus = "@ViewBag.RStatus";
+    if (rstatus == "edit") {
+        rid = "@ViewBag.RId";
+        $("#UserId").prop("disabled", true);
+        if ("@ViewBag.Model.Sex" == "0") {
+            document.getElementById("Sex1").removeAttribute("checked");
+            document.getElementById("Sex0").setAttribute("checked", "checked");
+        }
+        else if ("@ViewBag.Model.Sex" == "1") {
+            document.getElementById("Sex0").removeAttribute("checked");
+            document.getElementById("Sex1").setAttribute("checked", "checked");
+        }
+    }
+    $(document).ready(function () {
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            form = layui.form();
+            form.render();
+
+            form.on('submit', function (data) {
+                saveBtnClick(data);
+                return false;
+            });
+
+        });
+    });
+    function cancelBtnClick() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
+        parent.layer.close(index); //再执行关闭
+    }
+
+    function saveBtnClick(datafield) {
+        if (rstatus == "add") {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("AddData", "UserInfo")',
+                    data: datafield.field,
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                            //do something
+                            $("#UserId").val("");
+                            $("#NickName").val("");
+                            $("#Name").val("");
+                            $("#Age").val("");
+                            $("#Remark").val("");
+                        }
+                        else if (datafield == "exists") {
+                            layer.msg('用户名重复，请重新输入！', { icon: 2 });
+                            layer.tips('请输入用户名', '#UserId', {
+                                tips: [2, '#ff0000'],
+                                time: 3000
+                            });
+                        }
+                    }
+                }
+                );
+        } else {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("UpdateData", "UserInfo")',
+                    data:datafield.field,
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
+        }
+    }
+    function VerifyValid(obj,checkstr) {
+        
+    }
+    function clearValue() {
+        
+    }
+</script>
+

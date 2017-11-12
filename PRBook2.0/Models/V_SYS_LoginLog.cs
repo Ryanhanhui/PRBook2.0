@@ -12,12 +12,12 @@ namespace PRBook2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class V_SYS_LoginLog
+    public partial class v_sys_loginlog
     {
         public string UserId { get; set; }
         public string LoginIP { get; set; }
         public string LoginAddress { get; set; }
-        public Nullable<System.DateTime> LoginTime { get; set; }
+        public System.DateTime LoginTime { get; set; }
         public string NickName { get; set; }
         public string LogId { get; set; }
     }

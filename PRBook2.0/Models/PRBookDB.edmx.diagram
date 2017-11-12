@@ -5,15 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="3852d8fbf09643aabfbec19a643ace2a" Name="Diagram1">
-        <EntityTypeShape EntityType="PRBookModel.PR_UserInfo" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="PRBookModel.NodeSetInfo" Width="1.5" PointX="3.375" PointY="0.75" />
-        <EntityTypeShape EntityType="PRBookModel.SYS_RoleInfo" Width="1.5" PointX="0.75" PointY="4.75" />
-        <EntityTypeShape EntityType="PRBookModel.SYS_RolePower" Width="1.5" PointX="3.375" PointY="4.75" />
-        <EntityTypeShape EntityType="PRBookModel.SYS_SystemConfigInfo" Width="1.5" PointX="5.375" PointY="0.75" />
-        <EntityTypeShape EntityType="PRBookModel.V_UserInfo" Width="1.5" PointX="5.375" PointY="3.75" />
-        <EntityTypeShape EntityType="PRBookModel.SYS_LoginLog" Width="1.5" PointX="7.375" PointY="0.75" />
-        <EntityTypeShape EntityType="PRBookModel.V_SYS_LoginLog" Width="1.5" PointX="7.5" PointY="4" />
-        <EntityTypeShape EntityType="PRBookModel.SYS_LoginImg" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PRBookModel.NodeSetInfo" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.PR_UserInfo" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_LoginImg" Width="1.5" PointX="4.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_LoginLog" Width="1.5" PointX="0.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_RoleInfo" Width="1.5" PointX="2.75" PointY="4.75" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_SystemConfigInfo" Width="1.5" PointX="6.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.v_getuserpower" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="PRBookModel.v_sys_loginlog" Width="1.5" PointX="0.75" PointY="7.75" />
+        <EntityTypeShape EntityType="PRBookModel.v_userinfo" Width="1.5" PointX="8.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PRBookModel.PR_MoneyInfo" Width="1.5" PointX="8.375" PointY="7.75" />
+        <EntityTypeShape EntityType="PRBookModel.PR_PeopleInfo人" Width="1.5" PointX="9.375" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.SYS_RolePower" Width="1.5" PointX="5.375" PointY="3.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

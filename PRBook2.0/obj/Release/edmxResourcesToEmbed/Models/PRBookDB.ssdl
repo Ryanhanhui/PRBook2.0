@@ -1,0 +1,167 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PRBookModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="NodeSetInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="NodeName" Type="varchar" MaxLength="64" />
+    <Property Name="NodeUrl" Type="varchar" MaxLength="255" />
+    <Property Name="NodeType" Type="char" MaxLength="1" />
+    <Property Name="ParentNode" Type="int" />
+    <Property Name="NodeNum" Type="int" />
+    <Property Name="Status" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="PR_UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="24" />
+    <Property Name="Password" Type="varchar" MaxLength="255" />
+    <Property Name="NickName" Type="varchar" MaxLength="64" />
+    <Property Name="Name" Type="varchar" MaxLength="64" />
+    <Property Name="Sex" Type="char" MaxLength="1" />
+    <Property Name="Age" Type="int" />
+    <Property Name="RoleType" Type="varchar" MaxLength="16" />
+    <Property Name="Remark" Type="varchar" MaxLength="128" />
+    <Property Name="UserType" Type="char" MaxLength="1" />
+  </EntityType>
+  <EntityType Name="SYS_LoginImg">
+    <Key>
+      <PropertyRef Name="ImgId" />
+    </Key>
+    <Property Name="ImgId" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="ImgUrl" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <EntityType Name="SYS_LoginLog">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="varchar" MaxLength="32" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="32" />
+    <Property Name="LoginIP" Type="varchar" MaxLength="32" />
+    <Property Name="LoginAddress" Type="varchar" MaxLength="64" />
+    <Property Name="LoginTime" Type="timestamp" Precision="0" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_RoleInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="RoleName" Type="varchar" MaxLength="64" />
+    <Property Name="RoleDesc" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityType Name="SYS_RolePower">
+    <Key>
+      <PropertyRef Name="PowerId" />
+    </Key>
+    <Property Name="PowerId" Type="int" Nullable="false" />
+    <Property Name="RoleId" Type="int" />
+    <Property Name="NodeId" Type="int" />
+  </EntityType>
+  <EntityType Name="SYS_SystemConfigInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="System_Name" Type="varchar" MaxLength="64" />
+    <Property Name="LoginFooter" Type="varchar" MaxLength="128" />
+    <Property Name="MainFooter" Type="varchar" MaxLength="128" />
+    <Property Name="PhoneQR" Type="varchar" MaxLength="255" />
+    <Property Name="PhoneAddress" Type="varchar" MaxLength="255" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.v_getuserpower”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="v_getuserpower">
+    <Key>
+      <PropertyRef Name="NodeId" />
+    </Key>
+    <Property Name="NodeId" Type="varchar" MaxLength="11" Nullable="false" />
+    <Property Name="NodeName" Type="varchar" MaxLength="64" />
+    <Property Name="NodeUrl" Type="varchar" MaxLength="255" />
+    <Property Name="ParentNode" Type="int" />
+    <Property Name="NodeNum" Type="int" />
+    <Property Name="RoleId" Type="varchar" MaxLength="11" />
+    <Property Name="NodeType" Type="char" MaxLength="1" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.v_sys_loginlog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="v_sys_loginlog">
+    <Key>
+      <PropertyRef Name="LoginTime" />
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="UserId" Type="varchar" MaxLength="32" />
+    <Property Name="LoginIP" Type="varchar" MaxLength="32" />
+    <Property Name="LoginAddress" Type="varchar" MaxLength="64" />
+    <Property Name="LoginTime" Type="timestamp" Precision="0" Nullable="false" />
+    <Property Name="NickName" Type="varchar" MaxLength="64" />
+    <Property Name="LogId" Type="varchar" MaxLength="32" Nullable="false" />
+  </EntityType>
+  <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.v_userinfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+  <EntityType Name="v_userinfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UserId" Type="varchar" MaxLength="24" />
+    <Property Name="Password" Type="varchar" MaxLength="255" />
+    <Property Name="NickName" Type="varchar" MaxLength="64" />
+    <Property Name="Name" Type="varchar" MaxLength="64" />
+    <Property Name="Sex" Type="char" MaxLength="1" />
+    <Property Name="Age" Type="int" />
+    <Property Name="RoleType" Type="varchar" MaxLength="16" />
+    <Property Name="Remark" Type="varchar" MaxLength="128" />
+    <Property Name="UserType" Type="char" MaxLength="1" />
+    <Property Name="RoleName" Type="varchar" MaxLength="64" />
+    <Property Name="RoleDesc" Type="varchar" MaxLength="128" />
+  </EntityType>
+  <EntityContainer Name="PRBookModelStoreContainer">
+    <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="SYS_LoginImg" EntityType="Self.SYS_LoginImg" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="SYS_LoginLog" EntityType="Self.SYS_LoginLog" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="SYS_SystemConfigInfo" EntityType="Self.SYS_SystemConfigInfo" Schema="prbook" store:Type="Tables" />
+    <EntitySet Name="v_getuserpower" EntityType="Self.v_getuserpower" store:Type="Views" store:Schema="prbook">
+      <DefiningQuery>SELECT
+`v_getuserpower`.`NodeId`, 
+`v_getuserpower`.`NodeName`, 
+`v_getuserpower`.`NodeUrl`, 
+`v_getuserpower`.`ParentNode`, 
+`v_getuserpower`.`NodeNum`, 
+`v_getuserpower`.`RoleId`, 
+`v_getuserpower`.`NodeType`
+FROM `v_getuserpower` AS `v_getuserpower`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_sys_loginlog" EntityType="Self.v_sys_loginlog" store:Type="Views" store:Schema="prbook">
+      <DefiningQuery>SELECT
+`v_sys_loginlog`.`UserId`, 
+`v_sys_loginlog`.`LoginIP`, 
+`v_sys_loginlog`.`LoginAddress`, 
+`v_sys_loginlog`.`LoginTime`, 
+`v_sys_loginlog`.`NickName`, 
+`v_sys_loginlog`.`LogId`
+FROM `v_sys_loginlog` AS `v_sys_loginlog`</DefiningQuery>
+    </EntitySet>
+    <EntitySet Name="v_userinfo" EntityType="Self.v_userinfo" store:Type="Views" store:Schema="prbook">
+      <DefiningQuery>SELECT
+`v_userinfo`.`Id`, 
+`v_userinfo`.`UserId`, 
+`v_userinfo`.`Password`, 
+`v_userinfo`.`NickName`, 
+`v_userinfo`.`Name`, 
+`v_userinfo`.`Sex`, 
+`v_userinfo`.`Age`, 
+`v_userinfo`.`RoleType`, 
+`v_userinfo`.`Remark`, 
+`v_userinfo`.`UserType`, 
+`v_userinfo`.`RoleName`, 
+`v_userinfo`.`RoleDesc`
+FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
+    </EntitySet>
+  </EntityContainer>
+</Schema>

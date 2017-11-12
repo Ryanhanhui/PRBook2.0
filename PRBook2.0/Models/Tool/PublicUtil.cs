@@ -52,8 +52,17 @@ namespace PRBook2._0.Models.Tool
         {
             string usertype = UserInfo.GetInstance().UserType;
             string roletype = UserInfo.GetInstance().RoleType;
-            List<TBFun_GetUserPower_Result> powerlist = mdb.TBFun_GetUserPower(usertype, roletype).OrderBy(u => u.NodeNum).ToList();
-            foreach (TBFun_GetUserPower_Result item in powerlist)
+            List<v_getuserpower> powerlist = mdb.v_getuserpower.Where(u => u.RoleId.Equals(roletype) && u.NodeType.Equals("0")).ToList();
+            if (usertype.Equals("1"))
+            {
+                List<v_getuserpower> tmplist = mdb.v_getuserpower.Where(u => u.NodeType.Equals("1")).ToList();
+                if (powerlist == null)
+                    powerlist = tmplist;
+                else
+                    powerlist.AddRange(tmplist);
+            }
+            powerlist = powerlist.OrderBy(u => u.NodeNum).ToList();
+            foreach (v_getuserpower item in powerlist)
             {
                 if (url.Contains(item.NodeUrl) && !string.IsNullOrWhiteSpace(url) && !string.IsNullOrWhiteSpace(item.NodeUrl))
                     return true;

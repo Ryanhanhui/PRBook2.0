@@ -28,13 +28,13 @@ namespace PRBook2._0.Controllers.UserManage
             if(Request["UserId"]!=null)
             {
                 ViewBag.RStatus = "edit";
-                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                v_userinfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
             else
             {
                 ViewBag.RStatus = "add";
-                V_UserInfo pr = new V_UserInfo();
+                v_userinfo pr = new v_userinfo();
                 ViewBag.Model = pr;
             }
             return View();
@@ -62,7 +62,7 @@ namespace PRBook2._0.Controllers.UserManage
             if (Request["UserId"] != null)
             {
                 ViewBag.RStatus = "edit";
-                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                v_userinfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
             return View();
@@ -83,7 +83,7 @@ namespace PRBook2._0.Controllers.UserManage
         {
             int currpage=int.Parse(Request.Form["currpage"].ToString());
             int pagesize = int.Parse(Request.Form["pagesize"].ToString());
-            V_UserInfo prUserinfo = new V_UserInfo();
+            v_userinfo prUserinfo = new v_userinfo();
             prUserinfo.UserId = Request.Form["UserId"].ToString();
             prUserinfo.Name = Request.Form["Name"].ToString();
             ViewBag.PageCount = usi.GetDataCount(prUserinfo);
@@ -120,7 +120,7 @@ namespace PRBook2._0.Controllers.UserManage
         [HttpPost]
         public string GetDataCount()
         {
-            V_UserInfo prUserinfo = new V_UserInfo();
+            v_userinfo prUserinfo = new v_userinfo();
             prUserinfo.UserId = Request.Form["UserId"].ToString();
             prUserinfo.Name = Request.Form["Name"].ToString();
             return usi.GetDataCount(prUserinfo).ToString();
@@ -130,12 +130,12 @@ namespace PRBook2._0.Controllers.UserManage
         {
             if (Request["UserId"] != null)
             {
-                V_UserInfo pr = usi.GetEditInfo(Request["UserId"].ToString());
+                v_userinfo pr = usi.GetEditInfo(Request["UserId"].ToString());
                 ViewBag.Model = pr;
             }
             else
             {
-                V_UserInfo pr = new V_UserInfo();
+                v_userinfo pr = new v_userinfo();
                 ViewBag.Model = pr;
             }
             return View();

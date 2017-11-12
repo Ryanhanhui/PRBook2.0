@@ -11,9 +11,9 @@ namespace PRBook2._0.Models.LogicL.UserManage
     {
         PublicUtil putil = new PublicUtil();
         PRBookEntities mdb = new PRBookEntities();
-        public V_UserInfo GetEditInfo(string userId)
+        public v_userinfo GetEditInfo(string userId)
         {
-            V_UserInfo userinfo = mdb.V_UserInfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
+            v_userinfo userinfo = mdb.v_userinfo.Where(u => u.UserId.Equals(userId)).ToList().FirstOrDefault();
             return userinfo;
         }
         public string UpdateData(PR_UserInfo userInfo)
@@ -121,23 +121,23 @@ namespace PRBook2._0.Models.LogicL.UserManage
         /// <returns></returns>
         public int GetDataCount()
         {
-            return mdb.V_UserInfo.OrderBy(u => u.Id).ToList().Count;
+            return mdb.v_userinfo.OrderBy(u => u.Id).ToList().Count;
         }
-        public int GetDataCount(V_UserInfo userinfo)
+        public int GetDataCount(v_userinfo userinfo)
         {
             try
             {
-                DbQuery<V_UserInfo> userinfoquery = mdb.V_UserInfo as DbQuery<V_UserInfo>;
+                DbQuery<v_userinfo> userinfoquery = mdb.v_userinfo as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.UserId))
-                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.NickName))
-                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Name))
-                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Sex))
-                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<v_userinfo>;
                 if (userinfo.Age != null)
-                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<v_userinfo>;
 
                 return userinfoquery.ToList().Count;
             }
@@ -149,29 +149,29 @@ namespace PRBook2._0.Models.LogicL.UserManage
         }
         public string GetData(int currpage, int pagesize)
         {
-            List<V_UserInfo> pruserinfo =
-                mdb.V_UserInfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+            List<v_userinfo> pruserinfo =
+                mdb.v_userinfo.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
             return putil.GetJsonData(pruserinfo);
         }
-        public string GetData(int currpage, int pagesize, V_UserInfo userinfo)
+        public string GetData(int currpage, int pagesize, v_userinfo userinfo)
         {
             try
             {
-                DbQuery<V_UserInfo> userinfoquery = mdb.V_UserInfo as DbQuery<V_UserInfo>;
+                DbQuery<v_userinfo> userinfoquery = mdb.v_userinfo as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.UserId))
-                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.UserId.Contains(userinfo.UserId)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.NickName))
-                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.NickName.Contains(userinfo.NickName)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Name))
-                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Name.Contains(userinfo.Name)) as DbQuery<v_userinfo>;
                 if (!string.IsNullOrWhiteSpace(userinfo.Sex))
-                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Sex.Equals(userinfo.Sex)) as DbQuery<v_userinfo>;
                 if (userinfo.Age != null)
-                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<V_UserInfo>;
+                    userinfoquery = userinfoquery.Where(u => u.Age == userinfo.Age) as DbQuery<v_userinfo>;
 
-                userinfoquery = userinfoquery.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<V_UserInfo>;
+                userinfoquery = userinfoquery.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_userinfo>;
 
-                List<V_UserInfo> pruserinfo = userinfoquery.ToList();
+                List<v_userinfo> pruserinfo = userinfoquery.ToList();
                 return putil.GetJsonData(pruserinfo);
             }
             catch (Exception ex)

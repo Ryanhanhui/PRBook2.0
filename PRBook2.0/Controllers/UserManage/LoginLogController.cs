@@ -28,7 +28,7 @@ namespace PRBook2._0.Controllers.UserManage
             int pagesize = int.Parse(Request.Form["pagesize"].ToString());
             string begintime = Request.Form["BeginTime"].ToString();
             string endtime = Request.Form["EndTime"].ToString();
-            V_SYS_LoginLog sysLoginLog = new V_SYS_LoginLog();
+            v_sys_loginlog sysLoginLog = new v_sys_loginlog();
             sysLoginLog.UserId = Request.Form["UserId"].ToString();
             sysLoginLog.NickName = Request.Form["NickName"].ToString();
             ViewBag.PageCount = loginlg.GetDataCount(sysLoginLog,begintime,endtime);
@@ -38,7 +38,7 @@ namespace PRBook2._0.Controllers.UserManage
         [HttpPost]
         public string GetDataCount()
         {
-            V_SYS_LoginLog sysLoginLog = new V_SYS_LoginLog();
+            v_sys_loginlog sysLoginLog = new v_sys_loginlog();
             sysLoginLog.UserId = Request.Form["UserId"].ToString();
             sysLoginLog.NickName = Request.Form["NickName"].ToString();
             string begintime = Request.Form["BeginTime"].ToString();

@@ -1,0 +1,107 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>用户角色配置</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+</head>
+<body>
+    <div style="margin-top:20px;">
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">用户名</label>
+                <div class="layui-input-block">
+                    <input type="text" disabled id="UserId" name="UserId" autocomplete="off" lay-verify="required" placeholder="请输入用户名" class="layui-input" style="width:400px" maxlength="24" value="@ViewBag.Model.UserId">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">昵称</label>
+                <div class="layui-input-block">
+                    <input type="text" disabled id="NickName" name="NickName" autocomplete="off" lay-verify="required" placeholder="请输入昵称" class="layui-input" style="width:400px" maxlength="32" value="@ViewBag.Model.NickName">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">角色</label>
+                <div class="layui-input-inline">
+                    <select style="width:400px" name="RoleType" id="RoleType" lay-filter="RoleType"></select>
+                </div>
+            </div>
+
+            <div class="layui-form-item">
+                <div style="text-align:center">
+                    <button class="layui-btn layui-btn-normal" lay-submit>保  存</button>
+                    <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+                </div>
+            </div>
+            <input id="Id" name="Id" value="@ViewBag.Model.Id" type="hidden" />
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var form;
+    layui.use(['layer', 'form'], function () {
+        var layer = layui.layer;
+        form = layui.form();
+        form.render();
+
+        form.on('submit', function (data) {
+            saveBtnClick(data);
+            return false;
+        });
+    });
+    function bindRole(data) {
+        var htmlobj = "<option value=''></option>";
+        $.each(data, function (i) {
+            htmlobj += "<option value='" + data[i].Id + "'>" + data[i].RoleName + "</option>";
+        });
+        $("#RoleType").html(htmlobj);
+
+        var roletype = "@ViewBag.Model.RoleType";
+        if (roletype != null && roletype != "")
+            $("#RoleType").val(roletype);
+        //form.render();
+    }
+    function getRoleList() {
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    dataType: 'json',
+                    url: '@Url.Action("GetRoleList","UserInfo")',
+                    success: function (datafield) {
+                        bindRole(datafield);
+                    }
+                }
+                );
+    }
+    getRoleList();
+    
+    function saveBtnClick(datafield) {
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("SetUserRole", "UserInfo")',
+                    data: datafield.field,
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
+    }
+    function cancelBtnClick() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
+        parent.layer.close(index); //再执行关闭
+    }
+</script>

@@ -17,30 +17,30 @@ namespace PRBook2._0.Models.LogicL.UserManage
         /// <returns></returns>
         public int GetDataCount()
         {
-            return mdb.V_SYS_LoginLog.OrderBy(u => u.LoginTime).ToList().Count;
+            return mdb.v_sys_loginlog.OrderBy(u => u.LoginTime).ToList().Count;
         }
-        public int GetDataCount(V_SYS_LoginLog loginlog, string begintime = null, string endtime = null)
+        public int GetDataCount(v_sys_loginlog loginlog, string begintime = null, string endtime = null)
         {
             try
             {
-                DbQuery<V_SYS_LoginLog> loginlogquery = mdb.V_SYS_LoginLog as DbQuery<V_SYS_LoginLog>;
+                DbQuery<v_sys_loginlog> loginlogquery = mdb.v_sys_loginlog as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.UserId))
-                    loginlogquery = loginlogquery.Where(u => u.UserId.Contains(loginlog.UserId)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.UserId.Contains(loginlog.UserId)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.NickName))
-                    loginlogquery = loginlogquery.Where(u => u.NickName.Contains(loginlog.NickName)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.NickName.Contains(loginlog.NickName)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.LoginIP))
-                    loginlogquery = loginlogquery.Where(u => u.LoginIP.Contains(loginlog.LoginIP)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginIP.Contains(loginlog.LoginIP)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.LoginAddress))
-                    loginlogquery = loginlogquery.Where(u => u.LoginAddress.Equals(loginlog.LoginAddress)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginAddress.Equals(loginlog.LoginAddress)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(begintime))
                 {
                     DateTime _begintime = DateTime.Parse(begintime);
-                    loginlogquery = loginlogquery.Where(u => u.LoginTime >= _begintime) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginTime >= _begintime) as DbQuery<v_sys_loginlog>;
                 }
                 if (!string.IsNullOrWhiteSpace(endtime))
                 {
                     DateTime _endtime = DateTime.Parse(endtime);
-                    loginlogquery = loginlogquery.Where(u => u.LoginTime <= _endtime) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginTime <= _endtime) as DbQuery<v_sys_loginlog>;
                 }
 
                 return loginlogquery.ToList().Count;
@@ -51,33 +51,33 @@ namespace PRBook2._0.Models.LogicL.UserManage
                 return 0;
             }
         }
-        public string GetData(int currpage, int pagesize, V_SYS_LoginLog loginlog, string begintime = null, string endtime = null)
+        public string GetData(int currpage, int pagesize, v_sys_loginlog loginlog, string begintime = null, string endtime = null)
         {
             try
             {
-                DbQuery<V_SYS_LoginLog> loginlogquery = mdb.V_SYS_LoginLog as DbQuery<V_SYS_LoginLog>;
+                DbQuery<v_sys_loginlog> loginlogquery = mdb.v_sys_loginlog as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.UserId))
-                    loginlogquery = loginlogquery.Where(u => u.UserId.Contains(loginlog.UserId)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.UserId.Contains(loginlog.UserId)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.NickName))
-                    loginlogquery = loginlogquery.Where(u => u.NickName.Contains(loginlog.NickName)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.NickName.Contains(loginlog.NickName)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.LoginIP))
-                    loginlogquery = loginlogquery.Where(u => u.LoginIP.Contains(loginlog.LoginIP)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginIP.Contains(loginlog.LoginIP)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(loginlog.LoginAddress))
-                    loginlogquery = loginlogquery.Where(u => u.LoginAddress.Equals(loginlog.LoginAddress)) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginAddress.Equals(loginlog.LoginAddress)) as DbQuery<v_sys_loginlog>;
                 if (!string.IsNullOrWhiteSpace(begintime))
                 {
                     DateTime _begintime=DateTime.Parse(begintime);
-                    loginlogquery = loginlogquery.Where(u => u.LoginTime >= _begintime) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginTime >= _begintime) as DbQuery<v_sys_loginlog>;
                 }
                 if (!string.IsNullOrWhiteSpace(endtime))
                 {
                     DateTime _endtime=DateTime.Parse(endtime);
-                    loginlogquery = loginlogquery.Where(u => u.LoginTime <= _endtime) as DbQuery<V_SYS_LoginLog>;
+                    loginlogquery = loginlogquery.Where(u => u.LoginTime <= _endtime) as DbQuery<v_sys_loginlog>;
                 }
 
-                loginlogquery = loginlogquery.OrderByDescending(u => u.LoginTime).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<V_SYS_LoginLog>;
+                loginlogquery = loginlogquery.OrderByDescending(u => u.LoginTime).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_sys_loginlog>;
 
-                List<V_SYS_LoginLog> loginloginfo = loginlogquery.ToList();
+                List<v_sys_loginlog> loginloginfo = loginlogquery.ToList();
                 return putil.GetJsonData(loginloginfo);
             }
             catch (Exception ex)

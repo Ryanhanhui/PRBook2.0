@@ -1,0 +1,138 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="PRBookModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="PRBookEntities" annotation:LazyLoadingEnabled="true">
+    <FunctionImport Name="TBFun_GetUserPower" IsComposable="true" ReturnType="Collection(PRBookModel.TBFun_GetUserPower_Result)">
+      <Parameter Name="usertype" Mode="In" Type="String" />
+      <Parameter Name="roletype" Mode="In" Type="String" />
+    </FunctionImport>
+    <EntitySet Name="NodeSetInfo" EntityType="PRBookModel.NodeSetInfo" />
+    <EntitySet Name="PR_UserInfo" EntityType="PRBookModel.PR_UserInfo" />
+    <EntitySet Name="SYS_LoginImg" EntityType="PRBookModel.SYS_LoginImg" />
+    <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
+    <EntitySet Name="SYS_RoleInfo" EntityType="PRBookModel.SYS_RoleInfo" />
+    <EntitySet Name="SYS_RolePower" EntityType="PRBookModel.SYS_RolePower" />
+    <EntitySet Name="SYS_SystemConfigInfo" EntityType="PRBookModel.SYS_SystemConfigInfo" />
+    <EntitySet Name="v_getuserpower" EntityType="PRBookModel.v_getuserpower" />
+    <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
+    <EntitySet Name="v_userinfo" EntityType="PRBookModel.v_userinfo" />
+  </EntityContainer>
+  <ComplexType Name="TBFun_GetUserPower_Result">
+    <Property Type="Int32" Name="NodeId" Nullable="true" />
+    <Property Type="String" Name="NodeName" Nullable="true" MaxLength="64" />
+    <Property Type="String" Name="NodeUrl" Nullable="true" MaxLength="256" />
+    <Property Type="Int32" Name="ParentNode" Nullable="true" />
+    <Property Type="Int32" Name="NodeNum" Nullable="true" />
+  </ComplexType>
+  <EntityType Name="NodeSetInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="NodeName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="NodeUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NodeType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="ParentNode" Type="Int32" />
+    <Property Name="NodeNum" Type="Int32" />
+    <Property Name="Status" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="PR_UserInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="RoleType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SYS_LoginImg">
+    <Key>
+      <PropertyRef Name="ImgId" />
+    </Key>
+    <Property Name="ImgId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="ImgUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SYS_LoginLog">
+    <Key>
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SYS_RoleInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="RoleName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="RoleDesc" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="SYS_RolePower">
+    <Key>
+      <PropertyRef Name="PowerId" />
+    </Key>
+    <Property Name="PowerId" Type="Int32" Nullable="false" />
+    <Property Name="RoleId" Type="Int32" />
+    <Property Name="NodeId" Type="Int32" />
+  </EntityType>
+  <EntityType Name="SYS_SystemConfigInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="System_Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="LoginFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="MainFooter" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneQR" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="PhoneAddress" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="v_getuserpower">
+    <Key>
+      <PropertyRef Name="NodeId" />
+    </Key>
+    <Property Name="NodeId" Type="String" Nullable="false" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="NodeName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="NodeUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="ParentNode" Type="Int32" />
+    <Property Name="NodeNum" Type="Int32" />
+    <Property Name="RoleId" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
+    <Property Name="NodeType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="v_sys_loginlog">
+    <Key>
+      <PropertyRef Name="LoginTime" />
+      <PropertyRef Name="LogId" />
+    </Key>
+    <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+    <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="LoginTime" Type="DateTime" Nullable="false" />
+    <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="v_userinfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UserId" Type="String" MaxLength="24" FixedLength="false" Unicode="false" />
+    <Property Name="Password" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
+    <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="Sex" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="Age" Type="Int32" />
+    <Property Name="RoleType" Type="String" MaxLength="16" FixedLength="false" Unicode="false" />
+    <Property Name="Remark" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+    <Property Name="UserType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
+    <Property Name="RoleName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+    <Property Name="RoleDesc" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+  </EntityType>
+</Schema>

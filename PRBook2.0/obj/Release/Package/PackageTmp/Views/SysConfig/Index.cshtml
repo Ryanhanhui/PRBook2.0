@@ -1,0 +1,188 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>@ViewBag.System_Name</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/ssi-uploader.min.css")" rel="stylesheet" />
+    <link href="@Url.Content("~/Content/viewer.min.css")" rel="stylesheet" />
+</head>
+<body>
+    <fieldset class="layui-elem-field" style="margin-top: 20px;">
+        <legend>系统信息</legend>
+
+        <div class="layui-field-box">
+            <div class="layui-form">
+                <div class="layui-form-item">
+                    <label class="layui-form-label">系统名称</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="System_Name" name="System_Name" lay-verify="required" autocomplete="off" placeholder="请输入系统名称" class="layui-input" maxlength="32" value="@ViewBag.System_Name">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">登录页页脚</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="LoginFooter" name="LoginFooter" lay-verify="required" autocomplete="off" placeholder="请输入登录页页脚" class="layui-input" maxlength="64" value="@ViewBag.LoginFooter">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">主界面页脚</label>
+                    <div class="layui-input-block">
+                        <input type="text" id="MainFooter" name="MainFooter" lay-verify="required" autocomplete="off" placeholder="请输入主页面页脚" class="layui-input" maxlength="64" value="@ViewBag.MainFooter">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机App文件</label>
+                    <div class="layui-input-block" style="width:80%">
+                        <input type="hidden" id="PhoneAddreesHidden" value="@ViewBag.PhoneAddress" />
+                        @{
+                            string phoneaddrss = "";
+                            if (!string.IsNullOrWhiteSpace(ViewBag.PhoneAddress))
+                            {
+                                phoneaddrss = ViewBag.PhoneAddress.Remove(0, ViewBag.PhoneAddress.LastIndexOf('/') + 1);
+                            }
+                        }
+                        <a id="PhoneAddressField" href="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneAddress">@phoneaddrss</a>
+                        <input type="file" multiple id="PhoneAddress">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <label class="layui-form-label">手机端二维码</label>
+                    <div class="layui-input-block" style="width:80%">
+                        <input type="hidden" id="PhoneQRHidden" value="@ViewBag.PhoneQR" />
+                        <div>
+                            <img class="viewer-toggle" data-original="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" src="@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()@ViewBag.PhoneQR" id="PhoneQRField" style="width:100px;height:80px" />
+                        </div>
+                        <input type="file" multiple id="PhoneQR">
+                    </div>
+                </div>
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
+                    </div>
+                </div>
+            </div>
+            <input type="hidden" id="IdField" value="@ViewBag.Id" />
+        </div>
+    </fieldset>
+    <div id="ImgBox" style="display:none;text-align:center">
+        <img id="BigImg" src="" onclick="closeImgBox()" />
+    </div>
+</body>
+</html>
+<script src="@Url.Content("~/Scripts/ssi-uploader.js")"></script>
+<script src="@Url.Content("~/Scripts/viewer.min.js")"></script>
+<script type="text/javascript">
+    var layer, form;
+    var layindex;
+    layui.use(['form', 'layer'], function () {
+        form = layui.form();
+        layer = layui.layer;
+    });
+    var viewer = new Viewer(document.getElementById('PhoneQRField'), {
+        url: 'data-original',
+        title: false,
+        navbar: false,
+        toolbar: false,
+        zIndex: 2015
+    });
+
+    $('#PhoneAddress').ssi_uploader({
+        url: '@Url.Action("UploadSingleFile","FileUpload")',
+        data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneAddreesHidden").val() },
+        allowed: ['apk', 'dmg', 'jpg'],
+        dropZone: false,
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        errorHandler: {
+            method: function (msg, type) {
+                if (type == "error") {
+                    layer.alert(msg, { icon: 2 });
+                }
+            },
+            success: 'success',
+            error: 'error'
+        },
+        onEachUpload: function (backdata) {
+            if (backdata.uploadStatus == "success" && backdata.responseMsg != "Error" && backdata.responseMsg != "Error0") {
+                $("#PhoneAddreesHidden").val(backdata.responseMsg);
+                $("#PhoneAddressField").prop("href", "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()" + backdata.responseMsg);
+                $("#PhoneAddressField").text(getFileName(backdata.responseMsg));
+            }
+        }
+    });
+    $('#PhoneQR').ssi_uploader({
+        url: '@Url.Action("UploadSingleFile","FileUpload")',
+        data: { "type": "1", "folder": "SysConfig", "oldpath": $("#PhoneQRHidden").val() },
+        allowed: ['png', 'jpg', 'bmp'],
+        dropZone: false,
+        locale: 'zh_CN',
+        maxNumberOfFiles: 1,
+        errorHandler: {
+            method: function (msg, type) {
+                if (type == "error") {
+                    layer.alert(msg, { icon: 2 });
+                }
+            },
+            success: 'success',
+            error: 'error'
+        },
+        onEachUpload: function (backdata) {
+            if (backdata.uploadStatus == "success" && backdata.responseMsg != "Error" && backdata.responseMsg != "Error0") {
+                $("#PhoneQRHidden").val(backdata.responseMsg);
+                $("#PhoneQRField").prop("src", "@Request.ApplicationPath@System.Configuration.ConfigurationManager.AppSettings["SysDown"].ToString()" + backdata.responseMsg);
+
+            }
+        }
+    });
+    function saveBtnClick() {
+        $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("UpdateData", "SysConfig")',
+                    data:
+                        {
+                            Id: $("#IdField").val(),
+                            System_Name: $("#System_Name").val(),
+                            LoginFooter: $("#LoginFooter").val(),
+                            MainFooter: $("#MainFooter").val(),
+                            PhoneQR: $("#PhoneQRHidden").val(),
+                            PhoneAddress: $("#PhoneAddreesHidden").val()
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg('保存成功', { icon: 1 });
+                        }
+                    }
+                }
+                );
+    }
+    function imgBoxClick(obj) {
+        $("#BigImg").prop("src", obj.src);
+        layindex = layer.open({
+            type: 1,
+            title: false,
+            closeBtn: 1,
+            area: ['800', '600px'],
+            shadeClose: true,
+            content: $('#ImgBox'),
+            shade: 0
+        });
+    }
+    function closeImgBox() {
+        layer.close(layindex);
+    }
+    function getFileName(filepath) {
+        var str = filepath.substr(filepath.lastIndexOf('/') + 1);
+        return str;
+    }
+</script>
