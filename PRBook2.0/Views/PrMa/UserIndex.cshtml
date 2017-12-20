@@ -38,11 +38,11 @@
             <tr>
                 <th style="width:10%">姓名</th>
                 <th style="width:15%">备注</th>
-                <th style="width:15%">收情次数</th>
+                <th style="width:8%">收情次数</th>
                 <th style="width:10%">收情总额</th>
-                <th style="width:10%">还情次数</th>
+                <th style="width:8%">还情次数</th>
                 <th style="width:10%">还情总额</th>
-                <th style="width:10%">最近来往</th>
+                <th style="width:15%">最近来往</th>
                 <th>操作</th>
             </tr>
         </thead>
@@ -101,40 +101,36 @@
         var tablehtml = "";
         var items = data;
         $.each(items, function (i) {
-            var sex = items[i].Sex == "1" ? "男" : "女";
-            var rolename = items[i].RoleName == null ? "" : items[i].RoleName;
             tablehtml += "<tr>"
-            + "<td>" + items[i].UserId + "</td>"
-            + "<td>" + items[i].NickName + "</td>"
             + "<td>" + items[i].Name + "</td>"
-            + "<td>" + sex + "</td>"
-            + "<td>" + items[i].Age + "</td>"
-            + "<td>" + rolename + "</td>"
-            + "<td><button class='layui-btn layui-btn-primary layui-btn-small' onclick='roleSet(&quot;" + items[i].UserId + "&quot;)'><i class='layui-icon'>&#xe614;</i> 分配角色</button>"
-            + "<button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(&quot;" + items[i].UserId + "&quot;)'><i class='layui-icon'>&#xe642;</i> 编辑</button>"
+            + "<td>" + items[i].Remarks + "</td>"
+            + "<td>" + items[i].GetMoneyTimes + "</td>"
+            + "<td>" + items[i].GetMoneySum + "元</td>"
+            + "<td>" + items[i].GiveMoneyTimes + "</td>"
+            + "<td>" + items[i].GiveMoneySum + "元</td>"
+            + "<td>" + items[i].LastPr + "</td>"
+            + "<td><button class='layui-btn layui-btn-normal layui-btn-small' onclick='getP(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe630;</i> 收情</button>"
+            + "<button class='layui-btn layui-btn-normal layui-btn-small' onclick='giveP(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe62a;</i> 还情</button>"
+            + "<button class='layui-btn layui-btn-warm layui-btn-small' onclick='editClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe642;</i> 编辑</button>"
             +"<button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe640;</i> 删除</button></td>"
         + "</tr>";
         });
         $("#tableBody").html(tablehtml);
     }
-    function roleSet(userid) {
-        layer.open({
-            type: 2,
-            title: '用户角色配置',
-            shade: 0.8,
-            closeBtn: 0,
-            area: ['600px', '500px'],
-            content: '@Url.Action("RoleSetPage", "PrMa")?UserId=' + userid + ''
-        });
+    function getP(peopleid) {
+
     }
-    function editClick(userid) {
+    function giveP(peopleid) {
+
+    }
+    function editClick(peopleid) {
         layer.open({
             type: 2,
-            title: '用户信息维护',
+            title: '来往人员信息维护',
             shade: 0.8,
             closeBtn: 0,
-            area: ['600px', '500px'],
-            content: '@Url.Action("EditPage", "PrMa")?UserId=' + userid + ''
+            area: ['600px', '300px'],
+            content: '@Url.Action("EditPage", "PrMa")?Id=' + peopleid + ''
         });
     }
     function deleteClick(id) {
@@ -167,24 +163,23 @@
     function addClick() {
         layer.open({
             type: 2,
-            title: '用户信息维护',
+            title: '来往人员信息维护',
             shade: 0.8,
             closeBtn: 0,
-            area: ['600px', '500px'],
-            content: '@Url.Action("EditPage", "UserInfo")'
+            area: ['600px', '300px'],
+            content: '@Url.Action("EditPage", "PrMa")'
         });
     }
     function getPageCount() {
         var ret = 0;
         var datajson = {
-            UserId: $("#UserId").val(),
             Name: $("#Name").val()
         };
         $.ajax(
                     {
                         async: false,
                         type: 'POST',
-                        url: '@Url.Action("GetDataCount","UserInfo")',
+                        url: '@Url.Action("GetDataCount","PrMa")',
                         data: datajson,
                         success: function (datafield) {
                             ret=datafield;

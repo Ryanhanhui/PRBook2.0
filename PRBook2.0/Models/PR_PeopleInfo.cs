@@ -12,7 +12,7 @@ namespace PRBook2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PR_PeopleInfo人
+    public partial class PR_PeopleInfo
     {
         public string Id { get; set; }
         public string Name { get; set; }

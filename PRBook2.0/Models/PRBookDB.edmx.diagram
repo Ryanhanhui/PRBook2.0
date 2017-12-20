@@ -15,8 +15,9 @@
         <EntityTypeShape EntityType="PRBookModel.v_sys_loginlog" Width="1.5" PointX="0.75" PointY="7.75" />
         <EntityTypeShape EntityType="PRBookModel.v_userinfo" Width="1.5" PointX="8.375" PointY="3.75" />
         <EntityTypeShape EntityType="PRBookModel.PR_MoneyInfo" Width="1.5" PointX="8.375" PointY="7.75" />
-        <EntityTypeShape EntityType="PRBookModel.PR_PeopleInfo人" Width="1.5" PointX="9.375" PointY="0.75" />
         <EntityTypeShape EntityType="PRBookModel.SYS_RolePower" Width="1.5" PointX="5.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PRBookModel.PR_PeopleInfo" Width="1.5" PointX="9.75" PointY="0.75" />
+        <EntityTypeShape EntityType="PRBookModel.v_pr_peopleinfo" Width="1.5" PointX="0.75" PointY="10.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

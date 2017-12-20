@@ -26,8 +26,9 @@
           <Property Name="Money" Type="int" />
           <Property Name="MoneyType" Type="int" />
           <Property Name="Remarks" Type="varchar" MaxLength="256" />
+          <Property Name="InputDate" Type="datetime" Precision="0" />
         </EntityType>
-        <EntityType Name="PR_PeopleInfo人">
+        <EntityType Name="PR_PeopleInfo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -111,6 +112,24 @@
           <Property Name="NodeType" Type="char" MaxLength="1" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.v_pr_peopleinfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_pr_peopleinfo">
+          <Key>
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="InputDate" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="64" />
+          <Property Name="Remarks" Type="varchar" MaxLength="256" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+          <Property Name="GetMoneyTimes" Type="bigint" />
+          <Property Name="GetMoneySum" Type="decimal" Precision="32" Scale="0" />
+          <Property Name="GiveMoneyTimes" Type="bigint" />
+          <Property Name="GiveMoneySum" Type="decimal" Precision="32" Scale="0" />
+          <Property Name="LastPr" Type="varchar" MaxLength="26" />
+          <Property Name="InputDate" Type="timestamp" Precision="0" Nullable="false" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“def.prbook.v_sys_loginlog”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_sys_loginlog">
           <Key>
@@ -146,7 +165,7 @@
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="PR_MoneyInfo" EntityType="Self.PR_MoneyInfo" Schema="prbook" store:Type="Tables" />
-          <EntitySet Name="PR_PeopleInfo人" EntityType="Self.PR_PeopleInfo人" Schema="prbook" store:Type="Tables" />
+          <EntitySet Name="PR_PeopleInfo" EntityType="Self.PR_PeopleInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="SYS_LoginImg" EntityType="Self.SYS_LoginImg" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="SYS_LoginLog" EntityType="Self.SYS_LoginLog" Schema="prbook" store:Type="Tables" />
@@ -163,6 +182,20 @@
 `v_getuserpower`.`RoleId`, 
 `v_getuserpower`.`NodeType`
 FROM `v_getuserpower` AS `v_getuserpower`</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="v_pr_peopleinfo" EntityType="Self.v_pr_peopleinfo" store:Type="Views" store:Schema="prbook">
+            <DefiningQuery>SELECT
+`v_pr_peopleinfo`.`Id`, 
+`v_pr_peopleinfo`.`Name`, 
+`v_pr_peopleinfo`.`Remarks`, 
+`v_pr_peopleinfo`.`UserId`, 
+`v_pr_peopleinfo`.`GetMoneyTimes`, 
+`v_pr_peopleinfo`.`GetMoneySum`, 
+`v_pr_peopleinfo`.`GiveMoneyTimes`, 
+`v_pr_peopleinfo`.`GiveMoneySum`, 
+`v_pr_peopleinfo`.`LastPr`, 
+`v_pr_peopleinfo`.`InputDate`
+FROM `v_pr_peopleinfo` AS `v_pr_peopleinfo`</DefiningQuery>
           </EntitySet>
           <EntitySet Name="v_sys_loginlog" EntityType="Self.v_sys_loginlog" store:Type="Views" store:Schema="prbook">
             <DefiningQuery>SELECT
@@ -210,8 +243,9 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
           <EntitySet Name="v_userinfo" EntityType="PRBookModel.v_userinfo" />
           <EntitySet Name="PR_MoneyInfo" EntityType="PRBookModel.PR_MoneyInfo" />
-          <EntitySet Name="PR_PeopleInfo人" EntityType="PRBookModel.PR_PeopleInfo人" />
           <EntitySet Name="SYS_RolePower" EntityType="PRBookModel.SYS_RolePower" />
+          <EntitySet Name="PR_PeopleInfo" EntityType="PRBookModel.PR_PeopleInfo" />
+          <EntitySet Name="v_pr_peopleinfo" EntityType="PRBookModel.v_pr_peopleinfo" />
           </EntityContainer>
         <ComplexType Name="TBFun_GetUserPower_Result">
           <Property Type="Int32" Name="NodeId" Nullable="true" />
@@ -333,8 +367,17 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="Money" Type="Int32" />
           <Property Name="MoneyType" Type="Int32" />
           <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="InputDate" Type="DateTime" />
         </EntityType>
-        <EntityType Name="PR_PeopleInfo人">
+        <EntityType Name="SYS_RolePower">
+          <Key>
+            <PropertyRef Name="PowerId" />
+          </Key>
+          <Property Name="PowerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="NodeId" Type="Int32" />
+        </EntityType>
+        <EntityType Name="PR_PeopleInfo">
           <Key>
             <PropertyRef Name="Id" />
           </Key>
@@ -344,13 +387,21 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="InputDate" Type="DateTime" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="SYS_RolePower">
+        <EntityType Name="v_pr_peopleinfo">
           <Key>
-            <PropertyRef Name="PowerId" />
+            <PropertyRef Name="Id" />
+            <PropertyRef Name="InputDate" />
           </Key>
-          <Property Name="PowerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleId" Type="Int32" />
-          <Property Name="NodeId" Type="Int32" />
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="GetMoneyTimes" Type="Int64" />
+          <Property Name="GetMoneySum" Type="Decimal" />
+          <Property Name="GiveMoneyTimes" Type="Int64" />
+          <Property Name="GiveMoneySum" Type="Decimal" />
+          <Property Name="LastPr" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="InputDate" Type="DateTime" Nullable="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -473,21 +524,11 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySetMapping Name="PR_MoneyInfo">
             <EntityTypeMapping TypeName="PRBookModel.PR_MoneyInfo">
               <MappingFragment StoreEntitySet="PR_MoneyInfo">
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="MoneyType" ColumnName="MoneyType" />
                 <ScalarProperty Name="Money" ColumnName="Money" />
                 <ScalarProperty Name="PeopleId" ColumnName="PeopleId" />
-                <ScalarProperty Name="Id" ColumnName="Id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="PR_PeopleInfo人">
-            <EntityTypeMapping TypeName="PRBookModel.PR_PeopleInfo人">
-              <MappingFragment StoreEntitySet="PR_PeopleInfo人">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
-                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -498,6 +539,33 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
                 <ScalarProperty Name="NodeId" ColumnName="NodeId" />
                 <ScalarProperty Name="RoleId" ColumnName="RoleId" />
                 <ScalarProperty Name="PowerId" ColumnName="PowerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PR_PeopleInfo">
+            <EntityTypeMapping TypeName="PRBookModel.PR_PeopleInfo">
+              <MappingFragment StoreEntitySet="PR_PeopleInfo">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_pr_peopleinfo">
+            <EntityTypeMapping TypeName="PRBookModel.v_pr_peopleinfo">
+              <MappingFragment StoreEntitySet="v_pr_peopleinfo">
+                <ScalarProperty Name="InputDate" ColumnName="InputDate" />
+                <ScalarProperty Name="LastPr" ColumnName="LastPr" />
+                <ScalarProperty Name="GiveMoneySum" ColumnName="GiveMoneySum" />
+                <ScalarProperty Name="GiveMoneyTimes" ColumnName="GiveMoneyTimes" />
+                <ScalarProperty Name="GetMoneySum" ColumnName="GetMoneySum" />
+                <ScalarProperty Name="GetMoneyTimes" ColumnName="GetMoneyTimes" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

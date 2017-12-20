@@ -12,13 +12,17 @@ namespace PRBook2._0.Models
     using System;
     using System.Collections.Generic;
     
-    public partial class PR_MoneyInfo
+    public partial class v_pr_peopleinfo
     {
         public string Id { get; set; }
-        public string PeopleId { get; set; }
-        public Nullable<int> Money { get; set; }
-        public Nullable<int> MoneyType { get; set; }
+        public string Name { get; set; }
         public string Remarks { get; set; }
-        public Nullable<System.DateTime> InputDate { get; set; }
+        public string UserId { get; set; }
+        public Nullable<long> GetMoneyTimes { get; set; }
+        public Nullable<decimal> GetMoneySum { get; set; }
+        public Nullable<long> GiveMoneyTimes { get; set; }
+        public Nullable<decimal> GiveMoneySum { get; set; }
+        public string LastPr { get; set; }
+        public System.DateTime InputDate { get; set; }
     }
 }

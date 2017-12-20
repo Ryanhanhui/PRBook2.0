@@ -38,8 +38,9 @@ namespace PRBook2._0.Models
         public DbSet<v_sys_loginlog> v_sys_loginlog { get; set; }
         public DbSet<v_userinfo> v_userinfo { get; set; }
         public DbSet<PR_MoneyInfo> PR_MoneyInfo { get; set; }
-        public DbSet<PR_PeopleInfo人> PR_PeopleInfo人 { get; set; }
         public DbSet<SYS_RolePower> SYS_RolePower { get; set; }
+        public DbSet<PR_PeopleInfo> PR_PeopleInfo { get; set; }
+        public DbSet<v_pr_peopleinfo> v_pr_peopleinfo { get; set; }
     
         [EdmFunction("PRBookEntities", "TBFun_GetUserPower")]
         public virtual IQueryable<TBFun_GetUserPower_Result> TBFun_GetUserPower(string usertype, string roletype)
