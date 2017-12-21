@@ -1,5 +1,6 @@
 ﻿using PRBook2._0.Models;
 using PRBook2._0.Models.LogicL;
+using PRBook2._0.Models.Tool;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,11 +12,14 @@ namespace PRBook2._0.Controllers
     public class SysConfigController : Controller
     {
         SysConfig sysConfig = new SysConfig();
+        PublicUtil util = new PublicUtil();
         //
         // GET: /SysConfig/
         [Authorize]
         public ActionResult Index()
         {
+            if (!util.CheckPower(Request.RawUrl.ToString()))
+                return PartialView("WithoutPower");
             SYS_SystemConfigInfo sysmodel = sysConfig.GetBindData();
             ViewBag.Id = "";
             ViewBag.System_Name = "";

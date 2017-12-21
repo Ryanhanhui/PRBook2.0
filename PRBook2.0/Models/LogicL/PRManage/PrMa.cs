@@ -148,6 +148,45 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 return string.Empty;
             }
         }
+        public string GetPrMoeny(string PeopleId,string Mtype)
+        {
+            try
+            {
+                int moneytype = int.Parse(Mtype);
+                List<PR_MoneyInfo> moneyInfoList = mdb.PR_MoneyInfo.Where(u => u.PeopleId.Equals(PeopleId) && u.MoneyType == moneytype).OrderByDescending(u => u.InputDate).ToList();
+                return putil.GetJsonData(moneyInfoList);
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+                return string.Empty;
+            }
+        }
+        /// <summary>
+        /// 删除
+        /// </summary>
+        /// <param name="Id">Id</param>
+        /// <returns>标志,成功 success,不成功为空</returns>
+        public string DeleteMoneyInfo(string Id)
+        {
+            try
+            {
+                PR_MoneyInfo moneyInfo = mdb.PR_MoneyInfo.Where(u => u.Id.Equals(Id)).FirstOrDefault();
+                mdb.PR_MoneyInfo.Remove(moneyInfo);//删除实体
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+                return string.Empty;
+            }
+        }
     }
 
 }

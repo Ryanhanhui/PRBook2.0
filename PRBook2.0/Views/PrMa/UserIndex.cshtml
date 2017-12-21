@@ -118,10 +118,28 @@
         $("#tableBody").html(tablehtml);
     }
     function getP(peopleid) {
-
+        layer.open({
+            type: 2,
+            title: '收情信息维护',
+            resize: false,
+            maxmin:true,
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['70%', '85%'],
+            content: '@Url.Action("EditPrPage", "PrMa")?Type=1&Id=' + peopleid + ''
+        });
     }
     function giveP(peopleid) {
-
+        layer.open({
+            type: 2,
+            title: '还情信息维护',
+            resize: false,
+            maxmin: true,
+            shade: 0.8,
+            closeBtn: 0,
+            area: ['70%', '85%'],
+            content: '@Url.Action("EditPrPage", "PrMa")?Type=2&Id=' + peopleid + ''
+        });
     }
     function editClick(peopleid) {
         layer.open({

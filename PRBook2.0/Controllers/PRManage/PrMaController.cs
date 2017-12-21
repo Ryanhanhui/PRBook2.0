@@ -94,5 +94,35 @@ namespace PRBook2._0.Controllers.PRManage
             else
                 return "";
         }
+        [Authorize]
+        public ActionResult EditPrPage()
+        {
+            if (!string.IsNullOrWhiteSpace(Request["Id"]) && !string.IsNullOrWhiteSpace(Request["Type"]))
+            {
+                ViewBag.Type = Request["Type"].ToString();
+                ViewBag.TypeName = Request["Type"].ToString().Equals("1") ? "收情" : "还情";
+                ViewBag.PeopleId = Request["Id"].ToString();
+                v_pr_peopleinfo pr = prma.GetEditInfo(Request["Id"].ToString());
+                ViewBag.Model = pr;
+            }
+            return View();
+        }
+        [Authorize]
+        [HttpPost]
+        public string GetPrMoeny()
+        {
+            string _PeopleId = Request["PeopleId"].ToString();
+            string _MoneyType = Request["MoneyType"].ToString();
+            return prma.GetPrMoeny(_PeopleId, _MoneyType);
+        }
+        [Authorize]
+        [HttpPost]
+        public string DeleteMoneyInfo()
+        {
+            if (!string.IsNullOrWhiteSpace(Request.Params["Id"]))
+                return prma.DeleteMoneyInfo(Request.Params["Id"].ToString());
+            else
+                return "";
+        }
 	}
 }

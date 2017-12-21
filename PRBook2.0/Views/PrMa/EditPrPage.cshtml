@@ -1,0 +1,144 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>人情金额信息</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+</head>
+<body>
+    <div style="margin-top:20px;">
+        <fieldset class="layui-elem-field">
+            <legend>来往人员信息</legend>
+            <div class="layui-field-box">
+                <label class="layui-form-label">姓名：</label><label class="layui-form-label">@ViewBag.Model.Name</label>
+                <label class="layui-form-label">备注：</label><label class="layui-form-label">@ViewBag.Model.Remarks</label>
+            </div>
+        </fieldset>
+        <fieldset class="layui-elem-field">
+            <legend>详细<label>@ViewBag.TypeName</label>信息</legend>
+            <div class="layui-field-box">
+                <table class="layui-table" lay-even="">
+                    <thead>
+                        <tr>
+                            <th style="width:25%">金额</th>
+                            <th>附加信息</th>
+                            <th style="width:25%">时间</th>
+                            <th style="width:10%"></th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody"></tbody>
+                </table>
+            </div>
+        </fieldset>
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <label class="layui-form-label">姓名</label>
+                <div class="layui-input-block">
+                    <input type="text" id="Name" name="Name" autocomplete="off" lay-verify="required" placeholder="请输入人员姓名" class="layui-input" style="width:400px" maxlength="32" value="@ViewBag.Model.Name">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">备注</label>
+                <div class="layui-input-block">
+                    <input type="text" id="Remarks" name="Remarks" autocomplete="off" placeholder="请输入备注(可不填)" class="layui-input" style="width:400px" maxlength="128" value="@ViewBag.Model.Remarks">
+                </div>
+            </div>
+            <div class="layui-form-item">
+                <div style="text-align:center">
+                    <button class="layui-btn layui-btn-normal" lay-submit>保  存</button>
+                    <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+                </div>
+            </div>
+            <input id="Id" name="Id" value="@ViewBag.Model.Id" type="hidden" />
+            <input id="MoneyType" name="MoneyType" value="@ViewBag.Type" type="hidden" />
+        </div>
+    </div>
+</body>
+</html>
+<script>
+    var layer;
+    layui.use(['form', 'layer'], function () {
+        form = layui.form();
+        layer = layui.layer;
+    });
+    function queryData() {
+        $.ajax(
+                        {
+                            async: false,
+                            type: 'POST',
+                            dataType: 'json',
+                            url: '@Url.Action("GetPrMoeny","PrMa")',
+                            data:
+                                {
+                                    PeopleId: $("#Id").val(),
+                                    MoneyType:$("#MoneyType").val()
+                            },
+                            success: function (datafield) {
+                                bindTable(datafield);
+                            }
+                        }
+                        );
+    }
+    function bindTable(data) {
+        var tablehtml = "";
+        var items = data;
+        $.each(items, function (i) {
+            var remark = "";
+            if (items[i].Remarks != null)
+                remark = items[i].Remarks;
+            tablehtml += "<tr>"
+            + "<td>" + items[i].Money + "元</td>"
+            + "<td>" + remark + "</td>"
+            + "<td>" + getDate(items[i].InputDate) + "</td>"
+            + "<td><button class='layui-btn layui-btn-danger layui-btn-small' onclick='deleteClick(&quot;" + items[i].Id + "&quot;)'><i class='layui-icon'>&#xe640;</i> 删除</button></td>"
+        + "</tr>";
+        });
+        $("#tableBody").html(tablehtml);
+    }
+    queryData();
+    function cancelBtnClick() {
+        var index = parent.layer.getFrameIndex(window.name); //先得到当前iframe层的索引
+        parent.initData();
+        parent.layer.close(index); //再执行关闭
+    }
+    function getDate(strDate) {    
+        var date = strDate.replace(/\s[\x00-\xff]*/g, '');
+        return date;
+    }
+
+    function deleteClick(id) {
+        layer.confirm('确定删除么？', {
+            btn: ['确定', '取消'], //按钮
+            icon: 3,
+            closeBtn: 0
+        }, function () {
+            $.ajax(
+                {
+                    async: false,
+                    type: 'POST',
+                    url: '@Url.Action("DeleteMoneyInfo", "PrMa")',
+                    data:
+                        {
+                            Id: id
+                        },
+                    success: function (datafield) {
+                        if (datafield == "success") {
+                            layer.msg("删除成功");
+                            queryData();
+                        }
+                    }
+                }
+                );
+        }, function () {
+
+        });
+    }
+</script>

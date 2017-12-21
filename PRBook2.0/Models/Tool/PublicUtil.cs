@@ -50,6 +50,8 @@ namespace PRBook2._0.Models.Tool
         /// <returns>是否具有请求地址的权限</returns>
         public bool CheckPower(string url)
         {
+            if (!CheckLoginState())
+                return false;
             string usertype = UserInfo.GetInstance().UserType;
             string roletype = UserInfo.GetInstance().RoleType;
             List<v_getuserpower> powerlist = mdb.v_getuserpower.Where(u => u.RoleId.Equals(roletype) && u.NodeType.Equals("0")).ToList();
