@@ -18,10 +18,10 @@ namespace PRBook2._0.Models
         public string Name { get; set; }
         public string Remarks { get; set; }
         public string UserId { get; set; }
-        public Nullable<long> GetMoneyTimes { get; set; }
-        public Nullable<decimal> GetMoneySum { get; set; }
-        public Nullable<long> GiveMoneyTimes { get; set; }
-        public Nullable<decimal> GiveMoneySum { get; set; }
+        public long GetMoneyTimes { get; set; }
+        public decimal GetMoneySum { get; set; }
+        public long GiveMoneyTimes { get; set; }
+        public decimal GiveMoneySum { get; set; }
         public string LastPr { get; set; }
         public System.DateTime InputDate { get; set; }
     }

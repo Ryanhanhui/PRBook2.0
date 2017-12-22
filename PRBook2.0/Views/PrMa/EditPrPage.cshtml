@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -24,7 +23,7 @@
         </fieldset>
         <fieldset class="layui-elem-field">
             <legend>详细<label>@ViewBag.TypeName</label>信息</legend>
-            <div class="layui-field-box">
+            <div class="layui-field-box" style="max-height:300px;overflow:auto;">
                 <table class="layui-table" lay-even="">
                     <thead>
                         <tr>
@@ -38,36 +37,50 @@
                 </table>
             </div>
         </fieldset>
-        <div class="layui-form">
-            <div class="layui-form-item">
-                <label class="layui-form-label">姓名</label>
-                <div class="layui-input-block">
-                    <input type="text" id="Name" name="Name" autocomplete="off" lay-verify="required" placeholder="请输入人员姓名" class="layui-input" style="width:400px" maxlength="32" value="@ViewBag.Model.Name">
+        <fieldset class="layui-elem-field">
+            <legend><label>@ViewBag.TypeName</label>信息</legend>
+            <div class="layui-field-box">
+                <div class="layui-form">
+                    <div class="layui-form-item">
+                        <label class="layui-form-label">金额</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="Money" name="Money" autocomplete="off" lay-verify="required|number" placeholder="请输入金额" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">附加信息</label>
+                        <div class="layui-input-inline">
+                            <input type="text" id="Remarks" name="Remarks" autocomplete="off" placeholder="（可不填）" maxlength="128" class="layui-input">
+                        </div>
+                        <label class="layui-form-label">日期</label>
+                        <div class="layui-input-inline">
+                            <input type="text" name="InputDate" id="InputDate" autocomplete="off" placeholder="请选择日期" lay-verify="required|date" class="layui-input" onclick="layui.laydate({ elem: this })">
+                        </div>
+                    </div>
+                    <div class="layui-form-item">
+                        <div style="text-align:center">
+                            <button class="layui-btn layui-btn-normal" lay-submit>新增信息</button>
+                            <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
+                        </div>
+                    </div>
+                    <input id="PeopleId" name="PeopleId" value="@ViewBag.Model.Id" type="hidden" />
+                    <input id="MoneyType" name="MoneyType" value="@ViewBag.Type" type="hidden" />
                 </div>
             </div>
-            <div class="layui-form-item">
-                <label class="layui-form-label">备注</label>
-                <div class="layui-input-block">
-                    <input type="text" id="Remarks" name="Remarks" autocomplete="off" placeholder="请输入备注(可不填)" class="layui-input" style="width:400px" maxlength="128" value="@ViewBag.Model.Remarks">
-                </div>
-            </div>
-            <div class="layui-form-item">
-                <div style="text-align:center">
-                    <button class="layui-btn layui-btn-normal" lay-submit>保  存</button>
-                    <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
-                </div>
-            </div>
-            <input id="Id" name="Id" value="@ViewBag.Model.Id" type="hidden" />
-            <input id="MoneyType" name="MoneyType" value="@ViewBag.Type" type="hidden" />
-        </div>
+        </fieldset>
+
     </div>
 </body>
 </html>
 <script>
     var layer;
-    layui.use(['form', 'layer'], function () {
+    layui.use(['form', 'layer', 'laydate'], function () {
         form = layui.form();
         layer = layui.layer;
+        form.render();
+
+        form.on('submit', function (data) {
+            saveBtnClick(data);
+            return false;
+        });
     });
     function queryData() {
         $.ajax(
@@ -78,9 +91,9 @@
                             url: '@Url.Action("GetPrMoeny","PrMa")',
                             data:
                                 {
-                                    PeopleId: $("#Id").val(),
-                                    MoneyType:$("#MoneyType").val()
-                            },
+                                    PeopleId: $("#PeopleId").val(),
+                                    MoneyType: $("#MoneyType").val()
+                                },
                             success: function (datafield) {
                                 bindTable(datafield);
                             }
@@ -109,7 +122,7 @@
         parent.initData();
         parent.layer.close(index); //再执行关闭
     }
-    function getDate(strDate) {    
+    function getDate(strDate) {
         var date = strDate.replace(/\s[\x00-\xff]*/g, '');
         return date;
     }
@@ -131,8 +144,11 @@
                         },
                     success: function (datafield) {
                         if (datafield == "success") {
-                            layer.msg("删除成功");
+                            layer.msg("删除成功",{ icon: 1 });
                             queryData();
+                        }
+                        else {
+                            layer.msg("删除失败，请稍后重试", { icon: 2 });
                         }
                     }
                 }
@@ -140,5 +156,28 @@
         }, function () {
 
         });
+    }
+    function saveBtnClick(datafield) {
+        $.ajax(
+            {
+                async: false,
+                type: 'POST',
+                url: '@Url.Action("AddMoneyData", "PrMa")',
+                data: datafield.field,
+                success: function (datafield) {
+                    if (datafield == "success") {
+                        layer.msg('保存成功', { icon: 1 });
+                        //do something
+                        $("#Money").val("");
+                        $("#Remarks").val("");
+                        $("#InputDate").val("");
+                        queryData();
+                    }
+                    else {
+                        layer.msg("删除失败，请稍后重试", { icon: 2 });
+                    }
+                }
+            }
+            );
     }
 </script>

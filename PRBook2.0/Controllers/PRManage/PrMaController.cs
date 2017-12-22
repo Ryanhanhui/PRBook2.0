@@ -124,5 +124,18 @@ namespace PRBook2._0.Controllers.PRManage
             else
                 return "";
         }
+        [Authorize]
+        [HttpPost]
+        public string AddMoneyData()
+        {
+            PR_MoneyInfo pr = new PR_MoneyInfo();
+            pr.Id = Guid.NewGuid().ToString("N");
+            pr.Money = int.Parse(Request.Form["Money"].ToString());
+            pr.Remarks = Request.Form["Remarks"].ToString();
+            pr.InputDate = DateTime.Parse(Request.Form["InputDate"].ToString());
+            pr.MoneyType = int.Parse(Request.Form["MoneyType"].ToString());
+            pr.PeopleId = Request.Form["PeopleId"].ToString();
+            return prma.AddMoneyData(pr);
+        }
 	}
 }

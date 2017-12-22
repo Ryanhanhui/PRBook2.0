@@ -18,6 +18,6 @@ namespace PRBook2._0.Models
         public string UserId { get; set; }
         public string LoginIP { get; set; }
         public string LoginAddress { get; set; }
-        public System.DateTime LoginTime { get; set; }
+        public Nullable<System.DateTime> LoginTime { get; set; }
     }
 }

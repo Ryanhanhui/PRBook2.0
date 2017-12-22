@@ -116,17 +116,22 @@
         <EntityType Name="v_pr_peopleinfo">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="GetMoneyTimes" />
+            <PropertyRef Name="GetMoneySum" />
+            <PropertyRef Name="GiveMoneyTimes" />
+            <PropertyRef Name="GiveMoneySum" />
+            <PropertyRef Name="LastPr" />
             <PropertyRef Name="InputDate" />
           </Key>
           <Property Name="Id" Type="varchar" MaxLength="32" Nullable="false" />
           <Property Name="Name" Type="varchar" MaxLength="64" />
           <Property Name="Remarks" Type="varchar" MaxLength="256" />
           <Property Name="UserId" Type="varchar" MaxLength="32" />
-          <Property Name="GetMoneyTimes" Type="bigint" />
-          <Property Name="GetMoneySum" Type="decimal" Precision="32" Scale="0" />
-          <Property Name="GiveMoneyTimes" Type="bigint" />
-          <Property Name="GiveMoneySum" Type="decimal" Precision="32" Scale="0" />
-          <Property Name="LastPr" Type="varchar" MaxLength="26" />
+          <Property Name="GetMoneyTimes" Type="bigint" Nullable="false" />
+          <Property Name="GetMoneySum" Type="decimal" Precision="32" Scale="0" Nullable="false" />
+          <Property Name="GiveMoneyTimes" Type="bigint" Nullable="false" />
+          <Property Name="GiveMoneySum" Type="decimal" Precision="32" Scale="0" Nullable="false" />
+          <Property Name="LastPr" Type="varchar" MaxLength="26" Nullable="false" />
           <Property Name="InputDate" Type="timestamp" Precision="0" Nullable="false" />
         </EntityType>
         <!--生成过程中发现错误:
@@ -134,12 +139,11 @@
         <EntityType Name="v_sys_loginlog">
           <Key>
             <PropertyRef Name="LogId" />
-            <PropertyRef Name="LoginTime" />
           </Key>
           <Property Name="UserId" Type="varchar" MaxLength="32" />
           <Property Name="LoginIP" Type="varchar" MaxLength="32" />
           <Property Name="LoginAddress" Type="varchar" MaxLength="64" />
-          <Property Name="LoginTime" Type="datetime" Precision="0" Nullable="false" />
+          <Property Name="LoginTime" Type="datetime" Precision="0" />
           <Property Name="NickName" Type="varchar" MaxLength="64" />
           <Property Name="LogId" Type="varchar" MaxLength="32" Nullable="false" />
         </EntityType>
@@ -236,15 +240,15 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySet Name="NodeSetInfo" EntityType="PRBookModel.NodeSetInfo" />
           <EntitySet Name="PR_UserInfo" EntityType="PRBookModel.PR_UserInfo" />
           <EntitySet Name="SYS_LoginImg" EntityType="PRBookModel.SYS_LoginImg" />
-          <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
           <EntitySet Name="SYS_RoleInfo" EntityType="PRBookModel.SYS_RoleInfo" />
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="PRBookModel.SYS_SystemConfigInfo" />
           <EntitySet Name="v_getuserpower" EntityType="PRBookModel.v_getuserpower" />
-          <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
           <EntitySet Name="v_userinfo" EntityType="PRBookModel.v_userinfo" />
           <EntitySet Name="PR_MoneyInfo" EntityType="PRBookModel.PR_MoneyInfo" />
           <EntitySet Name="SYS_RolePower" EntityType="PRBookModel.SYS_RolePower" />
           <EntitySet Name="PR_PeopleInfo" EntityType="PRBookModel.PR_PeopleInfo" />
+          <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
+          <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
           <EntitySet Name="v_pr_peopleinfo" EntityType="PRBookModel.v_pr_peopleinfo" />
           </EntityContainer>
         <ComplexType Name="TBFun_GetUserPower_Result">
@@ -288,16 +292,6 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="ImgId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="ImgUrl" Type="String" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <EntityType Name="SYS_LoginLog">
-          <Key>
-            <PropertyRef Name="LogId" />
-          </Key>
-          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="LoginTime" Type="DateTime" Nullable="false" />
-        </EntityType>
         <EntityType Name="SYS_RoleInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -328,18 +322,6 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="NodeNum" Type="Int32" />
           <Property Name="RoleId" Type="String" MaxLength="11" FixedLength="false" Unicode="false" />
           <Property Name="NodeType" Type="String" MaxLength="1" FixedLength="false" Unicode="false" />
-        </EntityType>
-        <EntityType Name="v_sys_loginlog">
-          <Key>
-            <PropertyRef Name="LoginTime" />
-            <PropertyRef Name="LogId" />
-          </Key>
-          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="LoginTime" Type="DateTime" Nullable="false" />
-          <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
-          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="v_userinfo">
           <Key>
@@ -387,20 +369,46 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="InputDate" Type="DateTime" Nullable="false" />
           <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
         </EntityType>
+        <EntityType Name="SYS_LoginLog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LoginTime" Type="DateTime" />
+        </EntityType>
+        <EntityType Name="v_sys_loginlog">
+          <Key>
+            <PropertyRef Name="LogId" />
+          </Key>
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginIP" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="LoginAddress" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LoginTime" Type="DateTime" />
+          <Property Name="NickName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="LogId" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="v_pr_peopleinfo">
           <Key>
             <PropertyRef Name="Id" />
+            <PropertyRef Name="GetMoneyTimes" />
+            <PropertyRef Name="GetMoneySum" />
+            <PropertyRef Name="GiveMoneyTimes" />
+            <PropertyRef Name="GiveMoneySum" />
+            <PropertyRef Name="LastPr" />
             <PropertyRef Name="InputDate" />
           </Key>
           <Property Name="Id" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
           <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
           <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
-          <Property Name="GetMoneyTimes" Type="Int64" />
-          <Property Name="GetMoneySum" Type="Decimal" />
-          <Property Name="GiveMoneyTimes" Type="Int64" />
-          <Property Name="GiveMoneySum" Type="Decimal" />
-          <Property Name="LastPr" Type="String" MaxLength="26" FixedLength="false" Unicode="false" />
+          <Property Name="GetMoneyTimes" Type="Int64" Nullable="false" />
+          <Property Name="GetMoneySum" Type="Decimal" Nullable="false" />
+          <Property Name="GiveMoneyTimes" Type="Int64" Nullable="false" />
+          <Property Name="GiveMoneySum" Type="Decimal" Nullable="false" />
+          <Property Name="LastPr" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
           <Property Name="InputDate" Type="DateTime" Nullable="false" />
         </EntityType>
         </Schema>
@@ -446,17 +454,6 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SYS_LoginLog">
-            <EntityTypeMapping TypeName="PRBookModel.SYS_LoginLog">
-              <MappingFragment StoreEntitySet="SYS_LoginLog">
-                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
-                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
-                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="SYS_RoleInfo">
             <EntityTypeMapping TypeName="PRBookModel.SYS_RoleInfo">
               <MappingFragment StoreEntitySet="SYS_RoleInfo">
@@ -488,18 +485,6 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
                 <ScalarProperty Name="NodeUrl" ColumnName="NodeUrl" />
                 <ScalarProperty Name="NodeName" ColumnName="NodeName" />
                 <ScalarProperty Name="NodeId" ColumnName="NodeId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="v_sys_loginlog">
-            <EntityTypeMapping TypeName="PRBookModel.v_sys_loginlog">
-              <MappingFragment StoreEntitySet="v_sys_loginlog">
-                <ScalarProperty Name="LogId" ColumnName="LogId" />
-                <ScalarProperty Name="NickName" ColumnName="NickName" />
-                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
-                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
-                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -550,6 +535,29 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SYS_LoginLog">
+            <EntityTypeMapping TypeName="PRBookModel.SYS_LoginLog">
+              <MappingFragment StoreEntitySet="SYS_LoginLog">
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_sys_loginlog">
+            <EntityTypeMapping TypeName="PRBookModel.v_sys_loginlog">
+              <MappingFragment StoreEntitySet="v_sys_loginlog">
+                <ScalarProperty Name="LogId" ColumnName="LogId" />
+                <ScalarProperty Name="NickName" ColumnName="NickName" />
+                <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
+                <ScalarProperty Name="LoginAddress" ColumnName="LoginAddress" />
+                <ScalarProperty Name="LoginIP" ColumnName="LoginIP" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

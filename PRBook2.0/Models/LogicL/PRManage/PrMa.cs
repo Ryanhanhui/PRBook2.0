@@ -187,6 +187,30 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 return string.Empty;
             }
         }
+        /// <summary>
+        /// 新增人情来往金额数据
+        /// </summary>
+        /// <param name="userInfo"></param>
+        /// <returns></returns>
+        public string AddMoneyData(PR_MoneyInfo moneyInfo)
+        {
+            try
+            {
+                mdb.PR_MoneyInfo.Add(moneyInfo);
+                int ret = mdb.SaveChanges();
+                if (ret != 0)
+                {
+                    return "success";
+                }
+                else
+                    return "";
+            }
+            catch (Exception ex)
+            {
+                LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
+                return string.Empty;
+            }
+        }
     }
 
 }

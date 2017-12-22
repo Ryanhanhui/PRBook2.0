@@ -35,11 +35,11 @@
             <div class="layui-inline">
                 <label class="layui-form-label" style="width:auto">登录时间：</label>
                 <div class="layui-input-inline" style="width: 150px;">
-                    <input type="text" name="BeginTime" id="BeginTime" lay-verify="title" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true})">
+                    <input type="text" name="BeginTime" id="BeginTime" lay-verify="date" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true})">
                 </div>
                 <div class="layui-form-mid">-</div>
                 <div class="layui-input-inline" style="width: 150px;">
-                    <input type="text" name="EndTime" id="EndTime" lay-verify="title" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true})">
+                    <input type="text" name="EndTime" id="EndTime" lay-verify="date" autocomplete="off" class="layui-input" onclick="layui.laydate({elem: this, istime: true})">
                 </div>
             </div>
             <div class="layui-inline">
@@ -124,7 +124,7 @@
             + "<td>" + items[i].NickName + "</td>"
             + "<td>" + items[i].LoginIP + "</td>"
             + "<td>" + items[i].LoginAddress + "</td>"
-            + "<td>" + items[i].LoginTime + "</td>"
+            + "<td>" + items[i].LoginTime.replace(/\.000*/g, '') + "</td>"
         + "</tr>";
         });
         $("#tableBody").html(tablehtml);
