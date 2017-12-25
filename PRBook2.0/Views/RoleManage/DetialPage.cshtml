@@ -13,6 +13,12 @@
             </div>
         </div>
         <div class="layui-form-item">
+            <label class="layui-form-label">角色首页</label>
+            <div class="layui-input-block">
+                <input type="text" id="RoleIndexPage" name="RoleIndexPage" autocomplete="off" lay-verify="url" placeholder="可不填 默认系统首页" class="layui-input" style="width:300px" maxlength="64">
+            </div>
+        </div>
+        <div class="layui-form-item">
             <div class="layui-input-block">
                 <button class="layui-btn layui-btn-normal" onclick="saveBtnClick()">保  存</button>
                 <button class="layui-btn layui-btn-warm" onclick="cancelBtnClick()">关  闭</button>
@@ -43,6 +49,7 @@
     function bindData(data) {
         $("#RoleName").val(data.RoleName);
         $("#RoleDesc").val(data.RoleDesc);
+        $("#RoleIndexPage").val(data.RoleIndexPage);
     }
     $(document).ready(function () {
         layui.use(['layer', 'form'], function () {
@@ -68,7 +75,8 @@
                     data:
                         {
                             RoleName: $("#RoleName").val(),
-                            RoleDesc: $("#RoleDesc").val()
+                            RoleDesc: $("#RoleDesc").val(),
+                            RoleIndexPage: $("#RoleIndexPage").val()
                         },
                     success: function (datafield) {
                         if (datafield == "success") {
@@ -76,6 +84,7 @@
                             //do something
                             RoleName: $("#RoleName").val("");
                             RoleDesc: $("#RoleDesc").val("");
+                            RoleIndexPage: $("#RoleIndexPage").val("");
                         }
                         else if (datafield == "exists") {
                             layer.msg('角色名重复，请重新输入！', { icon: 2 });
@@ -97,7 +106,8 @@
                         {
                             Id: rid,
                             RoleName: $("#RoleName").val(),
-                            RoleDesc: $("#RoleDesc").val()
+                            RoleDesc: $("#RoleDesc").val(),
+                            RoleIndexPage: $("#RoleIndexPage").val()
                         },
                     success: function (datafield) {
                         if (datafield == "success") {
@@ -116,10 +126,12 @@
             });
             return false;
         }
+        
         return true;
     }
     function clearValue() {
         RoleName: $("#RoleName").val("");
         RoleDesc: $("#RoleDesc").val("");
+        RoleIndexPage: $("#RoleIndexPage").val("");
     }
 </script>

@@ -13,11 +13,18 @@ namespace PRBook2._0.Controllers
         //
         // GET: /OverView/
         [Authorize]
-        public ActionResult Index()
+        public ActionResult NormalIndex()
         {
             if (!util.CheckLoginState())
                 return RedirectToAction("Login", "PRSignIn");
-            return PartialView();
+            return View();
+        }
+        [Authorize]
+        public ActionResult UserIndex()
+        {
+            if (!util.CheckLoginState())
+                return RedirectToAction("Login", "PRSignIn");
+            return View();
         }
 	}
 }

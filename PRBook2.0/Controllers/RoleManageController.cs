@@ -53,6 +53,7 @@ namespace PRBook2._0.Controllers
             SYS_RoleInfo sysRoleInfo = new SYS_RoleInfo();
             sysRoleInfo.RoleName = Request.Params["RoleName"].ToString();
             sysRoleInfo.RoleDesc = Request.Params["RoleDesc"].ToString();
+            sysRoleInfo.RoleIndexPage = Request.Params["RoleIndexPage"].ToString();
             return roleManage.AddData(sysRoleInfo);
         }
         [Authorize]
@@ -63,6 +64,7 @@ namespace PRBook2._0.Controllers
             sysRoleInfo.Id = int.Parse(Request.Params["Id"].ToString());
             sysRoleInfo.RoleName = Request.Params["RoleName"].ToString();
             sysRoleInfo.RoleDesc = Request.Params["RoleDesc"].ToString();
+            sysRoleInfo.RoleIndexPage = Request.Params["RoleIndexPage"].ToString();
             return roleManage.UpdateData(sysRoleInfo);
         }
         [Authorize]

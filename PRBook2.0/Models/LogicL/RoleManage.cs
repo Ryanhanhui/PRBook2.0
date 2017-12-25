@@ -47,6 +47,17 @@ namespace PRBook2._0.Models.LogicL
             return putil.GetJsonData(sysRoleInfo);
         }
         /// <summary>
+        /// 获取编辑页的数据
+        /// </summary>
+        /// <param name="Id">数据ID，为空则为新增状态</param>
+        /// <returns>单条记录json</returns>
+        public SYS_RoleInfo GetDetailObj(string Id)
+        {
+            int id = int.Parse(Id);
+            SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).ToList().SingleOrDefault();
+            return sysRoleInfo;
+        }
+        /// <summary>
         /// 新增数据
         /// </summary>
         /// <param name="sysRoleInfo"></param>
@@ -94,6 +105,7 @@ namespace PRBook2._0.Models.LogicL
                 DbEntityEntry<SYS_RoleInfo> entry = mdb.Entry<SYS_RoleInfo>(sysRoleInfo);
                 entry.State = System.Data.Entity.EntityState.Unchanged;
                 entry.Property("RoleDesc").IsModified = true;
+                entry.Property("RoleIndexPage").IsModified = true;
                 int ret = mdb.SaveChanges();
                 if (ret != 0)
                 {

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using PRBook2._0.Models.LogicL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -21,6 +22,7 @@ namespace PRBook2._0.Models.Tool
         public Nullable<int> Age { get; set; }
         public string RoleType { get; set; }
         public string UserType { get; set; }
+        public string RoleIndexPage { get; set; }
         private UserInfo()
         {
 
@@ -55,6 +57,8 @@ namespace PRBook2._0.Models.Tool
             _Instance.RoleType = pr_userinfo.RoleType;
             _Instance.Password = pr_userinfo.Password;
             _Instance.UserType = pr_userinfo.UserType;
+            RoleManage roleMa = new RoleManage();
+            _Instance.RoleIndexPage = roleMa.GetDetailObj(pr_userinfo.RoleType).RoleIndexPage;
         }
     }
 }

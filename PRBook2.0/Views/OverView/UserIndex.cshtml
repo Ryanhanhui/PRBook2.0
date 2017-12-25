@@ -1,0 +1,69 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>UserIndex</title>
+    <link href="@Url.Content("~/Scripts/layui/css/layui.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/jquery-1.10.2.min.js")"></script>
+    <script src="@Url.Content("~/Scripts/layui/layui.js")"></script>
+    <link href="@Url.Content("~/Content/main.css")" rel="stylesheet" />
+    <script src="@Url.Content("~/Scripts/echarts.js")"></script>
+</head>
+<body>
+    <div>
+        <div id="main" style="width: 90%;min-height:500px;"></div> 
+    </div>
+</body>
+</html>
+<script type="text/javascript">
+    // 基于准备好的dom，初始化echarts实例
+    var myChart = echarts.init(document.getElementById('main'));
+
+    // 指定图表的配置项和数据
+    var option = {
+        title: {
+            text: 'ECharts 入门示例'
+        },
+        tooltip: {},
+        legend: {
+            data: ['收情','还情']
+        },
+        xAxis: {
+            data: ["2017-01", "2017-02", "2017-03", "2017-04", "2017-05", "2017-06"]
+        },
+        yAxis: {},
+        series: [{
+            name: '收情',
+            type: 'line',
+            smooth: true,
+            data: [5, 20, 36, 10, 10, 20]
+        },
+        {
+            name: '还情',
+            type: 'line',
+            smooth: true,
+            data: [5, 25, 50, 25, 2, 15]
+        }],
+        dataZoom: [
+        {   // 这个dataZoom组件，默认控制x轴。
+            type: 'inside', // 这个 dataZoom 组件是 slider 型 dataZoom 组件
+            start: 0,      // 左边在 10% 的位置。
+            end: 100         // 右边在 60% 的位置。
+        }
+        ]
+    };
+
+    // 使用刚指定的配置项和数据显示图表。
+    myChart.setOption(option);
+</script>
+
+
+
+
+

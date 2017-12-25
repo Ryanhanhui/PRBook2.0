@@ -24,7 +24,7 @@
                 <!-- 水平导航 -->
                 <ul class="layui-nav" style="position: absolute; top: 0; right: 0; background: none;">
                     <li class="layui-nav-item">
-                        <a href="@Url.Action("Index","Home")">
+                        <a onclick="topClick(&quot;@ViewBag.RoleIndexPage&quot;)" href="javascript:;">
                             返回首页
                         </a>
                     </li>
@@ -119,8 +119,8 @@
         //$("#MainBody").html(htmlobj.responseText);
         $("#MainFrame").prop("src", strurl);
     }
-    LoadMainBody("@Url.Action("Index","OverView")");
-
+    
+    topClick("@ViewBag.RoleIndexPage");
     $(document).ready(function () {
         layui.use('layer', function () {
             layer = layui.layer;
@@ -160,5 +160,13 @@
                     }
                 }
                 );
+    }
+    function topClick(strurl) {
+        if (strurl == "") {
+            LoadMainBody("@Url.Action("NormalIndex","OverView")");
+        }
+        else {
+            LoadMainBody("@Request.ApplicationPath" + strurl);
+        }
     }
 </script>

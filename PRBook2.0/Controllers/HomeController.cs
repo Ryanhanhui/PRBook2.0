@@ -24,6 +24,7 @@ namespace PRBook2._0.Controllers
             ViewBag.System_Name = sysconfig.System_Name;
             ViewBag.MainFooter = sysconfig.MainFooter;
             ViewBag.PhoneQR = sysconfig.PhoneQR;
+            ViewBag.RoleIndexPage = UserInfo.GetInstance().RoleIndexPage;
             return View("Main");
         }
         [Authorize]

@@ -77,6 +77,7 @@
           <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="RoleName" Type="varchar" MaxLength="64" />
           <Property Name="RoleDesc" Type="varchar" MaxLength="128" />
+          <Property Name="RoleIndexPage" Type="varchar" MaxLength="128" />
         </EntityType>
         <EntityType Name="SYS_RolePower">
           <Key>
@@ -299,6 +300,7 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="Id" Type="Int32" Nullable="false" />
           <Property Name="RoleName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
           <Property Name="RoleDesc" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Name="RoleIndexPage" Type="String" MaxLength="128" FixedLength="false" Unicode="false" />
         </EntityType>
         <EntityType Name="SYS_SystemConfigInfo">
           <Key>
@@ -457,6 +459,7 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySetMapping Name="SYS_RoleInfo">
             <EntityTypeMapping TypeName="PRBookModel.SYS_RoleInfo">
               <MappingFragment StoreEntitySet="SYS_RoleInfo">
+                <ScalarProperty Name="RoleIndexPage" ColumnName="RoleIndexPage" />
                 <ScalarProperty Name="RoleDesc" ColumnName="RoleDesc" />
                 <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="Id" ColumnName="Id" />

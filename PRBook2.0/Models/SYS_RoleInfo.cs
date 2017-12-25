@@ -17,5 +17,6 @@ namespace PRBook2._0.Models
         public int Id { get; set; }
         public string RoleName { get; set; }
         public string RoleDesc { get; set; }
+        public string RoleIndexPage { get; set; }
     }
 }
