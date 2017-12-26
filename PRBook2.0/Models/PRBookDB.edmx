@@ -113,6 +113,18 @@
           <Property Name="NodeType" Type="char" MaxLength="1" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.v_moneygetgivestat”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="v_moneygetgivestat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="36" Nullable="false" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+          <Property Name="GetMoney" Type="decimal" Precision="32" Scale="0" />
+          <Property Name="GiveMoney" Type="decimal" Precision="32" Scale="0" />
+          <Property Name="MoneyDate" Type="varchar" MaxLength="7" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“def.prbook.v_pr_peopleinfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_pr_peopleinfo">
           <Key>
@@ -188,6 +200,15 @@
 `v_getuserpower`.`NodeType`
 FROM `v_getuserpower` AS `v_getuserpower`</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="v_moneygetgivestat" EntityType="Self.v_moneygetgivestat" store:Type="Views" store:Schema="prbook">
+            <DefiningQuery>SELECT
+`v_moneygetgivestat`.`Id`, 
+`v_moneygetgivestat`.`UserId`, 
+`v_moneygetgivestat`.`GetMoney`, 
+`v_moneygetgivestat`.`GiveMoney`, 
+`v_moneygetgivestat`.`MoneyDate`
+FROM `v_moneygetgivestat` AS `v_moneygetgivestat`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_pr_peopleinfo" EntityType="Self.v_pr_peopleinfo" store:Type="Views" store:Schema="prbook">
             <DefiningQuery>SELECT
 `v_pr_peopleinfo`.`Id`, 
@@ -251,6 +272,7 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySet Name="SYS_LoginLog" EntityType="PRBookModel.SYS_LoginLog" />
           <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
           <EntitySet Name="v_pr_peopleinfo" EntityType="PRBookModel.v_pr_peopleinfo" />
+          <EntitySet Name="v_moneygetgivestat" EntityType="PRBookModel.v_moneygetgivestat" />
           </EntityContainer>
         <ComplexType Name="TBFun_GetUserPower_Result">
           <Property Type="Int32" Name="NodeId" Nullable="true" />
@@ -412,6 +434,16 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="GiveMoneySum" Type="Decimal" Nullable="false" />
           <Property Name="LastPr" Type="String" Nullable="false" MaxLength="26" FixedLength="false" Unicode="false" />
           <Property Name="InputDate" Type="DateTime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="v_moneygetgivestat">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="36" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="GetMoney" Type="Decimal" />
+          <Property Name="GiveMoney" Type="Decimal" />
+          <Property Name="MoneyDate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -576,6 +608,17 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Remarks" ColumnName="Remarks" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="v_moneygetgivestat">
+            <EntityTypeMapping TypeName="PRBookModel.v_moneygetgivestat">
+              <MappingFragment StoreEntitySet="v_moneygetgivestat">
+                <ScalarProperty Name="MoneyDate" ColumnName="MoneyDate" />
+                <ScalarProperty Name="GiveMoney" ColumnName="GiveMoney" />
+                <ScalarProperty Name="GetMoney" ColumnName="GetMoney" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

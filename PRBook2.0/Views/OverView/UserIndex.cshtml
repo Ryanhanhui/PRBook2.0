@@ -17,7 +17,7 @@
 </head>
 <body>
     <div>
-        <div id="main" style="width: 90%;min-height:500px;"></div> 
+        <div id="main" style="width: 90%;min-height:600px;"></div> 
     </div>
 </body>
 </html>
@@ -28,27 +28,25 @@
     // 指定图表的配置项和数据
     var option = {
         title: {
-            text: 'ECharts 入门示例'
+            text: '人情来往柱状分析图'
         },
         tooltip: {},
         legend: {
             data: ['收情','还情']
         },
         xAxis: {
-            data: ["2017-01", "2017-02", "2017-03", "2017-04", "2017-05", "2017-06"]
+            data: []
         },
         yAxis: {},
         series: [{
             name: '收情',
-            type: 'line',
-            smooth: true,
-            data: [5, 20, 36, 10, 10, 20]
+            type: 'bar',
+            data: []
         },
         {
             name: '还情',
-            type: 'line',
-            smooth: true,
-            data: [5, 25, 50, 25, 2, 15]
+            type: 'bar',
+            data: []
         }],
         dataZoom: [
         {   // 这个dataZoom组件，默认控制x轴。
@@ -61,6 +59,57 @@
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
+    initData();
+    function initData() {
+        myChart.showLoading();
+        $.ajax(
+             {
+                 async: true,
+                 type: 'POST',
+                 url: '@Url.Action("GetUserIndexStat","OverView")',
+                 data: {
+                     MoneyDate: ''
+                 },
+                 dataType: 'json',
+                 success: function (datafield) {
+                     buildOption(datafield);
+                 }
+             }
+             );
+    }
+    function buildOption(datamodel) {
+        var categories = [];
+        var getmoneies = [];
+        var givemoneies = [];
+        $.each(datamodel, function (i) {
+            categories.push(datamodel[i].MoneyDate);
+            getmoneies.push(datamodel[i].GetMoney);
+            givemoneies.push(datamodel[i].GiveMoney);
+        });
+        var dataoption = ({
+            categorie: categories,
+            getmoney: getmoneies,
+            givemoney: givemoneies
+        });
+        myChart.hideLoading();
+        myChart.setOption({
+            xAxis: {
+                data: dataoption.categorie
+            },
+            series: [{
+                name: '收情',
+                type: 'bar',
+                
+                data: dataoption.getmoney
+            },
+            {
+            name: '还情',
+            type: 'bar',
+            
+            data: dataoption.givemoney
+            }]
+        });
+    }
 </script>
 
 
