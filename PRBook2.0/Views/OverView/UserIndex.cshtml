@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     Layout = null;
 }
 
@@ -17,7 +16,32 @@
 </head>
 <body>
     <div>
-        <div id="main" style="width: 90%;min-height:600px;"></div> 
+        <div class="layui-form">
+            <div class="layui-form-item">
+                <div class="layui-inline">
+                    <label class="layui-form-label" style="width:auto">统计图表类型：</label>
+                    <div class="layui-input-inline" style="width: 200px;">
+                        <input type="radio" name="statStyle" value="bar" title="柱状图" checked="">
+                        <input type="radio" name="statStyle" value="line" title="折线图">
+                    </div>
+                </div>
+                <div class="layui-inline" style="margin-right:0px;">
+                    <label class="layui-form-label" style="width:auto">统计周期：</label>
+                    <div class="layui-input-inline" style="width: 150px;">
+                        <select name="StatCycle">
+                            <option value=""></option>
+                            <option value="6" selected="">最近半年</option>
+                            <option value="12">最近一年</option>
+                            <option value="24">最近两年</option>
+                            <option value="36">最近三年</option>
+                            <option value="48">最近四年</option>
+                            <option value="-1">所有</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="main" style="width: auto;height:600px;"></div>
     </div>
 </body>
 </html>
@@ -32,7 +56,7 @@
         },
         tooltip: {},
         legend: {
-            data: ['收情','还情']
+            data: ['收情', '还情']
         },
         xAxis: {
             data: []
@@ -59,8 +83,8 @@
 
     // 使用刚指定的配置项和数据显示图表。
     myChart.setOption(option);
-    initData();
-    function initData() {
+    var dataoption;
+    function initData(selectdate) {
         myChart.showLoading();
         $.ajax(
              {
@@ -68,7 +92,7 @@
                  type: 'POST',
                  url: '@Url.Action("GetUserIndexStat","OverView")',
                  data: {
-                     MoneyDate: ''
+                     MoneyDate: selectdate
                  },
                  dataType: 'json',
                  success: function (datafield) {
@@ -86,7 +110,7 @@
             getmoneies.push(datamodel[i].GetMoney);
             givemoneies.push(datamodel[i].GiveMoney);
         });
-        var dataoption = ({
+        dataoption = ({
             categorie: categories,
             getmoney: getmoneies,
             givemoney: givemoneies
@@ -98,15 +122,54 @@
             },
             series: [{
                 name: '收情',
-                type: 'bar',
-                
                 data: dataoption.getmoney
             },
             {
-            name: '还情',
-            type: 'bar',
-            
-            data: dataoption.givemoney
+                name: '还情',
+                data: dataoption.givemoney
+            }]
+        });
+    }
+    $(document).ready(function () {
+        layui.use(['layer', 'form'], function () {
+            var layer = layui.layer;
+            form = layui.form();
+            form.render();
+
+            initData('6');
+            form.on('select', function (data) {
+                statCycle(data);
+            });
+            form.on('radio', function (data) {
+                changeStyle(data);
+            });
+        });
+    });
+    function statCycle(selectitem) {
+        initData(selectitem.value);
+    }
+    function changeStyle(selectradio) {
+        var statname = "人情来往柱状分析图";
+        if (selectradio.value == "line")
+            statname = "人情来往折线分析图";
+        myChart.setOption({
+            title: {
+                text: statname
+            },
+            xAxis: {
+                data: dataoption.categorie
+            },
+            series: [{
+                name: '收情',
+                type: selectradio.value,
+                smooth: true,
+                data: dataoption.getmoney
+            },
+            {
+                name: '还情',
+                type: selectradio.value,
+                smooth: true,
+                data: dataoption.givemoney
             }]
         });
     }
