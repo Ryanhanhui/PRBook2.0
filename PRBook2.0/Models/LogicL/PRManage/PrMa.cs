@@ -40,8 +40,9 @@ namespace PRBook2._0.Models.LogicL.PRManage
         }
         public string GetData(int currpage, int pagesize)
         {
+            string cuserid = UserInfo.GetInstance().UserId;
             List<v_pr_peopleinfo> pruserinfo =
-                mdb.v_pr_peopleinfo.OrderBy(u => u.InputDate).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
+                mdb.v_pr_peopleinfo.Where(u => u.UserId.Equals(cuserid)).OrderBy(u => u.InputDate).Skip((currpage - 1) * pagesize).Take(pagesize).ToList();
             return putil.GetJsonData(pruserinfo);
         }
         public string GetData(int currpage, int pagesize, v_pr_peopleinfo userinfo)
@@ -54,7 +55,7 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 if (!string.IsNullOrWhiteSpace(userinfo.Remarks))
                     pr_peopleinfoquery = pr_peopleinfoquery.Where(u => u.Remarks.Contains(userinfo.Remarks)) as DbQuery<v_pr_peopleinfo>;
 
-                pr_peopleinfoquery = pr_peopleinfoquery.OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_pr_peopleinfo>;
+                pr_peopleinfoquery = pr_peopleinfoquery.Where(u=>u.UserId.Equals(userinfo.UserId)).OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_pr_peopleinfo>;
 
                 List<v_pr_peopleinfo> pruserinfo = pr_peopleinfoquery.ToList();
                 return putil.GetJsonData(pruserinfo);
@@ -74,6 +75,8 @@ namespace PRBook2._0.Models.LogicL.PRManage
         {
             try
             {
+                if (!IsExists(peopleInfo))
+                    return "exists";
                 mdb.PR_PeopleInfo.Add(peopleInfo);
                 int ret = mdb.SaveChanges();
                 if (ret != 0)
@@ -132,7 +135,9 @@ namespace PRBook2._0.Models.LogicL.PRManage
         {
             try
             {
+                List<PR_MoneyInfo> moneylist = mdb.PR_MoneyInfo.Where(u => u.PeopleId.Equals(Id)).ToList();
                 PR_PeopleInfo peopleInfo = mdb.PR_PeopleInfo.Where(u => u.Id.Equals(Id)).FirstOrDefault();
+                mdb.PR_MoneyInfo.RemoveRange(moneylist);
                 mdb.PR_PeopleInfo.Remove(peopleInfo);//删除实体
                 int ret = mdb.SaveChanges();
                 if (ret != 0)
@@ -210,6 +215,16 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 LogHandle.GetInstance().Error(ex.Message, GetType().ToString());
                 return string.Empty;
             }
+        }
+        private bool IsExists(PR_PeopleInfo peopleinfo)
+        {
+            string cuserid = UserInfo.GetInstance().UserId;
+            PR_PeopleInfo ppi = mdb.PR_PeopleInfo.Where(u => u.UserId.Equals(cuserid) && u.Name.Equals(peopleinfo.Name) && u.Remarks.Equals(peopleinfo.Remarks)).FirstOrDefault();
+
+            if (ppi==null)
+                return true;
+            else
+                return false;
         }
     }
 

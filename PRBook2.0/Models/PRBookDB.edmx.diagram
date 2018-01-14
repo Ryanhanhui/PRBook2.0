@@ -19,6 +19,8 @@
         <EntityTypeShape EntityType="PRBookModel.v_sys_loginlog" Width="1.5" PointX="2.75" PointY="7.75" />
         <EntityTypeShape EntityType="PRBookModel.v_pr_peopleinfo" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="PRBookModel.v_moneygetgivestat" Width="1.5" PointX="10.375" PointY="3.75" />
+        <EntityTypeShape EntityType="PRBookModel.PR_EnterPeopleMoney" Width="1.5" PointX="3.375" PointY="10.75" />
+        <EntityTypeShape EntityType="PRBookModel.pr_importpeoplemoneycheck" Width="1.5" PointX="5.375" PointY="10.75" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

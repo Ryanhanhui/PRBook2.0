@@ -17,6 +17,19 @@
           <Property Name="NodeNum" Type="int" />
           <Property Name="Status" Type="char" MaxLength="1" />
         </EntityType>
+        <EntityType Name="PR_EnterPeopleMoney">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="64" />
+          <Property Name="Remarks" Type="varchar" MaxLength="256" />
+          <Property Name="PRType" Type="varchar" MaxLength="20" />
+          <Property Name="PRMoney" Type="varchar" MaxLength="20" />
+          <Property Name="PRRemarks" Type="varchar" MaxLength="256" />
+          <Property Name="PRDate" Type="varchar" MaxLength="30" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+        </EntityType>
         <EntityType Name="PR_MoneyInfo">
           <Key>
             <PropertyRef Name="Id" />
@@ -99,6 +112,22 @@
           <Property Name="PhoneAddress" Type="varchar" MaxLength="255" />
         </EntityType>
         <!--生成过程中发现错误:
+警告 6002: 表/视图“def.prbook.pr_importpeoplemoneycheck”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
+        <EntityType Name="pr_importpeoplemoneycheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="varchar" MaxLength="32" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="64" />
+          <Property Name="Remarks" Type="varchar" MaxLength="256" />
+          <Property Name="PRType" Type="varchar" MaxLength="20" />
+          <Property Name="PRMoney" Type="varchar" MaxLength="20" />
+          <Property Name="PRRemarks" Type="varchar" MaxLength="256" />
+          <Property Name="PRDate" Type="varchar" MaxLength="30" />
+          <Property Name="UserId" Type="varchar" MaxLength="32" />
+          <Property Name="Memo" Type="varchar" MaxLength="13" />
+        </EntityType>
+        <!--生成过程中发现错误:
 警告 6002: 表/视图“def.prbook.v_getuserpower”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
         <EntityType Name="v_getuserpower">
           <Key>
@@ -122,7 +151,7 @@
           <Property Name="UserId" Type="varchar" MaxLength="32" />
           <Property Name="GetMoney" Type="decimal" Precision="32" Scale="0" />
           <Property Name="GiveMoney" Type="decimal" Precision="32" Scale="0" />
-          <Property Name="MoneyDate" Type="varchar" MaxLength="7" />
+          <Property Name="MoneyDate" Type="varchar" MaxLength="8" />
         </EntityType>
         <!--生成过程中发现错误:
 警告 6002: 表/视图“def.prbook.v_pr_peopleinfo”未定义主键。已推断出该键，并将定义创建为只读的表/视图。-->
@@ -181,6 +210,7 @@
         </EntityType>
         <EntityContainer Name="PRBookModelStoreContainer">
           <EntitySet Name="NodeSetInfo" EntityType="Self.NodeSetInfo" Schema="prbook" store:Type="Tables" />
+          <EntitySet Name="PR_EnterPeopleMoney" EntityType="Self.PR_EnterPeopleMoney" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="PR_MoneyInfo" EntityType="Self.PR_MoneyInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="PR_PeopleInfo" EntityType="Self.PR_PeopleInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="PR_UserInfo" EntityType="Self.PR_UserInfo" Schema="prbook" store:Type="Tables" />
@@ -189,6 +219,19 @@
           <EntitySet Name="SYS_RoleInfo" EntityType="Self.SYS_RoleInfo" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="SYS_RolePower" EntityType="Self.SYS_RolePower" Schema="prbook" store:Type="Tables" />
           <EntitySet Name="SYS_SystemConfigInfo" EntityType="Self.SYS_SystemConfigInfo" Schema="prbook" store:Type="Tables" />
+          <EntitySet Name="pr_importpeoplemoneycheck" EntityType="Self.pr_importpeoplemoneycheck" store:Type="Views" store:Schema="prbook">
+            <DefiningQuery>SELECT
+`pr_importpeoplemoneycheck`.`Id`, 
+`pr_importpeoplemoneycheck`.`Name`, 
+`pr_importpeoplemoneycheck`.`Remarks`, 
+`pr_importpeoplemoneycheck`.`PRType`, 
+`pr_importpeoplemoneycheck`.`PRMoney`, 
+`pr_importpeoplemoneycheck`.`PRRemarks`, 
+`pr_importpeoplemoneycheck`.`PRDate`, 
+`pr_importpeoplemoneycheck`.`UserId`, 
+`pr_importpeoplemoneycheck`.`Memo`
+FROM `pr_importpeoplemoneycheck` AS `pr_importpeoplemoneycheck`</DefiningQuery>
+          </EntitySet>
           <EntitySet Name="v_getuserpower" EntityType="Self.v_getuserpower" store:Type="Views" store:Schema="prbook">
             <DefiningQuery>SELECT
 `v_getuserpower`.`NodeId`, 
@@ -273,6 +316,8 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <EntitySet Name="v_sys_loginlog" EntityType="PRBookModel.v_sys_loginlog" />
           <EntitySet Name="v_pr_peopleinfo" EntityType="PRBookModel.v_pr_peopleinfo" />
           <EntitySet Name="v_moneygetgivestat" EntityType="PRBookModel.v_moneygetgivestat" />
+          <EntitySet Name="PR_EnterPeopleMoney" EntityType="PRBookModel.PR_EnterPeopleMoney" />
+          <EntitySet Name="pr_importpeoplemoneycheck" EntityType="PRBookModel.pr_importpeoplemoneycheck" />
           </EntityContainer>
         <ComplexType Name="TBFun_GetUserPower_Result">
           <Property Type="Int32" Name="NodeId" Nullable="true" />
@@ -444,6 +489,33 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
           <Property Name="GetMoney" Type="Decimal" />
           <Property Name="GiveMoney" Type="Decimal" />
           <Property Name="MoneyDate" Type="String" MaxLength="7" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="PR_EnterPeopleMoney">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PRType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRMoney" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRRemarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PRDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="pr_importpeoplemoneycheck">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" Nullable="false" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Name" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+          <Property Name="Remarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PRType" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRMoney" Type="String" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PRRemarks" Type="String" MaxLength="256" FixedLength="false" Unicode="false" />
+          <Property Name="PRDate" Type="String" MaxLength="30" FixedLength="false" Unicode="false" />
+          <Property Name="UserId" Type="String" MaxLength="32" FixedLength="false" Unicode="false" />
+          <Property Name="Memo" Type="String" MaxLength="13" FixedLength="false" Unicode="false" />
         </EntityType>
         </Schema>
     </edmx:ConceptualModels>
@@ -619,6 +691,35 @@ FROM `v_userinfo` AS `v_userinfo`</DefiningQuery>
                 <ScalarProperty Name="GiveMoney" ColumnName="GiveMoney" />
                 <ScalarProperty Name="GetMoney" ColumnName="GetMoney" />
                 <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="PR_EnterPeopleMoney">
+            <EntityTypeMapping TypeName="PRBookModel.PR_EnterPeopleMoney">
+              <MappingFragment StoreEntitySet="PR_EnterPeopleMoney">
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PRDate" ColumnName="PRDate" />
+                <ScalarProperty Name="PRRemarks" ColumnName="PRRemarks" />
+                <ScalarProperty Name="PRMoney" ColumnName="PRMoney" />
+                <ScalarProperty Name="PRType" ColumnName="PRType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pr_importpeoplemoneycheck">
+            <EntityTypeMapping TypeName="PRBookModel.pr_importpeoplemoneycheck">
+              <MappingFragment StoreEntitySet="pr_importpeoplemoneycheck">
+                <ScalarProperty Name="Memo" ColumnName="Memo" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+                <ScalarProperty Name="PRDate" ColumnName="PRDate" />
+                <ScalarProperty Name="PRRemarks" ColumnName="PRRemarks" />
+                <ScalarProperty Name="PRMoney" ColumnName="PRMoney" />
+                <ScalarProperty Name="PRType" ColumnName="PRType" />
+                <ScalarProperty Name="Remarks" ColumnName="Remarks" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
                 <ScalarProperty Name="Id" ColumnName="Id" />
               </MappingFragment>
             </EntityTypeMapping>

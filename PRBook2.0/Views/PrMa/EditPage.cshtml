@@ -78,6 +78,9 @@
                             $("#Name").val("");
                             $("#Remarks").val("");
                         }
+                        else if (datafield == "exists") {
+                            layer.msg('人员信息重复，请重新指定备注', { icon: 2 });
+                        }
                     }
                 }
                 );
