@@ -36,23 +36,27 @@ namespace PRBook2._0.Models.LogicL
             return mdb.SYS_RoleInfo.OrderBy(u => u.Id).ToList().Count;
         }
         /// <summary>
-        /// 获取编辑页的数据
+        /// 
         /// </summary>
-        /// <param name="Id">数据ID，为空则为新增状态</param>
+        /// <param name="Id">数据ID</param>
         /// <returns>单条记录json</returns>
         public string GetDetail(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+                return string.Empty;
             int id = int.Parse(Id);
             SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).ToList().SingleOrDefault();
             return putil.GetJsonData(sysRoleInfo);
         }
         /// <summary>
-        /// 获取编辑页的数据
+        /// 
         /// </summary>
-        /// <param name="Id">数据ID，为空则为新增状态</param>
-        /// <returns>单条记录json</returns>
+        /// <param name="Id">数据ID</param>
+        /// <returns></returns>
         public SYS_RoleInfo GetDetailObj(string Id)
         {
+            if (string.IsNullOrEmpty(Id))
+                return new SYS_RoleInfo();
             int id = int.Parse(Id);
             SYS_RoleInfo sysRoleInfo = mdb.SYS_RoleInfo.Where(u => u.Id == id).ToList().SingleOrDefault();
             return sysRoleInfo;
