@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using System.Web.Security;
 
 namespace PRBook2._0.Models.Tool
 {
@@ -14,15 +15,12 @@ namespace PRBook2._0.Models.Tool
         private static UserInfo _Instance;//全局单例
         private static readonly object locker = new object();
 
-        public string UserId { get; set; }
-        public string Password { get; set; }
-        public string NickName { get; set; }
-        public string Name { get; set; }
-        public string Sex { get; set; }
-        public Nullable<int> Age { get; set; }
-        public string RoleType { get; set; }
-        public string UserType { get; set; }
-        public string RoleIndexPage { get; set; }
+        public string UserId { get { return GetUserInfo() == null ? "" : GetUserInfo().UserId; } set { GetUserInfo().UserId = value; } }
+        public string NickName { get { return GetUserInfo().NickName; } set { GetUserInfo().NickName = value; } }
+        public string Name { get { return GetUserInfo().Name; } set { GetUserInfo().Name = value; } }
+        public string RoleType { get { return GetUserInfo().RoleType; } set { GetUserInfo().RoleType = value; } }
+        public string UserType { get { return GetUserInfo().UserType; } set { GetUserInfo().UserType = value; } }
+        public string RoleIndexPage { get { return GetUserInfo().RoleIndexPage; } set { GetUserInfo().RoleIndexPage = value; } }
         private UserInfo()
         {
 
@@ -44,21 +42,33 @@ namespace PRBook2._0.Models.Tool
             return _Instance;
         }
         /// <summary>
-        /// 设置登录用户的信息
+        /// 获取用户信息
         /// </summary>
-        /// <param name="pr_userinfo">用户信息</param>
-        public void SetUserInfo(PR_UserInfo pr_userinfo)
+        /// <returns>用户信息</returns>
+        private UserRepository GetUserInfo()
         {
-            _Instance.UserId = pr_userinfo.UserId;
-            _Instance.NickName = pr_userinfo.NickName;
-            _Instance.Name = pr_userinfo.Name;
-            _Instance.Age = pr_userinfo.Age;
-            _Instance.Sex = pr_userinfo.Sex;
-            _Instance.RoleType = pr_userinfo.RoleType;
-            _Instance.Password = pr_userinfo.Password;
-            _Instance.UserType = pr_userinfo.UserType;
-            RoleManage roleMa = new RoleManage();
-            _Instance.RoleIndexPage = roleMa.GetDetailObj(pr_userinfo.RoleType).RoleIndexPage;
+            try
+            {
+                string UserData = string.Empty;
+                UserData = GetUserFromCookie(HttpContext.Current.Request);
+                UserRepository userrepository = new UserRepository(UserData);
+                return userrepository;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+        /// <summary>
+        /// 从加密的cookie中获取加密的用户信息
+        /// </summary>
+        /// <param name="request">请求的request</param>
+        /// <returns>用户信息串</returns>
+        private string GetUserFromCookie(HttpRequest request)
+        {
+            HttpCookie httpcookie = request.Cookies[FormsAuthentication.FormsCookieName.ToString()];
+            FormsAuthenticationTicket authenTiket = FormsAuthentication.Decrypt(httpcookie.Value.ToString());
+            return authenTiket.UserData.ToString();
         }
     }
 }

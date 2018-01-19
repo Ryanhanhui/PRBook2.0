@@ -31,7 +31,6 @@ namespace PRBook2._0.Controllers
             bool result = signin.LoginConfirm(username, pwd,Request.UserHostAddress);
             if (result)
             {
-                FormsAuthentication.SetAuthCookie(username, false);
                 return "";
             }
             else
