@@ -76,6 +76,22 @@ namespace PRBook2._0.Controllers.PRManage
         }
         [Authorize]
         [HttpPost]
+        public string AddDataGo()
+        {
+            PR_PeopleInfo pr = new PR_PeopleInfo();
+            pr.Id = Guid.NewGuid().ToString("N");
+            pr.Name = Request.Form["Name"].ToString();
+            pr.Remarks = Request.Form["Remarks"].ToString();
+            pr.InputDate = DateTime.Now;
+            pr.UserId = UserInfo.GetInstance().UserId;
+            string ret = prma.AddData(pr);
+            if (ret.Equals("success"))
+                return pr.Id;
+            else
+                return ret;
+        }
+        [Authorize]
+        [HttpPost]
         public string UpdateData()
         {
             PR_PeopleInfo pr = new PR_PeopleInfo();

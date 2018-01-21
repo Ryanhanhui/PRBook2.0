@@ -55,7 +55,7 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 if (!string.IsNullOrWhiteSpace(userinfo.Remarks))
                     pr_peopleinfoquery = pr_peopleinfoquery.Where(u => u.Remarks.Contains(userinfo.Remarks)) as DbQuery<v_pr_peopleinfo>;
 
-                pr_peopleinfoquery = pr_peopleinfoquery.Where(u=>u.UserId.Equals(userinfo.UserId)).OrderBy(u => u.Id).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_pr_peopleinfo>;
+                pr_peopleinfoquery = pr_peopleinfoquery.Where(u=>u.UserId.Equals(userinfo.UserId)).OrderBy(u => u.Name).Skip((currpage - 1) * pagesize).Take(pagesize) as DbQuery<v_pr_peopleinfo>;
 
                 List<v_pr_peopleinfo> pruserinfo = pr_peopleinfoquery.ToList();
                 return putil.GetJsonData(pruserinfo);
@@ -75,7 +75,7 @@ namespace PRBook2._0.Models.LogicL.PRManage
         {
             try
             {
-                if (!IsExists(peopleInfo))
+                if (!CheckSave(peopleInfo, true))
                     return "exists";
                 mdb.PR_PeopleInfo.Add(peopleInfo);
                 int ret = mdb.SaveChanges();
@@ -101,6 +101,8 @@ namespace PRBook2._0.Models.LogicL.PRManage
         {
             try
             {
+                if (!CheckSave(peopleInfo, false))
+                    return "exists";
                 DbEntityEntry<PR_PeopleInfo> entry = mdb.Entry<PR_PeopleInfo>(peopleInfo);
                 entry.State = System.Data.Entity.EntityState.Unchanged;
                 entry.Property("Name").IsModified = true;
@@ -216,15 +218,33 @@ namespace PRBook2._0.Models.LogicL.PRManage
                 return string.Empty;
             }
         }
-        private bool IsExists(PR_PeopleInfo peopleinfo)
+        private bool CheckSave(PR_PeopleInfo peopleinfo,bool isnew)
         {
             string cuserid = UserInfo.GetInstance().UserId;
-            PR_PeopleInfo ppi = mdb.PR_PeopleInfo.Where(u => u.UserId.Equals(cuserid) && u.Name.Equals(peopleinfo.Name) && u.Remarks.Equals(peopleinfo.Remarks)).FirstOrDefault();
-
-            if (ppi==null)
-                return true;
+            if(isnew)
+            {
+                PR_PeopleInfo ppi = mdb.PR_PeopleInfo.Where(u => u.UserId.Equals(cuserid) && u.Name.Equals(peopleinfo.Name) && u.Remarks.Equals(peopleinfo.Remarks)).FirstOrDefault();
+                if (ppi == null)
+                    return true;
+                else
+                    return false;
+            }
             else
-                return false;
+            {
+                PR_PeopleInfo ppi = mdb.PR_PeopleInfo.AsNoTracking().Where(u => u.Id == peopleinfo.Id).FirstOrDefault();//查询出实体，但是不进行跟踪操作，不进行缓存，用完即丢
+                if(ppi.UserId.Equals(cuserid)&&ppi.Name.Equals(peopleinfo.Name)&&ppi.Remarks.Equals(peopleinfo.Remarks))//更新未变
+                {
+                    return true;
+                }
+                else
+                {
+                    PR_PeopleInfo ppo = mdb.PR_PeopleInfo.Where(u => u.UserId.Equals(cuserid) && u.Name.Equals(peopleinfo.Name) && u.Remarks.Equals(peopleinfo.Remarks)).FirstOrDefault();
+                    if (ppo == null)
+                        return true;
+                    else
+                        return false;
+                }
+            }
         }
     }
 

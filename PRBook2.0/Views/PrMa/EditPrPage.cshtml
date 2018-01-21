@@ -144,11 +144,11 @@
                         },
                     success: function (datafield) {
                         if (datafield == "success") {
-                            layer.msg("删除成功",{ icon: 1 });
+                            layer.alert("删除成功",{ icon: 1 });
                             queryData();
                         }
                         else {
-                            layer.msg("删除失败，请稍后重试", { icon: 2 });
+                            layer.alert("删除失败，请稍后重试", { icon: 2 });
                         }
                     }
                 }
@@ -166,7 +166,7 @@
                 data: datafield.field,
                 success: function (datafield) {
                     if (datafield == "success") {
-                        layer.msg('保存成功', { icon: 1 });
+                        layer.alert('保存成功', { icon: 1 });
                         //do something
                         $("#Money").val("");
                         $("#Remarks").val("");
@@ -174,7 +174,7 @@
                         queryData();
                     }
                     else {
-                        layer.msg("删除失败，请稍后重试", { icon: 2 });
+                        layer.alert("删除失败，请稍后重试", { icon: 2 });
                     }
                 }
             }
