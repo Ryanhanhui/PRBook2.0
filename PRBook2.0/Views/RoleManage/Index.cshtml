@@ -28,7 +28,10 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-    <div id="mypage"></div>
+    <div style="float: left; margin-left: 15px;">
+        <div class="layuipagecount"><span id="mypagecount">共 @ViewBag.PageCount 条</span></div>
+    </div>
+    <div id="mypage" style="margin-left:10px;float:left"></div>
 </body>
 </html>
 <script>
@@ -40,6 +43,7 @@
     });
     function initData() {
         pagecount =@ViewBag.PageCount
+        $("#mypagecount").text("共 " + pagecount + " 条 每页 " + pagesize + " 条");
         layui.use('laypage', function () {
             laypage = layui.laypage;
             laypage({

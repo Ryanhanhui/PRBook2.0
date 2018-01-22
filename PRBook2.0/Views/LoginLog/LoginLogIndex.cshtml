@@ -61,7 +61,15 @@
         </thead>
         <tbody id="tableBody"></tbody>
     </table>
-    <div id="mypage"></div>
+    <div style="float: left; margin-left: 15px;">
+        <div class="layuipagecount"><span id="mypagecount">共 1000 条</span></div>
+    </div>
+    <div id="mypage" style="margin-left:10px;float:left"></div>
+    
+    <input id="hide_UserId" type="hidden" value="" />
+    <input id="hide_NickName" type="hidden" value="" />
+    <input id="hide_BeginTime" type="hidden" value="" />
+    <input id="hide_EndTime" type="hidden" value="" />
 </body>
 </html>
 <script>
@@ -75,7 +83,12 @@
         var laydate = layui.laydate;
     });
     function queryData() {
+        $("#hide_UserId").val($("#UserId").val());
+        $("#hide_NickName").val($("#NickName").val());
+        $("#hide_BeginTime").val($("#BeginTime").val());
+        $("#hide_EndTime").val($("#EndTime").val());
         pagecount = getPageCount();
+        $("#mypagecount").text("共 " + pagecount + " 条 每页 " + pagesize + " 条");
         layui.use('laypage', function () {
             laypage = layui.laypage;
             laypage({
@@ -89,10 +102,10 @@
                     var datajson = {
                         currpage: curr,
                         pagesize: pagesize,
-                        UserId: $("#UserId").val(),
-                        NickName: $("#NickName").val(),
-                        BeginTime: $("#BeginTime").val(),
-                        EndTime: $("#EndTime").val()
+                        UserId: $("#hide_UserId").val(),
+                        NickName: $("#hide_NickName").val(),
+                        BeginTime: $("#hide_BeginTime").val(),
+                        EndTime: $("#hide_EndTime").val()
                     };
                     $.ajax(
                         {
@@ -132,10 +145,10 @@
     function getPageCount() {
         var ret = 0;
         var datajson = {
-            UserId: $("#UserId").val(),
-            NickName: $("#NickName").val(),
-            BeginTime: $("#BeginTime").val(),
-            EndTime: $("#EndTime").val()
+            UserId: $("#hide_UserId").val(),
+            NickName: $("#hide_NickName").val(),
+            BeginTime: $("#hide_BeginTime").val(),
+            EndTime: $("#hide_EndTime").val()
         };
         $.ajax(
                     {
